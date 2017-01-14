@@ -28,6 +28,19 @@ namespace amblibTest
             verify(AmbLib.IsFileNamable("aaan,.ji.jjjjjjjjjjjjjjjj"));
             verify(!AmbLib.IsFileNamable("lpt1.txt"));
             verify(!AmbLib.IsFileNamable("aux"));
+
+
+            try
+            {
+                int i = 1;
+                i--;
+
+                int j = 10 / i;
+            }
+            catch (Exception ex)
+            {
+                AmbLib.ExceptionMessageBox(ex);
+            }
         }
     }
 }
