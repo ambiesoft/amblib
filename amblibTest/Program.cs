@@ -6,6 +6,8 @@ using System.Diagnostics;
 
 namespace amblibTest
 {
+    using System.Windows.Forms;
+
     class Program
     {
         static void verify(bool b)
@@ -41,6 +43,9 @@ namespace amblibTest
             {
                 AmbLib.ExceptionMessageBox(ex);
             }
+
+
+            MessageBox.Show(AmbLib.GetIniPath());            
         }
     }
 }

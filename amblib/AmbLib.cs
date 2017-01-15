@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Ambiesoft
 {
+    using System.Drawing;
+    using System.Windows.Forms;
+    using System.IO;
+
     public class AmbLib
     {
         public static bool IsFileNamable(string fn)
@@ -83,5 +87,29 @@ namespace Ambiesoft
             System.Windows.Forms.MessageBoxIcon.Exclamation);
         }
 
+        public static bool IsPointInMonitor(int x, int y)
+        {
+            return IsPointInMonitor(new Point(x, y));
+        }
+        public static bool IsPointInMonitor(Point pt)
+        {
+            foreach (Screen s in Screen.AllScreens)
+            {
+                if (s.WorkingArea.Contains(pt))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public static string GetIniPath()
+        {
+            FileInfo fi = new FileInfo(Application.ExecutablePath);
+            string dir = fi.DirectoryName;
+            string file = Path.GetFileNameWithoutExtension(fi.Name) + ".ini";
+            return Path.Combine(dir, file);
+        }
     }
 }
