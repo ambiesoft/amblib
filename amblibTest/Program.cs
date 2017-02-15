@@ -20,6 +20,9 @@ namespace amblibTest
 
         static void Main(string[] args)
         {
+            FormMain form = new FormMain();
+            form.ShowDialog();
+
             verify(AmbLib.IsFileNamable("aaa"));
             verify(AmbLib.IsFileNamable("aaa.txt"));
             verify(AmbLib.IsFileNamable("Ç†Ç†Ç†Ç†ÅB.aaa"));
