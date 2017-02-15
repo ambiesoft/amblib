@@ -179,8 +179,38 @@ namespace Ambiesoft
 
             return sb.ToString();
         }
-    
-    
+
+        public static void StretchToolItem(ToolStrip bar, ToolStripItem itemstretch)
+        {
+            StretchToolItem(bar, itemstretch, false);
+        }
+        public static void StretchToolItem(ToolStrip bar, ToolStripItem itemstretch, bool noUPdate)
+        {
+            int all = bar.Size.Width;
+
+            int other = 0;
+            other += bar.Margin.Left;
+            other += bar.Margin.Right;
+            other += bar.GripRectangle.Width;
+            other += bar.GripMargin.Left + bar.GripMargin.Right;
+
+            foreach (ToolStripItem item in bar.Items)
+            {
+                if (item != itemstretch)
+                {
+                    other += item.Size.Width;
+                    other += (item.Margin.Left + item.Margin.Right);
+                    other += (item.Padding.Left + item.Padding.Right);
+                }
+            }
+
+            itemstretch.Size = new Size(all - other, itemstretch.Size.Height);
+            if (!noUPdate)
+            {
+                itemstretch.Visible = false;
+                itemstretch.Visible = true;
+            }
+        }
     
     
     }  // class Amblib
