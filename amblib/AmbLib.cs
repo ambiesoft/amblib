@@ -211,7 +211,28 @@ namespace Ambiesoft
                 itemstretch.Visible = true;
             }
         }
-    
-    
+
+        public static void setRegMaxIE(int val)
+        {
+            try
+            {
+                string exename = System.IO.Path.GetFileName(Application.ExecutablePath);
+                Microsoft.Win32.RegistryKey regkey =
+                    Microsoft.Win32.Registry.CurrentUser.CreateSubKey(
+                        @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION");
+
+                regkey.SetValue(exename, (int)val, Microsoft.Win32.RegistryValueKind.DWord);
+                regkey.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                    Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+
     }  // class Amblib
 }  // namespace Ambiesoft
