@@ -362,7 +362,8 @@ namespace Ambiesoft
 
                     foreach (IPAddress dnsAdress in dnsAddresses)
                     {
-                        return dnsAdress.ToString();
+                        if(dnsAdress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                            return dnsAdress.ToString();
                     }
                 }
             }
@@ -370,5 +371,35 @@ namespace Ambiesoft
             // throw new InvalidOperationException("Unable to find DNS Address");
             return null;
         }
+
+           
+        //public static string GetDnsAdress2()
+        //{
+        //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+        //    {
+        //        if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+        //        {
+        //            // Console.WriteLine(ni.Name);
+        //            foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+        //            {
+        //                if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+        //                {
+        //                    // Console.WriteLine(ip.Address.ToString());
+        //                    // return ip.Address.ToString();
+        //                    IPAddressCollection dnsAddresses = ni.GetIPProperties().DnsAddresses;
+        //                    foreach (IPAddress dnsAdress in dnsAddresses)
+        //                    {
+        //                        return dnsAdress.ToString();
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return null;
+        //}
+
+
+
     }  // class Amblib
 }  // namespace Ambiesoft
