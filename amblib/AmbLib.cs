@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Net;
+using System.Net.NetworkInformation;
 
 namespace Ambiesoft
 {
@@ -347,5 +349,26 @@ namespace Ambiesoft
         }
 
 
+        public static string GetDnsAdress()
+        {
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (NetworkInterface networkInterface in networkInterfaces)
+            {
+                if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                {
+                    IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
+                    IPAddressCollection dnsAddresses = ipProperties.DnsAddresses;
+
+                    foreach (IPAddress dnsAdress in dnsAddresses)
+                    {
+                        return dnsAdress.ToString();
+                    }
+                }
+            }
+
+            // throw new InvalidOperationException("Unable to find DNS Address");
+            return null;
+        }
     }  // class Amblib
 }  // namespace Ambiesoft

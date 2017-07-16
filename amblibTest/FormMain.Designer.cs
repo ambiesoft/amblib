@@ -35,12 +35,14 @@
             this.上書き保存SToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.印刷PToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.切り取りUToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.コピーCToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.貼り付けPToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ヘルプLToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.txtDNS = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,6 +109,11 @@
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            // 
             // 切り取りUToolStripButton
             // 
             this.切り取りUToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -148,16 +155,29 @@
             this.ヘルプLToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ヘルプLToolStripButton.Text = "ヘルプ(&L)";
             // 
-            // toolStripComboBox1
+            // txtDNS
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            this.txtDNS.Location = new System.Drawing.Point(12, 54);
+            this.txtDNS.Name = "txtDNS";
+            this.txtDNS.Size = new System.Drawing.Size(369, 20);
+            this.txtDNS.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "&DNS:";
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 280);
+            this.ClientSize = new System.Drawing.Size(494, 303);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtDNS);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
             this.Text = "FormMain";
@@ -184,5 +204,7 @@
         private System.Windows.Forms.ToolStripButton 貼り付けPToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton ヘルプLToolStripButton;
+        private System.Windows.Forms.TextBox txtDNS;
+        private System.Windows.Forms.Label label1;
     }
 }

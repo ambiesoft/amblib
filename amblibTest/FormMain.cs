@@ -18,6 +18,7 @@ namespace amblibTest
         private void FormMain_Load(object sender, EventArgs e)
         {
             Ambiesoft.AmbLib.StretchToolItem(toolStrip1, toolStripComboBox1);
+            txtDNS.Text = Ambiesoft.AmbLib.GetDnsAdress();
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
