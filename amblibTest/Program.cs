@@ -20,8 +20,7 @@ namespace amblibTest
 
         static void Main(string[] args)
         {
-            FormMain form = new FormMain();
-            form.ShowDialog();
+     
 
             verify(AmbLib.IsFileNamable("aaa"));
             verify(AmbLib.IsFileNamable("aaa.txt"));
@@ -33,6 +32,12 @@ namespace amblibTest
             verify(AmbLib.IsFileNamable("aaan,.ji.jjjjjjjjjjjjjjjj"));
             verify(!AmbLib.IsFileNamable("lpt1.txt"));
             verify(!AmbLib.IsFileNamable("aux"));
+
+            verify(AmbLib.GetFilaNamableName("aux") == AmbLib.DEFAULT_UNNAMABLED_FILENAME);
+            verify(AmbLib.GetFilaNamableName("aaa bbb ?") == "aaa bbb _");
+
+            FormMain form = new FormMain();
+            form.ShowDialog();
 
 
             try

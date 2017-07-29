@@ -13,35 +13,78 @@ namespace Ambiesoft
 
     public class AmbLib
     {
-        public static bool IsFileNamable(string fn)
+        public static String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
+
+        public static string GetFirstLine(string s)
         {
-            if (string.IsNullOrEmpty(fn))
-                return false;
+            if (string.IsNullOrEmpty(s))
+                return s;
 
-            if (fn.EndsWith(".") || fn.EndsWith(" "))
-                return false;
+            s = s.TrimStart(new char[] { ' ', '\r', '\n', '\t' });
 
-            foreach (char c in fn)
+            int idx = s.IndexOf('\r');
+            if (idx != -1)
             {
-                if (c == '<' ||
-                     c == '>' ||
-                     c == ':' ||
-                     c == '\"' ||
-                     c == '/' ||
-                     c == '\\' ||
-                     c == '|' ||
-                     c == '?' ||
-                     c == '*')
-                {
-                    return false;
-                }
-
-                if (0 <= c && c <= 31)
-                {
-                    return false;
-                }
+                s = s.Substring(0, idx);
             }
 
+            idx = s.IndexOf('\n');
+            if (idx != -1)
+            {
+                s = s.Substring(0, idx);
+            }
+
+
+            return s;
+        }
+        public static String GetFilaNamableName(String s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return DEFAULT_UNNAMABLED_FILENAME;
+
+            s = GetFirstLine(s);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in s)
+            {
+                if (IsFileNamable(c))
+                    sb.Append(c);
+                else
+                    sb.Append('_');
+            }
+            string ret = sb.ToString();
+
+            if (!IsFileNamableSpecial(ret))
+            {
+                ret = DEFAULT_UNNAMABLED_FILENAME;
+            }
+            return ret;
+        }
+        public static bool IsFileNamable(char c)
+        {
+            if (c == '<' ||
+                c == '>' ||
+                c == ':' ||
+                c == ';' ||
+                c == '\"' ||
+                c == '/' ||
+                c == '\\' ||
+                c == '|' ||
+                c == '?' ||
+                c == '*')
+            {
+                return false;
+            }
+
+            if (0 <= c && c <= 31)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public static bool IsFileNamableSpecial(string fn)
+        {
             string lfn = fn.ToUpper();
             int lp = lfn.LastIndexOf('.');
             if (lp != -1)
@@ -76,6 +119,24 @@ namespace Ambiesoft
             {
                 return false;
             }
+            return true;
+        }
+        public static bool IsFileNamable(string fn)
+        {
+            if (string.IsNullOrEmpty(fn))
+                return false;
+
+            if (fn.EndsWith(".") || fn.EndsWith(" "))
+                return false;
+
+            foreach (char c in fn)
+            {
+                if (!IsFileNamable(c))
+                    return false;
+            }
+
+            if (!IsFileNamableSpecial(fn))
+                return false;
 
             return true;
         }
@@ -144,7 +205,7 @@ namespace Ambiesoft
                         {
                             if (sp != "" && install == "1")
                             {
-                                
+
                                 sb.AppendLine(versionKeyName + "  " + name + "  SP" + sp);
                             }
 
@@ -362,7 +423,7 @@ namespace Ambiesoft
 
                     foreach (IPAddress dnsAdress in dnsAddresses)
                     {
-                        if(dnsAdress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        if (dnsAdress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                             return dnsAdress.ToString();
                     }
                 }
@@ -372,7 +433,7 @@ namespace Ambiesoft
             return null;
         }
 
-           
+
         //public static string GetDnsAdress2()
         //{
         //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
