@@ -20,8 +20,11 @@ namespace amblibTest
 
         static void Main(string[] args)
         {
-     
 
+            verify(AmbLib.HasFileExtension("aaa.tXt","txt"));
+
+            verify(AmbLib.GetFileExtension("aaa.txt") == ".txt");
+            verify(AmbLib.GetFileExtension(@"C:\Users\Bokkurin\Desktop\Passageway _ Define Passageway at Dictionary.com") == ".com");
             verify(AmbLib.IsFileNamable("aaa"));
             verify(AmbLib.IsFileNamable("aaa.txt"));
             verify(AmbLib.IsFileNamable("Ç†Ç†Ç†Ç†ÅB.aaa"));

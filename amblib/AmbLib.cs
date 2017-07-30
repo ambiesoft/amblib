@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.IO;
 
 namespace Ambiesoft
 {
@@ -14,6 +15,42 @@ namespace Ambiesoft
     public class AmbLib
     {
         public static String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
+
+        public static bool HasFileExtension(string filename,string ext)
+        {
+            if(filename==null)
+                filename=string.Empty;
+            if (ext == null)
+                ext = string.Empty;
+
+            if (ext[0] != '.')
+                ext = '.' + ext;
+            string fileext = GetFileExtension(filename, true);
+            return ext == fileext;
+        }
+
+
+        public static string GetFileExtension(string filename, bool lowercase)
+        {
+            if (string.IsNullOrEmpty(filename))
+                return string.Empty;
+
+            try
+            {
+                FileInfo fi = new FileInfo(filename);
+                string ret = fi.Extension;
+                if (ret == null)
+                    ret = string.Empty;
+                return lowercase ? ret.ToLower() : ret;
+            }
+            catch (Exception) { }
+            return string.Empty;
+        }
+
+        public static string GetFileExtension(string filename)
+        {
+            return GetFileExtension(filename, false);
+        }
 
         public static string GetFirstLine(string s)
         {
