@@ -470,7 +470,28 @@ namespace Ambiesoft
             return null;
         }
 
+        // https://stackoverflow.com/a/8809437
+        public static string ReplaceFirst(string text, string search, string replace)
+        {
+            int pos = text.IndexOf(search);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
+        }
+        
+        //https://stackoverflow.com/a/14826068
+        public static string ReplaceLast(string Source, string Find, string Replace)
+        {
+            int place = Source.LastIndexOf(Find);
 
+            if (place == -1)
+                return Source;
+
+            string result = Source.Remove(place, Find.Length).Insert(place, Replace);
+            return result;
+        }
         //public static string GetDnsAdress2()
         //{
         //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
