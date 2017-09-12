@@ -4,7 +4,7 @@ using System.Text;
 using Ambiesoft;
 using System.Diagnostics;
 
-namespace amblibTest
+namespace AmbLibTest
 {
     using System.Windows.Forms;
 

@@ -1,4 +1,4 @@
-﻿namespace amblibTest
+﻿namespace AmbLibTest
 {
     partial class FormMain
     {
