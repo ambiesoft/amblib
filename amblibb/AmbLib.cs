@@ -532,5 +532,19 @@ namespace Ambiesoft
             return null;
         }
 
+        public static DialogResult Info(string message)
+        {
+            return MessageBox.Show(message,
+                Application.ProductName,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+        public static DialogResult Alert(string message)
+        {
+            return MessageBox.Show(message,
+                Application.ProductName,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
