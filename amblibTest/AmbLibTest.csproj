@@ -7,8 +7,8 @@
     <ProjectGuid>{9508DF7F-2009-4E43-A6DB-935E2F6E7B32}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>amblibTest</RootNamespace>
-    <AssemblyName>amblibTest</AssemblyName>
+    <RootNamespace>AmbLibTest</RootNamespace>
+    <AssemblyName>AmbLibTest</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
