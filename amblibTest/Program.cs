@@ -20,6 +20,9 @@ namespace amblibTest
 
         static void Main(string[] args)
         {
+            object ob=AmbLib.EasyRegRead(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem",
+                "NtfsDisable8dot3NameCreation");
+
 
             verify(AmbLib.HasFileExtension("aaa.tXt","txt"));
 

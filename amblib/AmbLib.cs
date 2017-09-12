@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Drawing;
+using System.Windows.Forms;
 using System.IO;
+
+using Microsoft.Win32;
 
 namespace Ambiesoft
 {
-    using System.Drawing;
-    using System.Windows.Forms;
-    using System.IO;
-    using Microsoft.Win32;
+
+
 
     public class AmbLib
     {
@@ -518,7 +520,17 @@ namespace Ambiesoft
         //    return null;
         //}
 
-
+        public static object EasyRegRead(string path, string keyname)
+        {
+            try
+            {
+                return Registry.GetValue(path,keyname,null);
+            }
+            catch (Exception)
+            {
+            }
+            return null;
+        }
 
     }  // class Amblib
 }  // namespace Ambiesoft
