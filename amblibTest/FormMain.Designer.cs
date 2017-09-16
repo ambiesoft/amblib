@@ -43,6 +43,9 @@
             this.ヘルプLToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.txtDNS = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtPointInScreen = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,11 +174,40 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "&DNS:";
             // 
+            // txtPointInScreen
+            // 
+            this.txtPointInScreen.Location = new System.Drawing.Point(12, 100);
+            this.txtPointInScreen.Name = "txtPointInScreen";
+            this.txtPointInScreen.Size = new System.Drawing.Size(395, 20);
+            this.txtPointInScreen.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "PointInScreen";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(413, 97);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 303);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtPointInScreen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDNS);
             this.Controls.Add(this.toolStrip1);
@@ -206,5 +238,8 @@
         private System.Windows.Forms.ToolStripButton ヘルプLToolStripButton;
         private System.Windows.Forms.TextBox txtDNS;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtPointInScreen;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

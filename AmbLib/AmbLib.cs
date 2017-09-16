@@ -18,10 +18,10 @@ namespace Ambiesoft
     {
         public static String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
 
-        public static bool HasFileExtension(string filename,string ext)
+        public static bool HasFileExtension(string filename, string ext)
         {
-            if(filename==null)
-                filename=string.Empty;
+            if (filename == null)
+                filename = string.Empty;
             if (ext == null)
                 ext = string.Empty;
 
@@ -190,21 +190,7 @@ namespace Ambiesoft
             System.Windows.Forms.MessageBoxIcon.Exclamation);
         }
 
-        public static bool IsPointInMonitor(int x, int y)
-        {
-            return IsPointInMonitor(new Point(x, y));
-        }
-        public static bool IsPointInMonitor(Point pt)
-        {
-            foreach (Screen s in Screen.AllScreens)
-            {
-                if (s.WorkingArea.Contains(pt))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+   
 
 
         public static string GetIniPath()
@@ -482,7 +468,7 @@ namespace Ambiesoft
             }
             return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
-        
+
         //https://stackoverflow.com/a/14826068
         public static string ReplaceLast(string Source, string Find, string Replace)
         {
@@ -524,7 +510,7 @@ namespace Ambiesoft
         {
             try
             {
-                return Registry.GetValue(path,keyname,null);
+                return Registry.GetValue(path, keyname, null);
             }
             catch (Exception)
             {
@@ -546,5 +532,43 @@ namespace Ambiesoft
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
         }
+
+        public static bool IsPointInScreen(int x, int y)
+        {
+            return IsPointInScreen(new Point(x, y));
+        }
+        public static bool IsPointInScreen(Point pt)
+        {
+            foreach (Screen s in Screen.AllScreens)
+            {
+                if (s.WorkingArea.Contains(pt))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool IsRectInScreen(Rectangle rect)
+        {
+            Point topleft = new Point(rect.X, rect.Y);
+            if (IsPointInScreen(topleft))
+                return true;
+
+            Point topright = new Point(rect.X + rect.Width, rect.Y);
+            if (IsPointInScreen(topright))
+                return true;
+
+            Point bottomleft = new Point(rect.X, rect.Y + rect.Height);
+            if (IsPointInScreen(bottomleft))
+                return true;
+
+            Point bottomright = new Point(rect.X + rect.Width, rect.Y + rect.Bottom);
+            if (IsPointInScreen(bottomright))
+                return true;
+
+            return false;
+        }
+
+
     }  // class Amblib
 }  // namespace Ambiesoft
