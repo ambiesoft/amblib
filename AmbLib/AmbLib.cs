@@ -570,5 +570,23 @@ namespace Ambiesoft
         }
 
 
+        public static void SetFontAll(Control cnt)
+        {
+            if (cnt is Form)
+            { } // cnt.Font = SystemFonts.CaptionFont;
+            else if (cnt is Button)
+                cnt.Font = SystemFonts.MenuFont;
+            else if (cnt is TextBox)
+                cnt.Font = SystemFonts.MenuFont;
+            else if (cnt is Label)
+                cnt.Font = SystemFonts.MenuFont;
+            else if (cnt is CheckBox)
+                cnt.Font = SystemFonts.MenuFont;
+
+            foreach (Control c in cnt.Controls)
+            {
+                SetFontAll(c);
+            }
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
