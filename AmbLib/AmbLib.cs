@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace Ambiesoft
 {
@@ -588,5 +589,81 @@ namespace Ambiesoft
                 SetFontAll(c);
             }
         }
+
+        static string GetTrimmedFilename(string filename, int maxlen)
+        {
+            int lastdot = filename.LastIndexOf('.');
+            if (lastdot < 0)
+            {
+                // no extention just strip
+                return filename.Substring(0, maxlen);
+            }
+
+
+            // namepart.extpart
+            string namepart = filename.Substring(0, lastdot);
+            string extpart = filename.Substring(lastdot);
+            if (extpart.Length > maxlen)
+            {
+                // extention itself over maxlen, give up
+                return null;
+            }
+
+            string newnamepart = namepart.Substring(0, maxlen - extpart.Length);
+            string ret = newnamepart + extpart;
+            Debug.Assert(ret.Length <= maxlen);
+            return ret;
+        }
+        public static string GetMaxpathTrimmedPath(string path, int maxlen)
+        {
+            if(string.IsNullOrEmpty(path))
+                return path;
+
+            if(path.Length <= maxlen)
+            {
+                // upto 259 char
+                return path;
+            }
+
+            // continuous separator should be one
+            path = path.Replace('/', '\\');
+            while (path.IndexOf(@"\\") >= 0)
+            {
+                path = path.Replace(@"\\", @"\");
+            }
+            if (path.Length <= maxlen)
+            {
+                // upto 259 char
+                return path;
+            }
+
+            // find directory
+            int lastbackslash = path.LastIndexOf('\\');
+            if (lastbackslash < 0)
+            {
+                // no directory
+                return GetTrimmedFilename(path, maxlen);
+            }
+
+            string dir = path.Substring(0, lastbackslash);
+            string filepart = path.Substring(lastbackslash+1);
+            if (dir.Length >= maxlen)
+            {
+                // dir itself over MAX_PATH, give up
+                return null;
+            }
+
+            string nameret = GetTrimmedFilename(filepart, maxlen - dir.Length - 1);
+            if(string.IsNullOrEmpty(nameret))
+                return null;
+
+            return dir + '\\' + nameret;
+        }
+        public static string GetMaxpathTrimmedPath(string path)
+        {
+            return GetMaxpathTrimmedPath(path, 259);
+        }
+            
+
     }  // class Amblib
 }  // namespace Ambiesoft
