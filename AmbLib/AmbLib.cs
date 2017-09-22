@@ -674,6 +674,31 @@ namespace Ambiesoft
             return GetMaxpathTrimmedPath(path, 259);
         }
             
-
+        public static void LoadListViewColumnWidth(ListView lv, string section, string key, HashIni ini)
+        {
+            foreach (ColumnHeader ch in lv.Columns)
+            {
+                string thiskey = key;
+                Debug.Assert(!string.IsNullOrEmpty(ch.Name));
+                if (string.IsNullOrEmpty(ch.Name))
+                    continue;
+                thiskey += ch.Name;
+                int colwidth = 0;
+                if (Profile.GetInt(section, thiskey, 0, out colwidth, ini))
+                    ch.Width = colwidth;
+            }
+        }
+        public static bool SaveListViewColumnWidth(ListView lv, string section, string key, HashIni ini)
+        {
+            bool failed = false;
+            foreach (ColumnHeader ch in lv.Columns)
+            {
+                string thiskey = key;
+                Debug.Assert(!string.IsNullOrEmpty(ch.Name));
+                thiskey += ch.Name;
+                failed |= !Profile.WriteInt(section, thiskey, ch.Width, ini);
+            }
+            return !failed;
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
