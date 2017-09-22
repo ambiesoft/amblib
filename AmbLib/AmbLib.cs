@@ -202,7 +202,7 @@ namespace Ambiesoft
             return Path.Combine(dir, file);
         }
 
-
+        // https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
         public static string GetInstalledDotNetVersionFromRegistry()
         {
             StringBuilder sb = new StringBuilder();
@@ -481,31 +481,6 @@ namespace Ambiesoft
             string result = Source.Remove(place, Find.Length).Insert(place, Replace);
             return result;
         }
-        //public static string GetDnsAdress2()
-        //{
-        //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-        //    {
-        //        if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
-        //        {
-        //            // Console.WriteLine(ni.Name);
-        //            foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
-        //            {
-        //                if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-        //                {
-        //                    // Console.WriteLine(ip.Address.ToString());
-        //                    // return ip.Address.ToString();
-        //                    IPAddressCollection dnsAddresses = ni.GetIPProperties().DnsAddresses;
-        //                    foreach (IPAddress dnsAdress in dnsAddresses)
-        //                    {
-        //                        return dnsAdress.ToString();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return null;
-        //}
 
         public static object EasyRegRead(string path, string keyname)
         {
