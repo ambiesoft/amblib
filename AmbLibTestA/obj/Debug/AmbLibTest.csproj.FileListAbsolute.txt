@@ -1,7 +1,0 @@
-C:\cygwin\home\stripin\gitdev\amblib\bin\Debug\AmbLibTest.exe
-C:\cygwin\home\stripin\gitdev\amblib\bin\Debug\AmbLibTest.pdb
-C:\cygwin\home\stripin\gitdev\amblib\AmbLibTest\obj\Debug\ResolveAssemblyReference.cache
-C:\cygwin\home\stripin\gitdev\amblib\AmbLibTest\obj\Debug\AmbLibTest.FormMain.resources
-C:\cygwin\home\stripin\gitdev\amblib\AmbLibTest\obj\Debug\AmbLibTest.csproj.GenerateResource.Cache
-C:\cygwin\home\stripin\gitdev\amblib\AmbLibTest\obj\Debug\AmbLibTest.exe
-C:\cygwin\home\stripin\gitdev\amblib\AmbLibTest\obj\Debug\AmbLibTest.pdb
