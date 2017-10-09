@@ -7,6 +7,7 @@ using System.Diagnostics;
 namespace AmbLibTest
 {
     using System.Windows.Forms;
+    using System.IO;
 
     class Program
     {
@@ -20,6 +21,29 @@ namespace AmbLibTest
 
         static void Main(string[] args)
         {
+            int retval;
+            string output, err;
+            try
+            {
+                AmbLib.OpenCommandGetResult(
+                    Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "AmbLibTestCommandRunner.exe"),
+                    "",
+                    Encoding.Default,
+                    out retval,
+                    out output,
+                    out err);
+
+                Console.WriteLine("output:");
+                Console.WriteLine(output);
+                Console.WriteLine("err:");
+                Console.WriteLine(err);
+
+            }
+            catch (Exception ex)
+            {
+                AmbLib.Alert(ex);
+            }
+
             // normal long file
             string f1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaae.bbb";
             string sl = AmbLib.GetMaxpathTrimmedPath(f1);

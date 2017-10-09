@@ -679,7 +679,7 @@ namespace Ambiesoft
                     ch.Width = colwidth;
             }
         }
-        public static bool SaveListViewColumnWidth(ListView lv, string section, string key, HashIni ini)
+        public static bool SaveListViewColumnWidth(ListView lv, string section, string key, Ambiesoft.HashIni ini)
         {
             bool failed = false;
             foreach (ColumnHeader ch in lv.Columns)
