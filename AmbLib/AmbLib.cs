@@ -10,12 +10,10 @@ using System.IO;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Reflection;
 
 namespace Ambiesoft
 {
-
-
-
     public class AmbLib
     {
         public static String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
@@ -497,7 +495,7 @@ namespace Ambiesoft
 
         public static DialogResult Info(string message)
         {
-            return MessageBox.Show(message,
+            return CenteredMessageBox.Show(message,
                 Application.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -509,7 +507,8 @@ namespace Ambiesoft
         /// <returns></returns>
         public static DialogResult Alert(string message)
         {
-            return MessageBox.Show(message,
+            return CenteredMessageBox.Show(
+                message,
                 Application.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
@@ -801,6 +800,15 @@ namespace Ambiesoft
             catch (Exception)
             { }
             return input;
+        }
+
+        public static string getAssemblyVersion(Assembly assembly)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(assembly.GetName().Version.Major.ToString());
+            sb.Append(".");
+            sb.Append(assembly.GetName().Version.Minor.ToString());
+            return sb.ToString();
         }
     }  // class Amblib
 }  // namespace Ambiesoft
