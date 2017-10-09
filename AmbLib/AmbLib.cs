@@ -502,12 +502,27 @@ namespace Ambiesoft
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+        /// <summary>
+        /// Show alert message box
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static DialogResult Alert(string message)
         {
             return MessageBox.Show(message,
                 Application.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
+        }
+
+        /// <summary>
+        /// Show alert message box with text of ex.message
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
+        public static DialogResult Alert(Exception ex)
+        {
+            return Alert(ex.Message);
         }
 
         public static bool IsPointInScreen(int x, int y)
@@ -693,6 +708,97 @@ namespace Ambiesoft
 
                 return sb.ToString();
             }
+        }
+
+        static StringBuilder sbOut;
+        static StringBuilder sbErr;
+        static void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            sbErr.Append(e.Data);
+        }
+
+        static void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            sbOut.Append(e.Data);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="arguments"></param>
+        /// <param name="encoding"></param>
+        /// <param name="retval"></param>
+        /// <param name="output"></param>
+        /// <param name="err"></param>
+        public static void OpenCommandGetResult(
+            string filename,
+            string arguments,
+            Encoding encoding,
+            out int retval,
+            out string output,
+            out string err)
+        {
+            ProcessStartInfo si = new ProcessStartInfo();
+            si.FileName = filename;
+            si.Arguments = arguments;
+            si.StandardOutputEncoding = encoding;
+            si.RedirectStandardOutput = true;
+            si.StandardErrorEncoding = encoding;
+            si.RedirectStandardError = true;
+            si.UseShellExecute = false;
+            si.CreateNoWindow = true;
+
+            Process process = new Process();
+            process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
+            process.ErrorDataReceived += new DataReceivedEventHandler(process_ErrorDataReceived);
+            process.StartInfo = si;
+            
+            sbOut = new StringBuilder();
+            sbErr = new StringBuilder();
+
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            process.WaitForExit();
+
+            retval = process.ExitCode;
+            output = sbOut.ToString();
+            err = sbErr.ToString();
+        }
+
+ 
+        public static string doubleQuoteIfSpace(string input)
+        {
+            if (input == null)
+                return null;
+
+            if (input.Length == 0)
+                return "\"\"";
+
+            string t = input.TrimStart();
+            if (t[0] == '"')
+                return input;
+
+            foreach (char c in t)
+            {
+                if (char.IsWhiteSpace(c))
+                    return "\"" + input + "\"";
+            }
+            return input;
+        }
+
+        public static string pathToFileProtocol(string input)
+        {
+            try
+            {
+                Uri u = new Uri(input);
+                return u.AbsoluteUri;
+            }
+            catch (Exception)
+            { }
+            return input;
         }
     }  // class Amblib
 }  // namespace Ambiesoft
