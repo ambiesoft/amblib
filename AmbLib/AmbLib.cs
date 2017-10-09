@@ -493,12 +493,27 @@ namespace Ambiesoft
             return null;
         }
 
-        public static DialogResult Info(string message)
+        public static DialogResult Info(Control c,string message)
         {
-            return CenteredMessageBox.Show(message,
+            return CenteredMessageBox.Show(
+                c,
+                message,
                 Application.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+        public static DialogResult Info(string message)
+        {
+            return Info(Form.ActiveForm, message);
+        }
+        public static DialogResult Alert(Control c, string message)
+        {
+            return CenteredMessageBox.Show(
+                c,
+                message,
+                Application.ProductName,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
         }
         /// <summary>
         /// Show alert message box
@@ -507,11 +522,12 @@ namespace Ambiesoft
         /// <returns></returns>
         public static DialogResult Alert(string message)
         {
-            return CenteredMessageBox.Show(
-                message,
-                Application.ProductName,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation);
+            return Alert(Form.ActiveForm, message);
+        }
+
+        public static DialogResult Alert(Control c, Exception ex)
+        {
+            return Alert(c, ex.Message);
         }
 
         /// <summary>
