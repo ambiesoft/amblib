@@ -714,12 +714,14 @@ namespace Ambiesoft
         static StringBuilder sbErr;
         static void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            sbErr.Append(e.Data);
+            if(e.Data != null)
+                sbErr.AppendLine(e.Data);
         }
 
         static void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            sbOut.Append(e.Data);
+            if(e.Data != null)
+                sbOut.AppendLine(e.Data);
         }
         /// <summary>
         /// 
