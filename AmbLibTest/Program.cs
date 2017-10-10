@@ -21,6 +21,8 @@ namespace AmbLibTest
 
         static void Main(string[] args)
         {
+            AmbLib.Alert("Alert OK?");
+
             int retval;
             string output, err;
             try

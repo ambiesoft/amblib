@@ -190,7 +190,7 @@ namespace Ambiesoft
             System.Windows.Forms.MessageBoxIcon.Exclamation);
         }
 
-   
+
 
 
         public static string GetIniPath()
@@ -493,14 +493,25 @@ namespace Ambiesoft
             return null;
         }
 
-        public static DialogResult Info(Control c,string message)
+        public static DialogResult Info(Control c, string message)
         {
-            return CenteredMessageBox.Show(
-                c,
-                message,
-                Application.ProductName,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            if (c != null)
+            {
+                return CenteredMessageBox.Show(
+                    c,
+                    message,
+                    Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                return CenteredMessageBox.Show(
+                    message,
+                    Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
         public static DialogResult Info(string message)
         {
@@ -508,12 +519,23 @@ namespace Ambiesoft
         }
         public static DialogResult Alert(Control c, string message)
         {
-            return CenteredMessageBox.Show(
-                c,
+            if (c != null)
+            {
+                return CenteredMessageBox.Show(
+                    c,
+                    message,
+                    Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                return CenteredMessageBox.Show(
                 message,
                 Application.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
+            }
         }
         /// <summary>
         /// Show alert message box
@@ -632,10 +654,10 @@ namespace Ambiesoft
         }
         public static string GetMaxpathTrimmedPath(string path, int maxlen)
         {
-            if(string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
                 return path;
 
-            if(path.Length <= maxlen)
+            if (path.Length <= maxlen)
             {
                 // upto 259 char
                 return path;
@@ -662,7 +684,7 @@ namespace Ambiesoft
             }
 
             string dir = path.Substring(0, lastbackslash);
-            string filepart = path.Substring(lastbackslash+1);
+            string filepart = path.Substring(lastbackslash + 1);
             if (dir.Length >= maxlen)
             {
                 // dir itself over MAX_PATH, give up
@@ -670,7 +692,7 @@ namespace Ambiesoft
             }
 
             string nameret = GetTrimmedFilename(filepart, maxlen - dir.Length - 1);
-            if(string.IsNullOrEmpty(nameret))
+            if (string.IsNullOrEmpty(nameret))
                 return null;
 
             return dir + '\\' + nameret;
@@ -679,7 +701,7 @@ namespace Ambiesoft
         {
             return GetMaxpathTrimmedPath(path, 259);
         }
-            
+
         public static void LoadListViewColumnWidth(ListView lv, string section, string key, HashIni ini)
         {
             foreach (ColumnHeader ch in lv.Columns)
@@ -729,13 +751,13 @@ namespace Ambiesoft
         static StringBuilder sbErr;
         static void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            if(e.Data != null)
+            if (e.Data != null)
                 sbErr.AppendLine(e.Data);
         }
 
         static void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            if(e.Data != null)
+            if (e.Data != null)
                 sbOut.AppendLine(e.Data);
         }
         /// <summary>
@@ -769,7 +791,7 @@ namespace Ambiesoft
             process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
             process.ErrorDataReceived += new DataReceivedEventHandler(process_ErrorDataReceived);
             process.StartInfo = si;
-            
+
             sbOut = new StringBuilder();
             sbErr = new StringBuilder();
 
@@ -785,7 +807,7 @@ namespace Ambiesoft
             err = sbErr.ToString();
         }
 
- 
+
         public static string doubleQuoteIfSpace(string input)
         {
             if (input == null)
