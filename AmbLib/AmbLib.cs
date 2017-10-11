@@ -848,5 +848,18 @@ namespace Ambiesoft
             sb.Append(assembly.GetName().Version.Minor.ToString());
             return sb.ToString();
         }
+
+        public static string getPathFromUrl(string url)
+        {
+            try
+            {
+                Uri u = new Uri(url);
+                return u.AbsolutePath;
+            }
+            catch (Exception)
+            { }
+            return url;
+        }
+
     }  // class Amblib
 }  // namespace Ambiesoft
