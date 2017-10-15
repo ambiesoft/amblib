@@ -893,5 +893,6 @@ namespace Ambiesoft
         //{
         //    System.AppDomain.CurrentDomain.AssemblyResolve += CustomResolve;
         //}
+
     }  // class Amblib
 }  // namespace Ambiesoft

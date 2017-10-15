@@ -41,7 +41,7 @@ namespace AmbLibTest
                 Console.WriteLine(err);
 
             }
-            catch (Exception ex)
+            catch // (Exception)
             {
                 //AmbLib.Alert(ex);
             }
