@@ -21,7 +21,7 @@ namespace AmbLibTest
 
         static void Main(string[] args)
         {
-            AmbLib.Alert("Alert OK?");
+            //AmbLib.Alert("Alert OK?");
 
             int retval;
             string output, err;
@@ -43,7 +43,7 @@ namespace AmbLibTest
             }
             catch (Exception ex)
             {
-                AmbLib.Alert(ex);
+                //AmbLib.Alert(ex);
             }
 
             // normal long file

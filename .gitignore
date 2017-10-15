@@ -1,3 +1,6 @@
+*.suo
+*.user
+
 bin/
 
 AmbLib.suo

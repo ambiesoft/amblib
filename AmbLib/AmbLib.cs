@@ -494,74 +494,74 @@ namespace Ambiesoft
             return null;
         }
 
-        public static DialogResult Info(Control c, string message)
-        {
-            if (c != null)
-            {
-                return CenteredMessageBox.Show(
-                    c,
-                    message,
-                    Application.ProductName,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                return CenteredMessageBox.Show(
-                    message,
-                    Application.ProductName,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-        }
-        public static DialogResult Info(string message)
-        {
-            return Info(Form.ActiveForm, message);
-        }
-        public static DialogResult Alert(Control c, string message)
-        {
-            if (c != null)
-            {
-                return CenteredMessageBox.Show(
-                    c,
-                    message,
-                    Application.ProductName,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                return CenteredMessageBox.Show(
-                message,
-                Application.ProductName,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation);
-            }
-        }
-        /// <summary>
-        /// Show alert message box
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        public static DialogResult Alert(string message)
-        {
-            return Alert(Form.ActiveForm, message);
-        }
+        //public static DialogResult Info(Control c, string message)
+        //{
+        //    if (c != null)
+        //    {
+        //        return CenteredMessageBox.Show(
+        //            c,
+        //            message,
+        //            Application.ProductName,
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Information);
+        //    }
+        //    else
+        //    {
+        //        return CenteredMessageBox.Show(
+        //            message,
+        //            Application.ProductName,
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Information);
+        //    }
+        //}
+        //public static DialogResult Info(string message)
+        //{
+        //    return Info(Form.ActiveForm, message);
+        //}
+        //public static DialogResult Alert(Control c, string message)
+        //{
+        //    if (c != null)
+        //    {
+        //        return CenteredMessageBox.Show(
+        //            c,
+        //            message,
+        //            Application.ProductName,
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Exclamation);
+        //    }
+        //    else
+        //    {
+        //        return CenteredMessageBox.Show(
+        //        message,
+        //        Application.ProductName,
+        //        MessageBoxButtons.OK,
+        //        MessageBoxIcon.Exclamation);
+        //    }
+        //}
+        ///// <summary>
+        ///// Show alert message box
+        ///// </summary>
+        ///// <param name="message"></param>
+        ///// <returns></returns>
+        //public static DialogResult Alert(string message)
+        //{
+        //    return Alert(Form.ActiveForm, message);
+        //}
 
-        public static DialogResult Alert(Control c, Exception ex)
-        {
-            return Alert(c, ex.Message);
-        }
+        //public static DialogResult Alert(Control c, Exception ex)
+        //{
+        //    return Alert(c, ex.Message);
+        //}
 
-        /// <summary>
-        /// Show alert message box with text of ex.message
-        /// </summary>
-        /// <param name="ex"></param>
-        /// <returns></returns>
-        public static DialogResult Alert(Exception ex)
-        {
-            return Alert(ex.Message);
-        }
+        ///// <summary>
+        ///// Show alert message box with text of ex.message
+        ///// </summary>
+        ///// <param name="ex"></param>
+        ///// <returns></returns>
+        //public static DialogResult Alert(Exception ex)
+        //{
+        //    return Alert(ex.Message);
+        //}
 
         public static bool IsPointInScreen(int x, int y)
         {
@@ -876,5 +876,22 @@ namespace Ambiesoft
             }
             return new string(temp);
         }
+        //private static System.Reflection.Assembly CustomResolve(object sender, System.ResolveEventArgs args)
+        //{
+        //    if (args.Name.StartsWith("Ambiesoft.AmbLibcpp.x86"))
+        //    {
+        //        string filename = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
+        //            "platform",
+        //            string.Format("Ambiesoft.AmbLibcpp.{0}.dll",
+        //                Environment.Is64BitProcess ? "x64" : "x86"));
+
+        //        return System.Reflection.Assembly.LoadFile(filename);
+        //    }
+        //    return null;
+        //}
+        //public static void PrepareAmblibCppLoader()
+        //{
+        //    System.AppDomain.CurrentDomain.AssemblyResolve += CustomResolve;
+        //}
     }  // class Amblib
 }  // namespace Ambiesoft
