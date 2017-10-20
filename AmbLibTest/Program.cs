@@ -101,20 +101,20 @@ namespace AmbLibTest
             form.ShowDialog();
 
 
-            try
-            {
-                int i = 1;
-                i--;
+            //try
+            //{
+            //    int i = 1;
+            //    i--;
 
-                int j = 10 / i;
-            }
-            catch (Exception ex)
-            {
-                AmbLib.ExceptionMessageBox(ex);
-            }
+            //    int j = 10 / i;
+            //}
+            //catch (Exception ex)
+            //{
+            //    AmbLib.ExceptionMessageBox(ex);
+            //}
 
 
-            MessageBox.Show(AmbLib.GetIniPath());            
+            //MessageBox.Show(AmbLib.GetIniPath());            
         }
     }
 }

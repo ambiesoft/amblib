@@ -703,15 +703,64 @@ namespace Ambiesoft
             return GetMaxpathTrimmedPath(path, 259);
         }
 
+        static readonly string KEY_X = "X";
+        static readonly string KEY_Y = "Y";
+        static readonly string KEY_WIDTH = "Width";
+        static readonly string KEY_HEIGHT = "Height";
+
+        public static bool LoadFormXYWH(Form f, string section, HashIni ini)
+        {
+            if (f == null)
+                return false;
+
+            int x = 0, y = 0;
+            int width = 0, height = 0;
+            if (Profile.GetInt(section, KEY_X, 0, out x, ini) &&
+                Profile.GetInt(section, KEY_Y, 0, out y, ini) &&
+                Profile.GetInt(section, KEY_WIDTH, 0, out width, ini) &&
+                Profile.GetInt(section, KEY_HEIGHT, 0, out height, ini))
+            {
+                Point pt = new Point(x, y);
+                Size size = new Size(width, height);
+
+                Rectangle r = new Rectangle(pt, size);
+                if (IsRectInScreen(r))
+                {
+                    f.Location = new Point(x, y);
+                    f.Size = new Size(width, height);
+                    f.StartPosition = FormStartPosition.Manual;
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool SaveFormXYWH(Form f, string section, HashIni ini)
+        {
+            if (f == null)
+                return false;
+
+            if (f.WindowState == FormWindowState.Normal)
+            {
+                Profile.WriteInt(section, KEY_X, f.Location.X, ini);
+                Profile.WriteInt(section, KEY_Y, f.Location.Y, ini);
+                Profile.WriteInt(section, KEY_WIDTH, f.Size.Width, ini);
+                Profile.WriteInt(section, KEY_HEIGHT, f.Size.Height, ini);
+            }
+            return true;
+        }
         public static void LoadListViewColumnWidth(ListView lv, string section, string key, HashIni ini)
         {
             foreach (ColumnHeader ch in lv.Columns)
             {
                 string thiskey = key;
-                Debug.Assert(!string.IsNullOrEmpty(ch.Name));
-                if (string.IsNullOrEmpty(ch.Name))
-                    continue;
-                thiskey += ch.Name;
+                if (!string.IsNullOrEmpty(ch.Name))
+                {
+                    thiskey += ch.Name;
+                }
+                else
+                {
+                    thiskey += lv.Columns.IndexOf(ch).ToString();
+                }
                 int colwidth = 0;
                 if (Profile.GetInt(section, thiskey, 0, out colwidth, ini))
                     ch.Width = colwidth;
@@ -723,8 +772,14 @@ namespace Ambiesoft
             foreach (ColumnHeader ch in lv.Columns)
             {
                 string thiskey = key;
-                Debug.Assert(!string.IsNullOrEmpty(ch.Name));
-                thiskey += ch.Name;
+                if (!string.IsNullOrEmpty(ch.Name))
+                {
+                    thiskey += ch.Name;
+                }
+                else
+                {
+                    thiskey += lv.Columns.IndexOf(ch).ToString();
+                }
                 failed |= !Profile.WriteInt(section, thiskey, ch.Width, ini);
             }
             return !failed;

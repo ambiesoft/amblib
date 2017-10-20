@@ -46,6 +46,9 @@
             this.txtPointInScreen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1aaaaaaa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -200,11 +203,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1aaaaaaa,
+            this.columnHeader1});
+            this.listView1.Location = new System.Drawing.Point(12, 147);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(376, 97);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 303);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPointInScreen);
@@ -213,6 +229,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
             this.Text = "FormMain";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.SizeChanged += new System.EventHandler(this.FormMain_SizeChanged);
             this.toolStrip1.ResumeLayout(false);
@@ -241,5 +258,8 @@
         private System.Windows.Forms.TextBox txtPointInScreen;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1aaaaaaa;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

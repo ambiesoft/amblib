@@ -14,6 +14,21 @@ namespace AmbLibTest
         public FormMain()
         {
             InitializeComponent();
+
+            HashIni ini = Profile.ReadAll(AmbLib.GetIniPath());
+            AmbLib.LoadListViewColumnWidth(listView1, "List", "Main", ini);
+            AmbLib.LoadFormXYWH(this, "POSITION", ini);
+        }
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string iniPath = AmbLib.GetIniPath();
+            HashIni ini = Profile.ReadAll(iniPath);
+            AmbLib.SaveListViewColumnWidth(listView1, "List", "Main", ini);
+            AmbLib.SaveFormXYWH(this, "POSITION", ini);
+            if (!Profile.WriteAll(ini,iniPath))
+            {
+                MessageBox.Show("ERROR");
+            }
         }
 
         void checkPointIn()
@@ -54,5 +69,7 @@ namespace AmbLibTest
         {
             checkPointIn();
         }
+
+        
     }
 }
