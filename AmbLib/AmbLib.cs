@@ -931,6 +931,17 @@ namespace Ambiesoft
             }
             return new string(temp);
         }
+
+        public static string GetSimpleVersion(Assembly asm)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(asm.GetName().Version.Major.ToString());
+            sb.Append(".");
+            sb.Append(asm.GetName().Version.Minor.ToString());
+
+            return sb.ToString();
+        }
         //private static System.Reflection.Assembly CustomResolve(object sender, System.ResolveEventArgs args)
         //{
         //    if (args.Name.StartsWith("Ambiesoft.AmbLibcpp.x86"))
