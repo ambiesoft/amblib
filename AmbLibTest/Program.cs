@@ -22,6 +22,11 @@ namespace AmbLibTest
         static void Main(string[] args)
         {
             //AmbLib.Alert("Alert OK?");
+            verify(AmbLib.IsSameFile("a", "a"));
+            verify(!AmbLib.IsSameFile(null, ""));
+            verify(AmbLib.IsSameFile(@"./a", @".\a"));
+            verify(AmbLib.IsSameFile(@"./a", @".\\a"));
+
 
             int retval;
             string output, err;

@@ -942,6 +942,26 @@ namespace Ambiesoft
 
             return sb.ToString();
         }
+
+        public static bool IsSameFile(string file1, string file2)
+        {
+            if (string.IsNullOrEmpty(file1) || string.IsNullOrEmpty(file2))
+                return false;
+
+            file1 = file1.Replace("/", @"\");
+            file2 = file2.Replace("/", @"\");
+
+            try
+            {
+                string full1 = Path.GetFullPath(file1);
+                string full2 = Path.GetFullPath(file2);
+
+                return string.Compare(full1, full2, true) == 0;
+            }
+            catch
+            { }
+            return false;
+        }
         //private static System.Reflection.Assembly CustomResolve(object sender, System.ResolveEventArgs args)
         //{
         //    if (args.Name.StartsWith("Ambiesoft.AmbLibcpp.x86"))
