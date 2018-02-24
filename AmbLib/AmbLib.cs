@@ -904,7 +904,18 @@ namespace Ambiesoft
             sb.Append(assembly.GetName().Version.Minor.ToString());
             return sb.ToString();
         }
-
+        public static string getAssemblyCompany(Assembly assembly)
+        {
+            var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+            var companyName = versionInfo.CompanyName;
+            return companyName;
+        }
+        public static string getAssemblyCopyright(Assembly assembly)
+        {
+            var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+            return versionInfo.LegalCopyright;
+        }
+        
         public static string getPathFromUrl(string url)
         {
             try
