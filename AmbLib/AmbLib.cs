@@ -578,7 +578,7 @@ namespace Ambiesoft
             }
             return false;
         }
-        public static bool IsRectInScreen(Rectangle rect)
+        public static bool IsRectAppearInScreen(Rectangle rect)
         {
             Point topleft = new Point(rect.X, rect.Y);
             if (IsPointInScreen(topleft))
@@ -598,8 +598,46 @@ namespace Ambiesoft
 
             return false;
         }
+        public static bool IsAllPointInScreen(Rectangle rect)
+        {
+            Point topleft = new Point(rect.X, rect.Y);
+            if (!IsPointInScreen(topleft))
+                return false;
 
+            Point topright = new Point(rect.X + rect.Width, rect.Y);
+            if (!IsPointInScreen(topright))
+                return false;
 
+            Point bottomleft = new Point(rect.X, rect.Y + rect.Height);
+            if (!IsPointInScreen(bottomleft))
+                return false;
+
+            Point bottomright = new Point(rect.X + rect.Width, rect.Y + rect.Bottom);
+            if (!IsPointInScreen(bottomright))
+                return false;
+
+            return true;
+        }
+        public static bool IsAllPointNotInScreen(Rectangle rect)
+        {
+            Point topleft = new Point(rect.X, rect.Y);
+            if (IsPointInScreen(topleft))
+                return false;
+
+            Point topright = new Point(rect.X + rect.Width, rect.Y);
+            if (IsPointInScreen(topright))
+                return false;
+
+            Point bottomleft = new Point(rect.X, rect.Y + rect.Height);
+            if (IsPointInScreen(bottomleft))
+                return false;
+
+            Point bottomright = new Point(rect.X + rect.Width, rect.Y + rect.Bottom);
+            if (IsPointInScreen(bottomright))
+                return false;
+
+            return true;
+        }
         public static void SetFontAll(Control cnt)
         {
             if (cnt is Form)
@@ -724,7 +762,7 @@ namespace Ambiesoft
                 Size size = new Size(width, height);
 
                 Rectangle r = new Rectangle(pt, size);
-                if (IsRectInScreen(r))
+                if (IsRectAppearInScreen(r))
                 {
                     f.Location = new Point(x, y);
                     f.Size = new Size(width, height);
