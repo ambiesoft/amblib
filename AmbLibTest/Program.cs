@@ -21,6 +21,8 @@ namespace AmbLibTest
 
         static void Main(string[] args)
         {
+            Console.WriteLine(Ambiesoft.DA.VersionNetFramework.GetVersionDicription());
+
             //AmbLib.Alert("Alert OK?");
             verify(AmbLib.IsSameFile("a", "a"));
             verify(!AmbLib.IsSameFile(null, ""));
