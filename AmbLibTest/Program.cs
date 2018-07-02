@@ -8,6 +8,7 @@ namespace AmbLibTest
 {
     using System.Windows.Forms;
     using System.IO;
+    using System.Reflection;
 
     class Program
     {
@@ -23,6 +24,9 @@ namespace AmbLibTest
         {
             Console.WriteLine(Ambiesoft.DA.VersionNetFramework.GetVersionDicription());
 
+            verify(AmbLib.getAssemblyVersion(Assembly.GetExecutingAssembly()) == "1.2");
+            verify(AmbLib.getAssemblyVersion(Assembly.GetExecutingAssembly(), 3) == "1.2.3");
+            verify(AmbLib.getAssemblyVersion(Assembly.GetExecutingAssembly(), 4) == "1.2.3.4");
             //AmbLib.Alert("Alert OK?");
             verify(AmbLib.IsSameFile("a", "a"));
             verify(!AmbLib.IsSameFile(null, ""));

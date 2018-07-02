@@ -934,13 +934,35 @@ namespace Ambiesoft
             return input;
         }
 
-        public static string getAssemblyVersion(Assembly assembly)
+        public static string getAssemblyVersion(Assembly assembly, int keta)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(assembly.GetName().Version.Major.ToString());
-            sb.Append(".");
-            sb.Append(assembly.GetName().Version.Minor.ToString());
-            return sb.ToString();
+            if (keta >= 1)
+            {
+                sb.Append(assembly.GetName().Version.Major.ToString());
+                sb.Append(".");
+            }
+            if (keta >= 2)
+            {
+                sb.Append(assembly.GetName().Version.Minor.ToString());
+                sb.Append(".");
+            }
+            if (keta >= 3)
+            {
+                sb.Append(assembly.GetName().Version.Build.ToString());
+                sb.Append(".");
+            }
+            if (keta >= 4)
+            {
+                sb.Append(assembly.GetName().Version.Revision.ToString());
+                sb.Append(".");
+            }
+
+            return sb.ToString().TrimEnd('.');
+        }
+        public static string getAssemblyVersion(Assembly assembly)
+        {
+            return getAssemblyVersion(assembly, 2);
         }
         public static string getAssemblyCompany(Assembly assembly)
         {
