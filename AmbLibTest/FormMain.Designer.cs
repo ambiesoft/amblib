@@ -49,6 +49,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1aaaaaaa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -215,11 +216,22 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // btnOpenAmbiesoft
+            // 
+            this.btnOpenAmbiesoft.Location = new System.Drawing.Point(12, 250);
+            this.btnOpenAmbiesoft.Name = "btnOpenAmbiesoft";
+            this.btnOpenAmbiesoft.Size = new System.Drawing.Size(189, 23);
+            this.btnOpenAmbiesoft.TabIndex = 7;
+            this.btnOpenAmbiesoft.Text = "Open ambiesoft site";
+            this.btnOpenAmbiesoft.UseVisualStyleBackColor = true;
+            this.btnOpenAmbiesoft.Click += new System.EventHandler(this.btnOpenAmbiesoft_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 303);
+            this.Controls.Add(this.btnOpenAmbiesoft);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1aaaaaaa;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button btnOpenAmbiesoft;
     }
 }

@@ -1033,6 +1033,18 @@ namespace Ambiesoft
             { }
             return false;
         }
+
+        public static bool OpenUrlWithBrowser(string url)
+        {
+            try
+            {
+                Process.Start(url);
+                return true;
+            }
+            catch(Exception)
+            { }
+            return false;
+        }
         //private static System.Reflection.Assembly CustomResolve(object sender, System.ResolveEventArgs args)
         //{
         //    if (args.Name.StartsWith("Ambiesoft.AmbLibcpp.x86"))

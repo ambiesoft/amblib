@@ -70,6 +70,11 @@ namespace AmbLibTest
             checkPointIn();
         }
 
+        private void btnOpenAmbiesoft_Click(object sender, EventArgs e)
+        {
+            AmbLib.OpenUrlWithBrowser("http://ambiesoft.fam.cx");
+        }
+
         
     }
 }
