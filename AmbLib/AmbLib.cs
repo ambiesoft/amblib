@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
@@ -1063,5 +1063,47 @@ namespace Ambiesoft
         //    System.AppDomain.CurrentDomain.AssemblyResolve += CustomResolve;
         //}
 
+        public static bool StartAsAdmin()
+        {
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo(Application.ExecutablePath);
+                psi.Verb = "runas";
+                string args = string.Empty;
+
+                for (int i = 1; i < Environment.GetCommandLineArgs().Length; ++i)
+                {
+                    string line = Environment.GetCommandLineArgs()[i];
+                    args += doubleQuoteIfSpace(line);
+                    args += " ";
+                }
+                args = args.TrimEnd();
+                psi.Arguments = args;
+                
+                Process.Start(psi);
+                return true;
+            }
+            catch (Exception)
+            { }
+            return false;
+        }
+        
+        // https://dobon.net/vb/dotnet/system/isadmin.html
+        /// <summary>
+        /// 現在アプリケーションを実行しているユーザーに管理者権限があるか調べる
+        /// </summary>
+        /// <returns>管理者権限がある場合はtrue。</returns>
+        public static bool IsAdministrator()
+        {
+            //現在のユーザーを表すWindowsIdentityオブジェクトを取得する
+            System.Security.Principal.WindowsIdentity wi =
+                System.Security.Principal.WindowsIdentity.GetCurrent();
+            //WindowsPrincipalオブジェクトを作成する
+            System.Security.Principal.WindowsPrincipal wp =
+                new System.Security.Principal.WindowsPrincipal(wi);
+            //Administratorsグループに属しているか調べる
+            return wp.IsInRole(
+                System.Security.Principal.WindowsBuiltInRole.Administrator);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
