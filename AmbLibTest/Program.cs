@@ -51,11 +51,30 @@ namespace AmbLibTest
                 Console.WriteLine("err:");
                 Console.WriteLine(err);
 
+
+                // Delegate 
+                StringBuilder sbOut = new StringBuilder();
+                StringBuilder sbErr = new StringBuilder();
+
+                AmbLib.OpenCommandGetResultCallback(
+                    Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "AmbLibTestCommandRunner.exe"),
+                    "",
+                    Encoding.Default,
+                    out retval,
+                    (sender, e) => { if (e != null) { sbOut.AppendLine(e.Data); } },
+                    (sender, e) => { if (e != null) { sbErr.AppendLine(e.Data); } }
+                    );
+                Console.WriteLine("output:");
+                Console.WriteLine(sbOut.ToString());
+                Console.WriteLine("err:");
+                Console.WriteLine(sbErr.ToString());
+
             }
             catch // (Exception)
             {
                 //AmbLib.Alert(ex);
             }
+
 
             // normal long file
             string f1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaae.bbb";

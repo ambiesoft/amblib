@@ -901,6 +901,39 @@ namespace Ambiesoft
             err = sbErr.ToString();
         }
 
+        public static void OpenCommandGetResultCallback(
+            string filename,
+            string arguments,
+            Encoding encoding,
+            out int retval,
+            DataReceivedEventHandler outputDelegate,
+            DataReceivedEventHandler errputDelegate)
+        {
+            ProcessStartInfo si = new ProcessStartInfo();
+            si.FileName = filename;
+            si.Arguments = arguments;
+            si.StandardOutputEncoding = encoding;
+            si.RedirectStandardOutput = true;
+            si.StandardErrorEncoding = encoding;
+            si.RedirectStandardError = true;
+            si.UseShellExecute = false;
+            si.CreateNoWindow = true;
+
+            Process process = new Process();
+            process.OutputDataReceived += new DataReceivedEventHandler(outputDelegate);
+            process.ErrorDataReceived += new DataReceivedEventHandler(errputDelegate);
+            process.StartInfo = si;
+
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            process.WaitForExit();
+
+            retval = process.ExitCode;
+        }
+
 
         public static string doubleQuoteIfSpace(string input)
         {
