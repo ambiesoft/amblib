@@ -908,6 +908,7 @@ namespace Ambiesoft
             out int retval,
             DataReceivedEventHandler outputDelegate,
             DataReceivedEventHandler errputDelegate,
+            EventHandler OnProcessCreated,
             out Process processRet)
         {
             ProcessStartInfo si = new ProcessStartInfo();
@@ -927,6 +928,8 @@ namespace Ambiesoft
 
             process.Start();
             processRet = process;
+            if (OnProcessCreated != null)
+                OnProcessCreated(process, new EventArgs());
 
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();

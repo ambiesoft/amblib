@@ -64,6 +64,7 @@ namespace AmbLibTest
                     out retval,
                     (sender, e) => { if (e != null) { sbOut.AppendLine(e.Data); } },
                     (sender, e) => { if (e != null) { sbErr.AppendLine(e.Data); } },
+                    null,
                     out pro
                     );
                 Console.WriteLine("output:");
