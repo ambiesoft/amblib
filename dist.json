@@ -6,7 +6,7 @@
     "targets": [
         {
             "setoutdirforbuild": true,
-            "outdir": "build\\Release",
+            "outdir": "build\\AmbLib",
             "platform": "Any CPU"
         }
     ],
