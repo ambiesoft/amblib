@@ -1,0 +1,28 @@
+{
+    "name": "AmbLib",
+    "solution": "AmbLib.2013.sln",
+    "targetproject": "AmbLib",
+    "configuration": "Release",
+    "targets": [
+        {
+            "setoutdirforbuild": true,
+            "outdir": "build\\Release",
+            "platform": "Any CPU"
+        }
+    ],
+    "ShouldBeFiles": [
+        "Ambiesoft.Profile.dll",
+        "Ambiesoft.Profile.pdb",
+        "Ambiesoft.AmbLib.dll",
+        "Ambiesoft.AmbLib.pdb",
+        "Ambiesoft.AmbLib.history.txt"
+    ],
+    "TotalFileCount": "exact",
+    "archivedir": "C:\\Linkout",
+    "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/AmbLib/",
+    "remotesha1": "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=AmbLib/{}",
+    "ShouldNotBeFiles": [],
+    "ShouldBeOneOfThem": [],
+    "obtainverfrom": "Ambiesoft.AmbLib.history.txt",
+    "obtainverregex": "\\d+\\.\\d+\\.\\d"
+}
