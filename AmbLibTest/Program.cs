@@ -56,13 +56,15 @@ namespace AmbLibTest
                 StringBuilder sbOut = new StringBuilder();
                 StringBuilder sbErr = new StringBuilder();
 
+                Process pro;
                 AmbLib.OpenCommandGetResultCallback(
                     Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "AmbLibTestCommandRunner.exe"),
                     "",
                     Encoding.Default,
                     out retval,
                     (sender, e) => { if (e != null) { sbOut.AppendLine(e.Data); } },
-                    (sender, e) => { if (e != null) { sbErr.AppendLine(e.Data); } }
+                    (sender, e) => { if (e != null) { sbErr.AppendLine(e.Data); } },
+                    out pro
                     );
                 Console.WriteLine("output:");
                 Console.WriteLine(sbOut.ToString());

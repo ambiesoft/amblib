@@ -907,7 +907,8 @@ namespace Ambiesoft
             Encoding encoding,
             out int retval,
             DataReceivedEventHandler outputDelegate,
-            DataReceivedEventHandler errputDelegate)
+            DataReceivedEventHandler errputDelegate,
+            out Process processRet)
         {
             ProcessStartInfo si = new ProcessStartInfo();
             si.FileName = filename;
@@ -925,6 +926,7 @@ namespace Ambiesoft
             process.StartInfo = si;
 
             process.Start();
+            processRet = process;
 
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
