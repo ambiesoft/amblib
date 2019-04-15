@@ -1143,5 +1143,64 @@ namespace Ambiesoft
             return wp.IsInRole(
                 System.Security.Principal.WindowsBuiltInRole.Administrator);
         }
+
+        static Dictionary<TextBox, int> _dicTextBoxToDbCount;
+        static Dictionary<TextBox, uint> _dicTextBoxToDbTime;
+        public static void MakeTripleClickTextBox(TextBox tb, uint dbtime)
+        {
+            if (tb == null)
+                return;
+
+            if (_dicTextBoxToDbCount == null)
+                _dicTextBoxToDbCount = new Dictionary<TextBox, int>();
+            if (_dicTextBoxToDbTime == null)
+                _dicTextBoxToDbTime = new Dictionary<TextBox, uint>();
+
+            _dicTextBoxToDbTime[tb] = dbtime;
+
+            tb.MouseClick += tb_MouseClick;
+            tb.MouseDoubleClick += tb_MouseDoubleClick;
+        }
+
+        static void tb_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+            _dicTextBoxToDbCount[tb] = Environment.TickCount;
+        }
+
+        static void tb_MouseClick(object sender, MouseEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            if(!_dicTextBoxToDbCount.ContainsKey(tb))
+                return;
+            if (!_dicTextBoxToDbTime.ContainsKey(tb))
+                return;
+
+            int dbTick = _dicTextBoxToDbCount[tb];
+            uint dbtime = _dicTextBoxToDbTime[tb];
+
+            if (dbtime > (Environment.TickCount - dbTick))
+            {
+                tb.SelectAll();
+            }
+        }
+
+        public static void ShowTextDialog(IWin32Window owner, string title, string label, string text, bool bReadOnly)
+        {
+            using (TextDialog td = new TextDialog())
+            {
+                td.Text = title;
+                td.lblLable.Text = label;
+                td.txtBody.Text = text;
+                td.txtBody.ReadOnly = bReadOnly;
+                td.ShowDialog(owner);
+            }
+        }
+    
     }  // class Amblib
 }  // namespace Ambiesoft

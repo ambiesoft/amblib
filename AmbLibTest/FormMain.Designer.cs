@@ -30,17 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.新規作成NToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.開くOToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.上書き保存SToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.印刷PToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.tsbPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.切り取りUToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.コピーCToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.貼り付けPToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbcMain = new System.Windows.Forms.ToolStripComboBox();
+            this.tsbCut = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ヘルプLToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.txtDNS = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPointInScreen = new System.Windows.Forms.TextBox();
@@ -50,24 +48,31 @@
             this.columnHeader1aaaaaaa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
+            this.tabMain = new System.Windows.Forms.TabControl();
+            this.tpSimple = new System.Windows.Forms.TabPage();
+            this.tbMisc = new System.Windows.Forms.TabPage();
+            this.txtTripleClick = new System.Windows.Forms.TextBox();
+            this.btnSimpleTest = new System.Windows.Forms.Button();
+            this.btnShowText = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
+            this.tabMain.SuspendLayout();
+            this.tpSimple.SuspendLayout();
+            this.tbMisc.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新規作成NToolStripButton,
-            this.開くOToolStripButton,
-            this.上書き保存SToolStripButton,
-            this.印刷PToolStripButton,
+            this.tsbNew,
+            this.tsbOpen,
+            this.tsbSave,
+            this.tsbPrint,
             this.toolStripSeparator,
-            this.toolStripComboBox1,
-            this.切り取りUToolStripButton,
-            this.コピーCToolStripButton,
-            this.貼り付けPToolStripButton,
+            this.tsbcMain,
+            this.tsbCut,
             this.toolStripSeparator1,
-            this.ヘルプLToolStripButton});
+            this.tsbHelp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(494, 25);
@@ -75,104 +80,86 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // 新規作成NToolStripButton
+            // tsbNew
             // 
-            this.新規作成NToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.新規作成NToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("新規作成NToolStripButton.Image")));
-            this.新規作成NToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.新規作成NToolStripButton.Name = "新規作成NToolStripButton";
-            this.新規作成NToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.新規作成NToolStripButton.Text = "新規作成(&N)";
+            this.tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbNew.Image = ((System.Drawing.Image)(resources.GetObject("tsbNew.Image")));
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.Size = new System.Drawing.Size(23, 22);
+            this.tsbNew.Text = "&New";
             // 
-            // 開くOToolStripButton
+            // tsbOpen
             // 
-            this.開くOToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.開くOToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("開くOToolStripButton.Image")));
-            this.開くOToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.開くOToolStripButton.Name = "開くOToolStripButton";
-            this.開くOToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.開くOToolStripButton.Text = "開く(&O)";
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpen.Image")));
+            this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpen.Text = "&Open";
             // 
-            // 上書き保存SToolStripButton
+            // tsbSave
             // 
-            this.上書き保存SToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.上書き保存SToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("上書き保存SToolStripButton.Image")));
-            this.上書き保存SToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.上書き保存SToolStripButton.Name = "上書き保存SToolStripButton";
-            this.上書き保存SToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.上書き保存SToolStripButton.Text = "上書き保存(&S)";
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
+            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Size = new System.Drawing.Size(23, 22);
+            this.tsbSave.Text = "&Save";
             // 
-            // 印刷PToolStripButton
+            // tsbPrint
             // 
-            this.印刷PToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.印刷PToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("印刷PToolStripButton.Image")));
-            this.印刷PToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.印刷PToolStripButton.Name = "印刷PToolStripButton";
-            this.印刷PToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.印刷PToolStripButton.Text = "印刷(&P)";
+            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrint.Image")));
+            this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrint.Name = "tsbPrint";
+            this.tsbPrint.Size = new System.Drawing.Size(23, 22);
+            this.tsbPrint.Text = "&Print";
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripComboBox1
+            // tsbcMain
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            this.tsbcMain.Name = "tsbcMain";
+            this.tsbcMain.Size = new System.Drawing.Size(121, 25);
             // 
-            // 切り取りUToolStripButton
+            // tsbCut
             // 
-            this.切り取りUToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.切り取りUToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("切り取りUToolStripButton.Image")));
-            this.切り取りUToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.切り取りUToolStripButton.Name = "切り取りUToolStripButton";
-            this.切り取りUToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.切り取りUToolStripButton.Text = "切り取り(&U)";
-            // 
-            // コピーCToolStripButton
-            // 
-            this.コピーCToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.コピーCToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("コピーCToolStripButton.Image")));
-            this.コピーCToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.コピーCToolStripButton.Name = "コピーCToolStripButton";
-            this.コピーCToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.コピーCToolStripButton.Text = "コピー(&C)";
-            // 
-            // 貼り付けPToolStripButton
-            // 
-            this.貼り付けPToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.貼り付けPToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("貼り付けPToolStripButton.Image")));
-            this.貼り付けPToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.貼り付けPToolStripButton.Name = "貼り付けPToolStripButton";
-            this.貼り付けPToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.貼り付けPToolStripButton.Text = "貼り付け(&P)";
+            this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCut.Image = ((System.Drawing.Image)(resources.GetObject("tsbCut.Image")));
+            this.tsbCut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCut.Name = "tsbCut";
+            this.tsbCut.Size = new System.Drawing.Size(23, 22);
+            this.tsbCut.Text = "C&ut";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // ヘルプLToolStripButton
+            // tsbHelp
             // 
-            this.ヘルプLToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ヘルプLToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ヘルプLToolStripButton.Image")));
-            this.ヘルプLToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ヘルプLToolStripButton.Name = "ヘルプLToolStripButton";
-            this.ヘルプLToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.ヘルプLToolStripButton.Text = "ヘルプ(&L)";
+            this.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsbHelp.Image")));
+            this.tsbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbHelp.Name = "tsbHelp";
+            this.tsbHelp.Size = new System.Drawing.Size(23, 22);
+            this.tsbHelp.Text = "He&lp";
             // 
             // txtDNS
             // 
-            this.txtDNS.Location = new System.Drawing.Point(12, 54);
+            this.txtDNS.Location = new System.Drawing.Point(47, 8);
             this.txtDNS.Name = "txtDNS";
-            this.txtDNS.Size = new System.Drawing.Size(369, 20);
+            this.txtDNS.Size = new System.Drawing.Size(431, 20);
             this.txtDNS.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 35);
+            this.label1.Location = new System.Drawing.Point(8, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 2;
@@ -180,15 +167,15 @@
             // 
             // txtPointInScreen
             // 
-            this.txtPointInScreen.Location = new System.Drawing.Point(12, 100);
+            this.txtPointInScreen.Location = new System.Drawing.Point(88, 35);
             this.txtPointInScreen.Name = "txtPointInScreen";
-            this.txtPointInScreen.Size = new System.Drawing.Size(395, 20);
+            this.txtPointInScreen.Size = new System.Drawing.Size(309, 20);
             this.txtPointInScreen.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 84);
+            this.label2.Location = new System.Drawing.Point(8, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 4;
@@ -196,9 +183,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(413, 97);
+            this.button1.Location = new System.Drawing.Point(403, 35);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(75, 20);
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -209,16 +196,16 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1aaaaaaa,
             this.columnHeader1});
-            this.listView1.Location = new System.Drawing.Point(12, 147);
+            this.listView1.Location = new System.Drawing.Point(9, 86);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(376, 97);
+            this.listView1.Size = new System.Drawing.Size(471, 129);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // btnOpenAmbiesoft
             // 
-            this.btnOpenAmbiesoft.Location = new System.Drawing.Point(12, 250);
+            this.btnOpenAmbiesoft.Location = new System.Drawing.Point(9, 221);
             this.btnOpenAmbiesoft.Name = "btnOpenAmbiesoft";
             this.btnOpenAmbiesoft.Size = new System.Drawing.Size(189, 23);
             this.btnOpenAmbiesoft.TabIndex = 7;
@@ -226,18 +213,81 @@
             this.btnOpenAmbiesoft.UseVisualStyleBackColor = true;
             this.btnOpenAmbiesoft.Click += new System.EventHandler(this.btnOpenAmbiesoft_Click);
             // 
+            // tabMain
+            // 
+            this.tabMain.Controls.Add(this.tpSimple);
+            this.tabMain.Controls.Add(this.tbMisc);
+            this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabMain.Location = new System.Drawing.Point(0, 25);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.SelectedIndex = 0;
+            this.tabMain.Size = new System.Drawing.Size(494, 278);
+            this.tabMain.TabIndex = 8;
+            // 
+            // tpSimple
+            // 
+            this.tpSimple.Controls.Add(this.btnShowText);
+            this.tpSimple.Controls.Add(this.btnSimpleTest);
+            this.tpSimple.Controls.Add(this.txtTripleClick);
+            this.tpSimple.Location = new System.Drawing.Point(4, 22);
+            this.tpSimple.Name = "tpSimple";
+            this.tpSimple.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSimple.Size = new System.Drawing.Size(486, 252);
+            this.tpSimple.TabIndex = 0;
+            this.tpSimple.Text = "Simple";
+            this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // tbMisc
+            // 
+            this.tbMisc.Controls.Add(this.btnOpenAmbiesoft);
+            this.tbMisc.Controls.Add(this.listView1);
+            this.tbMisc.Controls.Add(this.txtDNS);
+            this.tbMisc.Controls.Add(this.label1);
+            this.tbMisc.Controls.Add(this.button1);
+            this.tbMisc.Controls.Add(this.label2);
+            this.tbMisc.Controls.Add(this.txtPointInScreen);
+            this.tbMisc.Location = new System.Drawing.Point(4, 22);
+            this.tbMisc.Name = "tbMisc";
+            this.tbMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tbMisc.Size = new System.Drawing.Size(486, 252);
+            this.tbMisc.TabIndex = 1;
+            this.tbMisc.Text = "Misc";
+            this.tbMisc.UseVisualStyleBackColor = true;
+            // 
+            // txtTripleClick
+            // 
+            this.txtTripleClick.Location = new System.Drawing.Point(6, 6);
+            this.txtTripleClick.Name = "txtTripleClick";
+            this.txtTripleClick.Size = new System.Drawing.Size(470, 20);
+            this.txtTripleClick.TabIndex = 0;
+            this.txtTripleClick.Text = "Triple Click Test";
+            // 
+            // btnSimpleTest
+            // 
+            this.btnSimpleTest.Location = new System.Drawing.Point(8, 95);
+            this.btnSimpleTest.Name = "btnSimpleTest";
+            this.btnSimpleTest.Size = new System.Drawing.Size(75, 23);
+            this.btnSimpleTest.TabIndex = 1;
+            this.btnSimpleTest.Text = "SimpleTest";
+            this.btnSimpleTest.UseVisualStyleBackColor = true;
+            this.btnSimpleTest.Click += new System.EventHandler(this.btnSimpleTest_Click);
+            // 
+            // btnShowText
+            // 
+            this.btnShowText.Location = new System.Drawing.Point(8, 146);
+            this.btnShowText.Name = "btnShowText";
+            this.btnShowText.Size = new System.Drawing.Size(75, 23);
+            this.btnShowText.TabIndex = 2;
+            this.btnShowText.Text = "Show Text";
+            this.btnShowText.UseVisualStyleBackColor = true;
+            this.btnShowText.Click += new System.EventHandler(this.btnShowText_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 303);
-            this.Controls.Add(this.btnOpenAmbiesoft);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtPointInScreen);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtDNS);
+            this.Controls.Add(this.tabMain);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
             this.Text = "FormMain";
@@ -246,6 +296,11 @@
             this.SizeChanged += new System.EventHandler(this.FormMain_SizeChanged);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabMain.ResumeLayout(false);
+            this.tpSimple.ResumeLayout(false);
+            this.tpSimple.PerformLayout();
+            this.tbMisc.ResumeLayout(false);
+            this.tbMisc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,17 +309,15 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton 新規作成NToolStripButton;
-        private System.Windows.Forms.ToolStripButton 開くOToolStripButton;
-        private System.Windows.Forms.ToolStripButton 上書き保存SToolStripButton;
-        private System.Windows.Forms.ToolStripButton 印刷PToolStripButton;
+        private System.Windows.Forms.ToolStripButton tsbNew;
+        private System.Windows.Forms.ToolStripButton tsbOpen;
+        private System.Windows.Forms.ToolStripButton tsbSave;
+        private System.Windows.Forms.ToolStripButton tsbPrint;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
-        private System.Windows.Forms.ToolStripButton 切り取りUToolStripButton;
-        private System.Windows.Forms.ToolStripButton コピーCToolStripButton;
-        private System.Windows.Forms.ToolStripButton 貼り付けPToolStripButton;
+        private System.Windows.Forms.ToolStripComboBox tsbcMain;
+        private System.Windows.Forms.ToolStripButton tsbCut;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton ヘルプLToolStripButton;
+        private System.Windows.Forms.ToolStripButton tsbHelp;
         private System.Windows.Forms.TextBox txtDNS;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPointInScreen;
@@ -274,5 +327,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader1aaaaaaa;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnOpenAmbiesoft;
+        private System.Windows.Forms.TabControl tabMain;
+        private System.Windows.Forms.TabPage tpSimple;
+        private System.Windows.Forms.TabPage tbMisc;
+        private System.Windows.Forms.TextBox txtTripleClick;
+        private System.Windows.Forms.Button btnSimpleTest;
+        private System.Windows.Forms.Button btnShowText;
     }
 }
