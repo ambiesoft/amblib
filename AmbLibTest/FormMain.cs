@@ -11,6 +11,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
+
 namespace AmbLibTest
 {
     public partial class FormMain : Form
@@ -202,9 +203,7 @@ namespace AmbLibTest
 
         }
 
-        private void btnShowText_Click(object sender, EventArgs e)
-        {
-            string text = @"fjsaofjsodajfosdja
+        readonly string _longText = @"fjsaofjsodajfosdja
 fsjdaofjsaojfosdjafojsafjosdajfosjafojsdfjowjfjw f ow jwo fjow jwefo fjowej wf 
 fwefw j fowj ow fjwo wef joweifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 jfowafjowej  jwj owe wef 
@@ -248,12 +247,26 @@ fsjdaofjsaojfosdjafojsafjosdajfosjafojsdfjowjfjw f ow jwo fjow jwefo fjowej wf
 fwefw j fowj ow fjwo wef joweifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 jfowafjowej  jwj owe wef 
 ";
+        private void btnShowText_Click(object sender, EventArgs e)
+        {
+           
 
             AmbLib.ShowTextDialog(this,
                 Application.ProductName,
                 "MY TEXT",
-                text,
+                _longText,
                 true);
+        }
+
+        private void btnShowTexts_Click(object sender, EventArgs e)
+        {
+            List<KeyValuePair<string, string>> labelsAndTexts = new List<KeyValuePair<string, string>>();
+            labelsAndTexts.Add(new KeyValuePair<string, string>("Title1", _longText));
+            labelsAndTexts.Add(new KeyValuePair<string, string>("Title2", _longText));
+            labelsAndTexts.Add(new KeyValuePair<string, string>("Title3", _longText));
+
+
+            AmbLib.ShowTextDialog(this, Application.ProductName, labelsAndTexts, true);
         }
 
         

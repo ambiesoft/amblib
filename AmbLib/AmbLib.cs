@@ -1194,10 +1194,56 @@ namespace Ambiesoft
         {
             using (TextDialog td = new TextDialog())
             {
+                td.txtBody.Font = new Font(FontFamily.GenericMonospace, td.txtBody.Font.Size + 1);
+
+                td.panelTabRoot.Visible = false;
+                td.lblLable.Visible = true;
+                td.txtBody.Visible = true;
+
                 td.Text = title;
                 td.lblLable.Text = label;
                 td.txtBody.Text = text;
                 td.txtBody.ReadOnly = bReadOnly;
+                td.ShowDialog(owner);
+            }
+        }
+        public static void ShowTextDialog(IWin32Window owner, string title, List<KeyValuePair<string, string>> labelsAndTexts, bool bReadOnly)
+        {
+            using (TextDialog td = new TextDialog())
+            {
+                td.panelTabRoot.Visible = true;
+                td.lblLable.Visible = false;
+                td.txtBody.Visible = false;
+
+                td.Text = title;
+
+                TabControl tabControl = new TabControl();
+                tabControl.Location = new Point(0,0);
+                tabControl.Dock = DockStyle.Fill;
+                td.panelTabRoot.Controls.Add(tabControl);
+
+                for (int i = 0; i < labelsAndTexts.Count; ++i)
+                {
+                    TextBox textBox = new TextBox();
+                    textBox.Font = new Font(FontFamily.GenericMonospace, textBox.Font.Size+1);
+                    textBox.Multiline = true;
+                    textBox.ReadOnly = bReadOnly;
+                    textBox.Dock = DockStyle.Fill;
+                    textBox.ScrollBars = ScrollBars.Both;
+
+                    TabPage tabPage = new TabPage();
+
+                    // Add TabPage to TabControl
+                    tabControl.TabPages.Add(tabPage);
+
+                    // Add TextBox to TabPage
+                    tabPage.Controls.Add(textBox);
+
+                    tabPage.Text = labelsAndTexts[i].Key;
+                    textBox.Text = labelsAndTexts[i].Value;
+                }
+
+                
                 td.ShowDialog(owner);
             }
         }

@@ -31,6 +31,7 @@
             this.lblLable = new System.Windows.Forms.Label();
             this.txtBody = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
+            this.panelTabRoot = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblLable
@@ -65,12 +66,24 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // panelTabRoot
+            // 
+            this.panelTabRoot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTabRoot.Location = new System.Drawing.Point(15, 9);
+            this.panelTabRoot.Margin = new System.Windows.Forms.Padding(0);
+            this.panelTabRoot.Name = "panelTabRoot";
+            this.panelTabRoot.Size = new System.Drawing.Size(442, 245);
+            this.panelTabRoot.TabIndex = 101;
+            // 
             // TextDialog
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 295);
+            this.Controls.Add(this.panelTabRoot);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtBody);
             this.Controls.Add(this.lblLable);
@@ -89,5 +102,6 @@
         private System.Windows.Forms.Button btnOK;
         public System.Windows.Forms.TextBox txtBody;
         public System.Windows.Forms.Label lblLable;
+        public System.Windows.Forms.Panel panelTabRoot;
     }
 }

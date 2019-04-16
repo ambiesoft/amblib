@@ -50,10 +50,11 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
-            this.tbMisc = new System.Windows.Forms.TabPage();
-            this.txtTripleClick = new System.Windows.Forms.TextBox();
-            this.btnSimpleTest = new System.Windows.Forms.Button();
             this.btnShowText = new System.Windows.Forms.Button();
+            this.btnSimpleTest = new System.Windows.Forms.Button();
+            this.txtTripleClick = new System.Windows.Forms.TextBox();
+            this.tbMisc = new System.Windows.Forms.TabPage();
+            this.btnShowTexts = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -226,6 +227,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnShowTexts);
             this.tpSimple.Controls.Add(this.btnShowText);
             this.tpSimple.Controls.Add(this.btnSimpleTest);
             this.tpSimple.Controls.Add(this.txtTripleClick);
@@ -236,6 +238,34 @@
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // btnShowText
+            // 
+            this.btnShowText.Location = new System.Drawing.Point(8, 146);
+            this.btnShowText.Name = "btnShowText";
+            this.btnShowText.Size = new System.Drawing.Size(75, 23);
+            this.btnShowText.TabIndex = 2;
+            this.btnShowText.Text = "Show Text";
+            this.btnShowText.UseVisualStyleBackColor = true;
+            this.btnShowText.Click += new System.EventHandler(this.btnShowText_Click);
+            // 
+            // btnSimpleTest
+            // 
+            this.btnSimpleTest.Location = new System.Drawing.Point(8, 95);
+            this.btnSimpleTest.Name = "btnSimpleTest";
+            this.btnSimpleTest.Size = new System.Drawing.Size(75, 23);
+            this.btnSimpleTest.TabIndex = 1;
+            this.btnSimpleTest.Text = "SimpleTest";
+            this.btnSimpleTest.UseVisualStyleBackColor = true;
+            this.btnSimpleTest.Click += new System.EventHandler(this.btnSimpleTest_Click);
+            // 
+            // txtTripleClick
+            // 
+            this.txtTripleClick.Location = new System.Drawing.Point(6, 6);
+            this.txtTripleClick.Name = "txtTripleClick";
+            this.txtTripleClick.Size = new System.Drawing.Size(470, 20);
+            this.txtTripleClick.TabIndex = 0;
+            this.txtTripleClick.Text = "Triple Click Test";
             // 
             // tbMisc
             // 
@@ -254,33 +284,15 @@
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
             // 
-            // txtTripleClick
+            // btnShowTexts
             // 
-            this.txtTripleClick.Location = new System.Drawing.Point(6, 6);
-            this.txtTripleClick.Name = "txtTripleClick";
-            this.txtTripleClick.Size = new System.Drawing.Size(470, 20);
-            this.txtTripleClick.TabIndex = 0;
-            this.txtTripleClick.Text = "Triple Click Test";
-            // 
-            // btnSimpleTest
-            // 
-            this.btnSimpleTest.Location = new System.Drawing.Point(8, 95);
-            this.btnSimpleTest.Name = "btnSimpleTest";
-            this.btnSimpleTest.Size = new System.Drawing.Size(75, 23);
-            this.btnSimpleTest.TabIndex = 1;
-            this.btnSimpleTest.Text = "SimpleTest";
-            this.btnSimpleTest.UseVisualStyleBackColor = true;
-            this.btnSimpleTest.Click += new System.EventHandler(this.btnSimpleTest_Click);
-            // 
-            // btnShowText
-            // 
-            this.btnShowText.Location = new System.Drawing.Point(8, 146);
-            this.btnShowText.Name = "btnShowText";
-            this.btnShowText.Size = new System.Drawing.Size(75, 23);
-            this.btnShowText.TabIndex = 2;
-            this.btnShowText.Text = "Show Text";
-            this.btnShowText.UseVisualStyleBackColor = true;
-            this.btnShowText.Click += new System.EventHandler(this.btnShowText_Click);
+            this.btnShowTexts.Location = new System.Drawing.Point(89, 146);
+            this.btnShowTexts.Name = "btnShowTexts";
+            this.btnShowTexts.Size = new System.Drawing.Size(75, 23);
+            this.btnShowTexts.TabIndex = 9;
+            this.btnShowTexts.Text = "Show Texts";
+            this.btnShowTexts.UseVisualStyleBackColor = true;
+            this.btnShowTexts.Click += new System.EventHandler(this.btnShowTexts_Click);
             // 
             // FormMain
             // 
@@ -333,5 +345,6 @@
         private System.Windows.Forms.TextBox txtTripleClick;
         private System.Windows.Forms.Button btnSimpleTest;
         private System.Windows.Forms.Button btnShowText;
+        private System.Windows.Forms.Button btnShowTexts;
     }
 }
