@@ -32,6 +32,7 @@
             this.txtBody = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.panelTabRoot = new System.Windows.Forms.Panel();
+            this.txtFind = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblLable
@@ -77,12 +78,23 @@
             this.panelTabRoot.Size = new System.Drawing.Size(442, 245);
             this.panelTabRoot.TabIndex = 101;
             // 
+            // txtFind
+            // 
+            this.txtFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtFind.Location = new System.Drawing.Point(15, 262);
+            this.txtFind.Name = "txtFind";
+            this.txtFind.Size = new System.Drawing.Size(150, 20);
+            this.txtFind.TabIndex = 102;
+            this.txtFind.Visible = false;
+            this.txtFind.TextChanged += new System.EventHandler(this.txtFind_TextChanged);
+            // 
             // TextDialog
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 295);
+            this.Controls.Add(this.txtFind);
             this.Controls.Add(this.panelTabRoot);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtBody);
@@ -92,6 +104,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ShowTextDialog";
+            this.Shown += new System.EventHandler(this.TextDialog_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,5 +116,6 @@
         public System.Windows.Forms.TextBox txtBody;
         public System.Windows.Forms.Label lblLable;
         public System.Windows.Forms.Panel panelTabRoot;
+        private System.Windows.Forms.TextBox txtFind;
     }
 }

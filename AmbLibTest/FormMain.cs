@@ -261,9 +261,15 @@ jfowafjowej  jwj owe wef
         private void btnShowTexts_Click(object sender, EventArgs e)
         {
             List<KeyValuePair<string, string>> labelsAndTexts = new List<KeyValuePair<string, string>>();
-            labelsAndTexts.Add(new KeyValuePair<string, string>("Title1", _longText));
-            labelsAndTexts.Add(new KeyValuePair<string, string>("Title2", _longText));
-            labelsAndTexts.Add(new KeyValuePair<string, string>("Title3", _longText));
+            labelsAndTexts.Add(new KeyValuePair<string, string>("Title1", @"123
+456
+789"));
+            labelsAndTexts.Add(new KeyValuePair<string, string>("Title2", @"abc
+def
+ghi"));
+            labelsAndTexts.Add(new KeyValuePair<string, string>("Title3", @"XYZ
+GHJ
+LIE"));
 
 
             AmbLib.ShowTextDialog(this, Application.ProductName, labelsAndTexts, true);
