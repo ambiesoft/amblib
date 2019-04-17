@@ -1,3 +1,6 @@
+2019/04/15 ver1.0.8
+Add textsdialog
+
 2019/04/15 ver1.0.7
 Add textdialog
 
