@@ -12,9 +12,88 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Web;
+using System.Globalization;
+using System.Resources;
 
 namespace Ambiesoft
 {
+    public class ResStringUtil
+    {
+        CultureInfo _cultureInfo;
+        ResourceManager _theResource;
+        List<string> da_ = new List<string>();
+
+        void DTRACE(string s)
+        {
+            Debug.WriteLine(s);
+        }
+
+        public ResStringUtil(string sss, CultureInfo ci)
+        {
+            _theResource = new ResourceManager(sss, Assembly.GetEntryAssembly());
+            _cultureInfo = ci;
+        }
+        public ResStringUtil(string sss) : this(sss, null) { }
+        
+        public void showUnI18Ned() 
+		{
+			DTRACE("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII18NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+			foreach(string o in da_)
+			{
+				DTRACE(o);
+			}
+			DTRACE("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII18NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+		}
+
+
+		public string getString(string s)
+		{
+			string ret = _theResource.GetString(s, _cultureInfo);
+
+			if ( string.IsNullOrEmpty(ret) && !da_.Contains(s) )
+			{
+				DTRACE("\"" + s + "\" is not I18Ned.");
+				da_.Add(s);
+			}
+
+			return string.IsNullOrEmpty(ret) ? s : ret;
+		}
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public class AmbLib
     {
         public static String DEFAULT_UNNAMABLED_FILENAME = "NewFile";

@@ -75,6 +75,8 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="I18NStrings.ja-JP.resx" />
+    <EmbeddedResource Include="I18NStrings.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

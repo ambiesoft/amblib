@@ -275,6 +275,29 @@ LIE"));
             AmbLib.ShowTextDialog(this, Application.ProductName, labelsAndTexts, true);
         }
 
+        private void btnI18NTest_Click(object sender, EventArgs e)
+        {
+            Ambiesoft.ResStringUtil rsu = new ResStringUtil("AmbLibTest.I18NStrings");
+            Ambiesoft.ResStringUtil rsuJaJp = new ResStringUtil("AmbLibTest.I18NStrings",
+                new System.Globalization.CultureInfo("ja-JP"));
+
+            try
+            {
+                string test = rsu.getString("TEST");
+                string testJaJp = rsuJaJp.getString("TEST");
+                MessageBox.Show(test, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(testJaJp, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            rsuJaJp.getString("NONONONOSTRING");
+            rsuJaJp.showUnI18Ned();
+        }
+
         
     }
 }

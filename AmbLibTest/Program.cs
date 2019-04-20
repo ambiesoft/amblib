@@ -12,10 +12,8 @@ namespace AmbLibTest
 
     class Program
     {
-      
         static void Main(string[] args)
         {
-          
             FormMain form = new FormMain();
             form.ShowDialog();
         }
