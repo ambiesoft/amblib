@@ -1,3 +1,6 @@
+2019/04/22 ver1.0.10
+nazo
+
 2019/04/18 ver1.0.9
 Show filter text on TextDialog
 
