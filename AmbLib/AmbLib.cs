@@ -96,7 +96,7 @@ namespace Ambiesoft
 
     public class AmbLib
     {
-        public static String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
+        public static readonly String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
 
         public static bool HasFileExtension(string filename, string ext)
         {
@@ -108,7 +108,7 @@ namespace Ambiesoft
             if (ext[0] != '.')
                 ext = '.' + ext;
             string fileext = GetFileExtension(filename, true);
-            return ext == fileext;
+            return string.Compare(ext, fileext, true) == 0;
         }
 
 
