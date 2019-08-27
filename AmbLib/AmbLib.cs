@@ -1223,52 +1223,75 @@ namespace Ambiesoft
                 System.Security.Principal.WindowsBuiltInRole.Administrator);
         }
 
-        static Dictionary<TextBox, int> _dicTextBoxToDbCount;
-        static Dictionary<TextBox, uint> _dicTextBoxToDbTime;
-        public static void MakeTripleClickTextBox(TextBox tb, uint dbtime)
+        static Dictionary<Control, int> _dicTextBoxToDbCount;
+        static Dictionary<Control, uint> _dicTextBoxToDbTime;
+        private static void MakeTripleClickTextBoxInternal(Control cont, uint dbtime)
         {
-            if (tb == null)
+            if (cont == null)
                 return;
 
             if (_dicTextBoxToDbCount == null)
-                _dicTextBoxToDbCount = new Dictionary<TextBox, int>();
+                _dicTextBoxToDbCount = new Dictionary<Control, int>();
             if (_dicTextBoxToDbTime == null)
-                _dicTextBoxToDbTime = new Dictionary<TextBox, uint>();
+                _dicTextBoxToDbTime = new Dictionary<Control, uint>();
 
-            _dicTextBoxToDbTime[tb] = dbtime;
+            _dicTextBoxToDbTime[cont] = dbtime;
 
-            tb.MouseClick += tb_MouseClick;
-            tb.MouseDoubleClick += tb_MouseDoubleClick;
+            TextBox tb = cont as TextBox;
+            if (tb != null)
+            {
+                tb.MouseClick += tb_MouseClick;
+                tb.MouseDoubleClick += tb_MouseDoubleClick;
+            }
+            ComboBox cb = cont as ComboBox;
+            if (cb != null)
+            {
+                cb.MouseClick += tb_MouseClick;
+                cb.MouseDoubleClick += tb_MouseDoubleClick;
+            }
         }
 
         static void tb_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            TextBox tb = sender as TextBox;
-            if (tb == null)
+            Control cont = sender as Control;
+            if (cont == null)
                 return;
-            _dicTextBoxToDbCount[tb] = Environment.TickCount;
+            _dicTextBoxToDbCount[cont] = Environment.TickCount;
         }
 
         static void tb_MouseClick(object sender, MouseEventArgs e)
         {
-            TextBox tb = sender as TextBox;
-            if (tb == null)
+            Control cont = sender as Control;
+            if (cont == null)
                 return;
 
-            if(!_dicTextBoxToDbCount.ContainsKey(tb))
+            if (!_dicTextBoxToDbCount.ContainsKey(cont))
                 return;
-            if (!_dicTextBoxToDbTime.ContainsKey(tb))
+            if (!_dicTextBoxToDbTime.ContainsKey(cont))
                 return;
 
-            int dbTick = _dicTextBoxToDbCount[tb];
-            uint dbtime = _dicTextBoxToDbTime[tb];
+            int dbTick = _dicTextBoxToDbCount[cont];
+            uint dbtime = _dicTextBoxToDbTime[cont];
 
             if (dbtime > (Environment.TickCount - dbTick))
             {
-                tb.SelectAll();
+                TextBox tb = cont as TextBox;
+                ComboBox cb = cont as ComboBox;
+                if (tb != null)
+                    tb.SelectAll();
+                if (cb != null)
+                    cb.SelectAll();
             }
         }
 
+        public static void MakeTripleClickTextBox(TextBox tb, uint dbtime)
+        {
+            MakeTripleClickTextBoxInternal(tb, dbtime);
+        }
+        //public static void MakeTripleClickTextBox(ComboBox cb, uint dbtime)
+        //{
+        //    MakeTripleClickTextBoxInternal(cb, dbtime); 
+        //}
         public static void ShowTextDialog(IWin32Window owner, string title, string label, string text, bool bReadOnly)
         {
             using (TextDialog td = new TextDialog())

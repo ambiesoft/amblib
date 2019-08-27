@@ -50,12 +50,13 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
+            this.cmbTripleClick = new System.Windows.Forms.ComboBox();
+            this.btnI18NTest = new System.Windows.Forms.Button();
             this.btnShowTexts = new System.Windows.Forms.Button();
             this.btnShowText = new System.Windows.Forms.Button();
             this.btnSimpleTest = new System.Windows.Forms.Button();
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
-            this.btnI18NTest = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -228,6 +229,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.cmbTripleClick);
             this.tpSimple.Controls.Add(this.btnI18NTest);
             this.tpSimple.Controls.Add(this.btnShowTexts);
             this.tpSimple.Controls.Add(this.btnShowText);
@@ -240,6 +242,28 @@
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // cmbTripleClick
+            // 
+            this.cmbTripleClick.FormattingEnabled = true;
+            this.cmbTripleClick.Items.AddRange(new object[] {
+            "Triple Click Test"});
+            this.cmbTripleClick.Location = new System.Drawing.Point(6, 32);
+            this.cmbTripleClick.Name = "cmbTripleClick";
+            this.cmbTripleClick.Size = new System.Drawing.Size(470, 21);
+            this.cmbTripleClick.TabIndex = 10;
+            this.cmbTripleClick.Text = "Triple Click Test";
+            this.cmbTripleClick.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cmbTripleClick_MouseDoubleClick);
+            // 
+            // btnI18NTest
+            // 
+            this.btnI18NTest.Location = new System.Drawing.Point(8, 198);
+            this.btnI18NTest.Name = "btnI18NTest";
+            this.btnI18NTest.Size = new System.Drawing.Size(75, 23);
+            this.btnI18NTest.TabIndex = 9;
+            this.btnI18NTest.Text = "I18N TEST";
+            this.btnI18NTest.UseVisualStyleBackColor = true;
+            this.btnI18NTest.Click += new System.EventHandler(this.btnI18NTest_Click);
             // 
             // btnShowTexts
             // 
@@ -296,16 +320,6 @@
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
             // 
-            // btnI18NTest
-            // 
-            this.btnI18NTest.Location = new System.Drawing.Point(8, 198);
-            this.btnI18NTest.Name = "btnI18NTest";
-            this.btnI18NTest.Size = new System.Drawing.Size(75, 23);
-            this.btnI18NTest.TabIndex = 9;
-            this.btnI18NTest.Text = "I18N TEST";
-            this.btnI18NTest.UseVisualStyleBackColor = true;
-            this.btnI18NTest.Click += new System.EventHandler(this.btnI18NTest_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,5 +373,6 @@
         private System.Windows.Forms.Button btnShowText;
         private System.Windows.Forms.Button btnShowTexts;
         private System.Windows.Forms.Button btnI18NTest;
+        private System.Windows.Forms.ComboBox cmbTripleClick;
     }
 }

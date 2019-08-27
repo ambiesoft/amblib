@@ -65,6 +65,7 @@ namespace AmbLibTest
             txtDNS.Text = Ambiesoft.AmbLib.GetDnsAdress();
 
             AmbLib.MakeTripleClickTextBox(txtTripleClick, GetDoubleClickTime());
+            // AmbLib.MakeTripleClickTextBox(cmbTripleClick, GetDoubleClickTime());
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
@@ -296,6 +297,11 @@ LIE"));
 
             rsuJaJp.getString("NONONONOSTRING");
             rsuJaJp.showUnI18Ned();
+        }
+
+        private void cmbTripleClick_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
 
         
