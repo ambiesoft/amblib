@@ -304,6 +304,35 @@ LIE"));
 
         }
 
+        private void btnFormatSizeTest_Click(object sender, EventArgs e)
+        {
+            var sb = new StringBuilder();
+            long l = 1;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 10;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 100;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 1000;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 10000000;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 222222222;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 2222255555;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+
+            l = 33333333333;
+            sb.AppendLine(string.Format("{0} => {1}", l, AmbLib.FormatSize(l)));
+            MessageBox.Show(sb.ToString());
+        }
+
         
     }
 }

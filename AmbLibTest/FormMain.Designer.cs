@@ -57,6 +57,7 @@
             this.btnSimpleTest = new System.Windows.Forms.Button();
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
+            this.btnFormatSizeTest = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -229,6 +230,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnFormatSizeTest);
             this.tpSimple.Controls.Add(this.cmbTripleClick);
             this.tpSimple.Controls.Add(this.btnI18NTest);
             this.tpSimple.Controls.Add(this.btnShowTexts);
@@ -320,6 +322,16 @@
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
             // 
+            // btnFormatSizeTest
+            // 
+            this.btnFormatSizeTest.Location = new System.Drawing.Point(89, 198);
+            this.btnFormatSizeTest.Name = "btnFormatSizeTest";
+            this.btnFormatSizeTest.Size = new System.Drawing.Size(108, 23);
+            this.btnFormatSizeTest.TabIndex = 9;
+            this.btnFormatSizeTest.Text = "FormatSize Test";
+            this.btnFormatSizeTest.UseVisualStyleBackColor = true;
+            this.btnFormatSizeTest.Click += new System.EventHandler(this.btnFormatSizeTest_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,5 +386,6 @@
         private System.Windows.Forms.Button btnShowTexts;
         private System.Windows.Forms.Button btnI18NTest;
         private System.Windows.Forms.ComboBox cmbTripleClick;
+        private System.Windows.Forms.Button btnFormatSizeTest;
     }
 }
