@@ -1,7 +1,7 @@
 {
     "name": "AmbLib",
     "solution": "AmbLib.2013.sln",
-    "targetproject": "AmbLib",
+    "targetproject": "AmbLib\\AmbLib.2013.csproj",
     "configuration": "Release",
     "targets": [
         {
