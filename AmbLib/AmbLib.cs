@@ -1363,5 +1363,6 @@ namespace Ambiesoft
             return string.Format("{0:n1}{1}", number, suffixes[counter]);
         }
 
+
     }  // class Amblib
 }  // namespace Ambiesoft
