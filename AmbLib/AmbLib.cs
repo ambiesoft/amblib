@@ -1385,5 +1385,10 @@ namespace Ambiesoft
             }
         }
 
+        public static void ShutdownPC()
+        {
+            Process.Start("shutdown", "/s /t 30");
+        }
+
     }  // class Amblib
 }  // namespace Ambiesoft
