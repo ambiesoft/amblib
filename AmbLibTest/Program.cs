@@ -12,6 +12,7 @@ namespace AmbLibTest
 
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
             FormMain form = new FormMain();

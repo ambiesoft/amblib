@@ -50,6 +50,7 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
+            this.btnFormatSizeTest = new System.Windows.Forms.Button();
             this.cmbTripleClick = new System.Windows.Forms.ComboBox();
             this.btnI18NTest = new System.Windows.Forms.Button();
             this.btnShowTexts = new System.Windows.Forms.Button();
@@ -57,7 +58,7 @@
             this.btnSimpleTest = new System.Windows.Forms.Button();
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
-            this.btnFormatSizeTest = new System.Windows.Forms.Button();
+            this.btnSelectApp = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -230,6 +231,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnSelectApp);
             this.tpSimple.Controls.Add(this.btnFormatSizeTest);
             this.tpSimple.Controls.Add(this.cmbTripleClick);
             this.tpSimple.Controls.Add(this.btnI18NTest);
@@ -244,6 +246,16 @@
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // btnFormatSizeTest
+            // 
+            this.btnFormatSizeTest.Location = new System.Drawing.Point(89, 198);
+            this.btnFormatSizeTest.Name = "btnFormatSizeTest";
+            this.btnFormatSizeTest.Size = new System.Drawing.Size(108, 23);
+            this.btnFormatSizeTest.TabIndex = 9;
+            this.btnFormatSizeTest.Text = "FormatSize Test";
+            this.btnFormatSizeTest.UseVisualStyleBackColor = true;
+            this.btnFormatSizeTest.Click += new System.EventHandler(this.btnFormatSizeTest_Click);
             // 
             // cmbTripleClick
             // 
@@ -322,15 +334,15 @@
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
             // 
-            // btnFormatSizeTest
+            // btnSelectApp
             // 
-            this.btnFormatSizeTest.Location = new System.Drawing.Point(89, 198);
-            this.btnFormatSizeTest.Name = "btnFormatSizeTest";
-            this.btnFormatSizeTest.Size = new System.Drawing.Size(108, 23);
-            this.btnFormatSizeTest.TabIndex = 9;
-            this.btnFormatSizeTest.Text = "FormatSize Test";
-            this.btnFormatSizeTest.UseVisualStyleBackColor = true;
-            this.btnFormatSizeTest.Click += new System.EventHandler(this.btnFormatSizeTest_Click);
+            this.btnSelectApp.Location = new System.Drawing.Point(203, 198);
+            this.btnSelectApp.Name = "btnSelectApp";
+            this.btnSelectApp.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectApp.TabIndex = 9;
+            this.btnSelectApp.Text = "Select App";
+            this.btnSelectApp.UseVisualStyleBackColor = true;
+            this.btnSelectApp.Click += new System.EventHandler(this.btnSelectApp_Click);
             // 
             // FormMain
             // 
@@ -387,5 +399,6 @@
         private System.Windows.Forms.Button btnI18NTest;
         private System.Windows.Forms.ComboBox cmbTripleClick;
         private System.Windows.Forms.Button btnFormatSizeTest;
+        private System.Windows.Forms.Button btnSelectApp;
     }
 }

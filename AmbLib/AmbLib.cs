@@ -1363,6 +1363,27 @@ namespace Ambiesoft
             return string.Format("{0:n1}{1}", number, suffixes[counter]);
         }
 
+        public static string GetSelectedApp(string title)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                // ofd.FileName = "default.html";
+                //ofd.InitialDirectory = @"C:\";
+                ofd.Filter = "Application(*.exe;*.com)|*.exe;*.com|All Files(*.*)|*.*";
+                //ofd.FilterIndex = 2;
+                ofd.Title = title;
+                //ofd.RestoreDirectory = true;
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                {
+                    return null;
+                }
+
+                return ofd.FileName;
+            }
+        }
 
     }  // class Amblib
 }  // namespace Ambiesoft

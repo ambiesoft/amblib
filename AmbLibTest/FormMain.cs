@@ -333,6 +333,17 @@ LIE"));
             MessageBox.Show(sb.ToString());
         }
 
+        private void btnSelectApp_Click(object sender, EventArgs e)
+        {
+            string app = AmbLib.GetSelectedApp(Application.ProductName);
+            if(string.IsNullOrEmpty(app))
+            {
+                MessageBox.Show("Cancelled");
+                return;
+            }
+            MessageBox.Show(app);
+        }
+
         
     }
 }
