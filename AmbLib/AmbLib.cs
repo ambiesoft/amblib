@@ -1363,13 +1363,31 @@ namespace Ambiesoft
             return string.Format("{0:n1}{1}", number, suffixes[counter]);
         }
 
-        public static string GetSelectedApp(string title)
+        public static string GetOpenFileDialog(string title, Dictionary<string, string[]> extensions)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 // ofd.FileName = "default.html";
                 //ofd.InitialDirectory = @"C:\";
-                ofd.Filter = "Application(*.exe;*.com)|*.exe;*.com|All Files(*.*)|*.*";
+                StringBuilder sbFilter = new StringBuilder();
+                if (extensions != null)
+                {
+                    foreach (KeyValuePair<string, string[]> entry in extensions)
+                    {
+                        StringBuilder sbExts = new StringBuilder();
+                        foreach(string t in entry.Value)
+                        {
+                            // *.exe,*.com
+                            sbExts.Append(";*." + t.TrimStart('*').TrimStart('.'));
+                        }
+                        sbFilter.AppendFormat("|{0} ({1})|{1}",
+                            entry.Key,
+                            sbExts.ToString().TrimStart(';'));
+                    }
+                }
+                sbFilter.Append("|All Files(*.*)|*.*");
+                ofd.Filter = sbFilter.ToString().TrimStart('|');
+                //ofd.Filter = "Application(*.exe;*.com)|*.exe;*.com|All Files(*.*)|*.*";
                 //ofd.FilterIndex = 2;
                 ofd.Title = title;
                 //ofd.RestoreDirectory = true;
@@ -1377,13 +1395,36 @@ namespace Ambiesoft
                 ofd.CheckPathExists = true;
 
                 if (ofd.ShowDialog() != DialogResult.OK)
-                {
                     return null;
-                }
 
                 return ofd.FileName;
             }
         }
+        [Flags]
+        public enum GETOPENFILEDIALOGTYPE
+        {
+            NONE =0,
+            APP       = 1 << 0,
+            IMAGE     = 1 << 1,
+            HTML      = 1 << 2
+        };
+        public static string GetOpenFileDialog(string title, GETOPENFILEDIALOGTYPE gofdt)
+        {
+            var extentions = new Dictionary<string, string[]>();
+            if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.APP))
+                extentions["Application"] = new string[] { "exe", "com" };
+            if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.IMAGE))
+                extentions["Image"] = new string[] { "bmp", "jpg", "jpeg", "gif", "png" };
+            if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.HTML))
+                extentions["html"] = new string[] { "html", "htm" };
+            
+            return GetOpenFileDialog(title, extentions);
+        }
+        public static string GetOpenFileDialog(string title)
+        {
+            return GetOpenFileDialog(title, null);
+        }
+
 
         public static void ShutdownPC()
         {

@@ -335,13 +335,24 @@ LIE"));
 
         private void btnSelectApp_Click(object sender, EventArgs e)
         {
-            string app = AmbLib.GetSelectedApp(Application.ProductName);
-            if(string.IsNullOrEmpty(app))
-            {
-                MessageBox.Show("Cancelled");
-                return;
-            }
-            MessageBox.Show(app);
+            var result = new StringBuilder();
+            string all = AmbLib.GetOpenFileDialog(Application.ProductName);
+            if (string.IsNullOrEmpty(all))
+                result.AppendLine("cancel");
+            result.AppendLine(all);
+
+            var extentions = new Dictionary<string, string[]>();
+            extentions["Application"] = new string[] { "exe", "com" };
+            extentions["Image"] = new string[] { "gif", "jpg", "jpeg", "png", "bmp" };
+            extentions["html"] = new string[] { "html", "htm" };
+            string app = AmbLib.GetOpenFileDialog(Application.ProductName, extentions);
+            if (string.IsNullOrEmpty(app))
+                result.AppendLine("cancel");
+            result.AppendLine(app);
+
+            string image = AmbLib.GetOpenFileDialog("Choose Image", AmbLib.GETOPENFILEDIALOGTYPE.IMAGE);
+            result.AppendLine(image);
+            MessageBox.Show(result.ToString());
         }
 
         
