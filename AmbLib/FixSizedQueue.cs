@@ -24,5 +24,13 @@ namespace Ambiesoft
             }
             return ret;
         }
+
+        public bool Filled
+        {
+            get
+            {
+                return base.Count >= Size;
+            }
+        }
     }
 }

@@ -22,8 +22,10 @@ namespace UnitTestAmbLib
         {
             FixSizedQueue<int> iq = new FixSizedQueue<int>(3);
             iq.Enqueue(1);
+            Assert.IsFalse(iq.Filled);
             iq.Enqueue(2);
             iq.Enqueue(3);
+            Assert.IsTrue(iq.Filled);
             int[] iqa = iq.ToArray();
             Assert.AreEqual(iqa[0], 1);
             Assert.AreEqual(iqa[1], 2);
