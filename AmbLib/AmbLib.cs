@@ -1439,5 +1439,10 @@ namespace Ambiesoft
         {
             return Win32.DoExitWin((int)exitType);
         }
+
+        public static string GetRatioString(double part, double all)
+        {
+            return ((part / all) * 100.0).ToString();
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
