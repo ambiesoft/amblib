@@ -48,7 +48,7 @@ namespace UnitTestAmbLib
         {
             Assert.AreEqual<string>("100", AmbLib.GetRatioString(100, 100));
             Assert.AreEqual<string>("1", AmbLib.GetRatioString(1, 100));
-            Assert.AreEqual<string>("+∞", AmbLib.GetRatioString(1, 0));
+            Assert.IsTrue(AmbLib.GetRatioString(1, 0).Contains("∞"));
         }
     }
 }
