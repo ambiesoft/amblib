@@ -15,6 +15,7 @@ namespace AmbLibTest
         [STAThread]
         static void Main(string[] args)
         {
+            // AmbLib.ExitWin(AmbLib.EXITWINTYPE.EXITWIN_LOGOFF);
             FormMain form = new FormMain();
             form.ShowDialog();
         }

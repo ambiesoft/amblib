@@ -1425,11 +1425,19 @@ namespace Ambiesoft
             return GetOpenFileDialog(title, null);
         }
 
-
-        public static void ShutdownPC()
+        [Flags]
+        public enum EXITWINTYPE
         {
-            Process.Start("shutdown", "/s /t 30");
+            EXITWIN_LOGOFF = 0x00000000,
+            EXITWIN_SHUTDOWN = 0x00000001,
+            EXITWIN_REBOOT = 0x00000002,
+            EXITWIN_FORCE = 0x00000004,
+            EXITWIN_POWEROFF = 0x00000008,
+            EXITWIN_FORCEIFHUNG = 0x00000010,
         }
-
+        public static bool ExitWin(EXITWINTYPE exitType)
+        {
+            return Win32.DoExitWin((int)exitType);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
