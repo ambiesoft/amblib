@@ -1444,5 +1444,13 @@ namespace Ambiesoft
         {
             return ((part / all) * 100.0).ToString();
         }
+        public static string GetRatioString(long part, long all)
+        {
+            return GetRatioString((double)part, (double)all);
+        }
+        public static string GetRatioString(int part, int all)
+        {
+            return GetRatioString((double)part, (double)all);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
