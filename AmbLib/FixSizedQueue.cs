@@ -7,7 +7,20 @@ namespace Ambiesoft
 {
     public class FixSizedQueue<T> : System.Collections.Generic.Queue<T>
     {
-        public int Size { get; private set; }
+        private int size_;
+        public int Size
+        {
+            get
+            {
+                return size_;
+            }
+            set
+            {
+                size_ = Math.Max(0, value);
+                while (base.Count > size_)
+                    base.Dequeue();
+            }
+        }
 
         public FixSizedQueue(int size)
         {

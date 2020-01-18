@@ -18,7 +18,7 @@ namespace UnitTestAmbLib
         }
 
         [TestMethod]
-        public void TestFixSizedQueue()
+        public void TestFixSizedQueueBasic()
         {
             FixSizedQueue<int> iq = new FixSizedQueue<int>(3);
             iq.Enqueue(1);
@@ -41,6 +41,22 @@ namespace UnitTestAmbLib
             int dequed = iq.Enqueue(5);
             Assert.AreEqual(dequed, 2);
 
+        }
+
+        [TestMethod]
+        public void TestFixSizedQueueChangeSize()
+        {
+            FixSizedQueue<string> sq = new FixSizedQueue<string>(5);
+            sq.Enqueue("a");
+            sq.Enqueue("b");
+            sq.Enqueue("c");
+            sq.Enqueue("d");
+            sq.Enqueue("e");
+            sq.Size = 3;
+            Assert.AreEqual(sq.Count, 3);
+            Assert.AreEqual(sq.Dequeue(), "c");
+            Assert.AreEqual(sq.Dequeue(), "d");
+            Assert.AreEqual(sq.Dequeue(), "e");
         }
 
         [TestMethod]
