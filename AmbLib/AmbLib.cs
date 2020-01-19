@@ -1442,7 +1442,7 @@ namespace Ambiesoft
 
         public static string GetRatioString(double part, double all)
         {
-            return ((part / all) * 100.0).ToString();
+            return ((part / all) * 100.0).ToString("#.##");
         }
         public static string GetRatioString(long part, long all)
         {

@@ -67,6 +67,7 @@ namespace UnitTestAmbLib
             Assert.IsTrue(AmbLib.GetRatioString(821874467, 4017871354).StartsWith("20"));
             Assert.IsTrue(AmbLib.GetRatioString((double)821874467, (double)4017871354).StartsWith("20"));
             Assert.IsTrue(AmbLib.GetRatioString(821874467L, 4017871354L).StartsWith("20"));
+            Assert.AreEqual<string>(AmbLib.GetRatioString(821324874467, 39344017871354), "2.09");
 
 
             string s = AmbLib.GetRatioString(1, 0);
