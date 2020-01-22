@@ -1,3 +1,6 @@
+2020/01/23 ver1.0.14
+add keta
+
 2019/12/30 ver1.0.13
 openfile
 
