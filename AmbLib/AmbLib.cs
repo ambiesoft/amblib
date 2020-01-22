@@ -1440,17 +1440,31 @@ namespace Ambiesoft
             return Win32.DoExitWin((int)exitType);
         }
 
+        public static string GetRatioString(double part, double all, int keta)
+        {
+            if (keta <= 0)
+                return ((part / all) * 100.0).ToString("#");
+
+            string format = "#.";
+            while (keta-- > 0)
+                format += "#";
+            return ((part / all) * 100.0).ToString(format);
+        }
         public static string GetRatioString(double part, double all)
         {
-            return ((part / all) * 100.0).ToString("#.##");
+            return GetRatioString(part, all, 2);
+        }
+        public static string GetRatioString(long part, long all, int keta)
+        {
+            return GetRatioString((double)part, (double)all, keta);
         }
         public static string GetRatioString(long part, long all)
         {
-            return GetRatioString((double)part, (double)all);
+            return GetRatioString((double)part, (double)all, 2);
         }
-        public static string GetRatioString(int part, int all)
-        {
-            return GetRatioString((double)part, (double)all);
-        }
+        //public static string GetRatioString(int part, int all)
+        //{
+        //    return GetRatioString((double)part, (double)all);
+        //}
     }  // class Amblib
 }  // namespace Ambiesoft
