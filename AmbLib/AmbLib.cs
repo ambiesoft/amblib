@@ -1224,8 +1224,8 @@ namespace Ambiesoft
         }
 
         static Dictionary<Control, int> _dicTextBoxToDbCount;
-        static Dictionary<Control, uint> _dicTextBoxToDbTime;
-        private static void MakeTripleClickTextBoxInternal(Control cont, uint dbtime)
+        static Dictionary<Control, int> _dicTextBoxToDbTime;
+        private static void MakeTripleClickTextBoxInternal(Control cont, int dbtime)
         {
             if (cont == null)
                 return;
@@ -1233,7 +1233,7 @@ namespace Ambiesoft
             if (_dicTextBoxToDbCount == null)
                 _dicTextBoxToDbCount = new Dictionary<Control, int>();
             if (_dicTextBoxToDbTime == null)
-                _dicTextBoxToDbTime = new Dictionary<Control, uint>();
+                _dicTextBoxToDbTime = new Dictionary<Control, int>();
 
             _dicTextBoxToDbTime[cont] = dbtime;
 
@@ -1271,7 +1271,7 @@ namespace Ambiesoft
                 return;
 
             int dbTick = _dicTextBoxToDbCount[cont];
-            uint dbtime = _dicTextBoxToDbTime[cont];
+            int dbtime = _dicTextBoxToDbTime[cont];
 
             if (dbtime > (Environment.TickCount - dbTick))
             {
@@ -1284,9 +1284,13 @@ namespace Ambiesoft
             }
         }
 
-        public static void MakeTripleClickTextBox(TextBox tb, uint dbtime)
+        public static void MakeTripleClickTextBox(TextBox tb, int dbtime)
         {
             MakeTripleClickTextBoxInternal(tb, dbtime);
+        }
+        public static void MakeTripleClickTextBox(TextBox tb)
+        {
+            MakeTripleClickTextBoxInternal(tb, SystemInformation.DoubleClickTime);
         }
         //public static void MakeTripleClickTextBox(ComboBox cb, uint dbtime)
         //{

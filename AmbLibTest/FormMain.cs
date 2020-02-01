@@ -64,7 +64,7 @@ namespace AmbLibTest
             Ambiesoft.AmbLib.StretchToolItem(toolStrip1, tsbcMain);
             txtDNS.Text = Ambiesoft.AmbLib.GetDnsAdress();
 
-            AmbLib.MakeTripleClickTextBox(txtTripleClick, GetDoubleClickTime());
+            AmbLib.MakeTripleClickTextBox(txtTripleClick);
             // AmbLib.MakeTripleClickTextBox(cmbTripleClick, GetDoubleClickTime());
         }
 
