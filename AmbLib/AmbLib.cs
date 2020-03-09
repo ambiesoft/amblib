@@ -169,7 +169,12 @@ namespace Ambiesoft
                 if (IsFileNamable(c))
                     sb.Append(c);
                 else
-                    sb.Append('_');
+                {
+                    if (c == ':')
+                    { }
+                    else
+                        sb.Append('_');
+                }
             }
             string ret = sb.ToString();
 
