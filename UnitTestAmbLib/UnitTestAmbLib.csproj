@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AmbLib\AmbLib.2013.csproj">
+    <ProjectReference Include="..\AmbLib\AmbLib.csproj">
       <Project>{459eb893-322d-4097-a950-1a593dacb024}</Project>
       <Name>AmbLib.2013</Name>
     </ProjectReference>
