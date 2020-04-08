@@ -907,6 +907,56 @@ namespace Ambiesoft
             return !failed;
         }
 
+        static readonly string KEY_COMBO_CURRENT = "ComboCurrentText";
+        static readonly string KEY_COMBO_ITEMS = "ComboTexts";
+        public static void LoadComboBox(ComboBox cmb, string section, int max, HashIni ini)
+        {
+            if (cmb == null || cmb.IsDisposed)
+                return;
+
+            if (max > 0)
+            {
+                string[] items;
+                Profile.GetStringArray(section, KEY_COMBO_ITEMS, out items, ini);
+
+                var itemsToAdd = new List<string>(items);
+                itemsToAdd = itemsToAdd.GetRange(0, Math.Min(items.Length,max));
+                cmb.Items.AddRange(itemsToAdd.ToArray());
+            }
+
+
+            string current;
+            Profile.GetString(section, KEY_COMBO_CURRENT, string.Empty, out current, ini);
+            cmb.Text = current;
+        }
+        public static bool SaveComboBox(ComboBox cmb, string section, int max, HashIni ini)
+        {
+            if (cmb == null || cmb.IsDisposed)
+                return false;
+
+            Profile.WriteString(section, KEY_COMBO_CURRENT, cmb.Text, ini);
+
+            List<string> itemsToSave = new List<string>();
+            if(!string.IsNullOrEmpty(cmb.Text) && !cmb.Items.Contains(cmb.Text))
+                itemsToSave.Add(cmb.Text);
+            int saveCount = 0;
+            foreach(var item in cmb.Items)
+            {
+                if (!string.IsNullOrEmpty(item.ToString()))
+                {
+                    itemsToSave.Add(item.ToString());
+                    ++saveCount;
+                }
+                if (saveCount >= max)
+                    break;
+            }
+
+            Profile.WriteStringArray(section, KEY_COMBO_ITEMS, itemsToSave.ToArray(),ini);
+            return true;
+        }
+
+
+
         // https://stackoverflow.com/a/26558102
         public static string GetSha1(string input)
         {
