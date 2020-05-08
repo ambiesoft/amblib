@@ -1414,12 +1414,13 @@ namespace Ambiesoft
         {
             int counter = 0;
             decimal number = (decimal)bytes;
-            while (Math.Round(number / 1024) >= 1)
+            //while (Math.Round(number / 1024) >= 1)
+            while (number > 1024)
             {
                 number = number / 1024;
                 counter++;
             }
-            return string.Format("{0:n1}{1}", number, suffixes[counter]);
+            return string.Format(counter==0 ? "{0}{1}" : "{0:n1}{1}", number, suffixes[counter]);
         }
 
         public static string GetOpenFileDialog(string title, Dictionary<string, string[]> extensions)

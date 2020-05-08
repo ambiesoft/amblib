@@ -73,8 +73,18 @@ namespace UnitTestAmbLib
 
             string s = AmbLib.GetRatioString(1, 0);
             Assert.IsTrue(s.Contains("∞") || s.Contains("Infinity"));
+        }
 
-
+        [TestMethod]
+        public void TestFormatSize()
+        {
+            Assert.AreEqual(AmbLib.FormatSize(0), "0Bytes");
+            Assert.AreEqual(AmbLib.FormatSize(1), "1Bytes");
+            Assert.AreEqual(AmbLib.FormatSize(107008), "104.5KB");
+            Assert.AreEqual(AmbLib.FormatSize(605652789), "577.6MB");
+            Assert.AreEqual(AmbLib.FormatSize(600 * 1024 * 1024), "600.0MB");
+            Assert.AreEqual(AmbLib.FormatSize(623 * 1024 * 1024), "623.0MB");
+            Assert.AreEqual(AmbLib.FormatSize(6681167515), "6.2GB");
         }
     }
 }
