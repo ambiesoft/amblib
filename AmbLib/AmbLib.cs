@@ -1526,5 +1526,12 @@ namespace Ambiesoft
         //{
         //    return GetRatioString((double)part, (double)all);
         //}
+
+        // https://stackoverflow.com/questions/8517159/how-do-i-detect-at-runtime-that-net-version-4-5-is-currently-running-your-code
+        public static bool IsNet45OrNewer()
+        {
+            // Class "ReflectionContext" exists from .NET 4.5 onwards.
+            return Type.GetType("System.Reflection.ReflectionContext", false) != null;
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
