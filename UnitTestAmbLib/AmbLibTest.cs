@@ -8,7 +8,7 @@ namespace UnitTestAmbLib
     public class AmbLibTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestFileExtention()
         {
             Assert.AreEqual(true, AmbLib.HasFileExtension("aaa.exe", "exe"));
             Assert.AreEqual(true, AmbLib.HasFileExtension("aaa.EXE", "exe"));
@@ -85,6 +85,9 @@ namespace UnitTestAmbLib
             Assert.AreEqual(AmbLib.FormatSize(600 * 1024 * 1024), "600.0MB");
             Assert.AreEqual(AmbLib.FormatSize(623 * 1024 * 1024), "623.0MB");
             Assert.AreEqual(AmbLib.FormatSize(6681167515), "6.2GB");
+
+            Assert.AreEqual(AmbLib.FormatSize(0, 2), "0.00");
+            Assert.AreEqual(AmbLib.FormatSize(1.345, 2), "1.35");
         }
     }
 }

@@ -1422,6 +1422,20 @@ namespace Ambiesoft
             }
             return string.Format(counter==0 ? "{0}{1}" : "{0:n1}{1}", number, suffixes[counter]);
         }
+        /// <summary>
+        /// 1.234 => "1.23"
+        /// </summary>
+        /// <param name="dvalue"></param>
+        /// <param name="keta"></param>
+        /// <returns>Formatted String</returns>
+        public static string FormatSize(double dvalue, UInt32 keta)
+        {
+            return string.Format(string.Format("{{0:n{0}}}", keta), dvalue);
+        }
+        public static string FormatSize(double dvalue)
+        {
+            return FormatSize(dvalue, 2);
+        }
 
         public static string GetOpenFileDialog(string title, Dictionary<string, string[]> extensions)
         {
