@@ -1547,5 +1547,23 @@ namespace Ambiesoft
             // Class "ReflectionContext" exists from .NET 4.5 onwards.
             return Type.GetType("System.Reflection.ReflectionContext", false) != null;
         }
+
+        public static bool IsAlmostSame(double d1, double d2, double diff)
+        {
+            if (d2 == 0 && d1 == 0)
+            {
+                return true;
+            }
+            if (d2 == 0 || d1 == 0)
+            {
+                return false;
+            }
+            double mustOne = d1 / d2;
+            return (1-diff) < mustOne && mustOne < (1+diff);
+        }
+        public static bool IsAlmostSame(double d1, double d2)
+        {
+            return IsAlmostSame(d1, d2, 0.05);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft

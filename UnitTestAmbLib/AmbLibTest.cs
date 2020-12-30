@@ -89,5 +89,20 @@ namespace UnitTestAmbLib
             Assert.AreEqual(AmbLib.FormatSize(0, 2), "0.00");
             Assert.AreEqual(AmbLib.FormatSize(1.345, 2), "1.35");
         }
+
+        [TestMethod]
+        public void TestIsAlmostSame()
+        {
+            Assert.IsTrue(AmbLib.IsAlmostSame(100, 99));
+            Assert.IsTrue(AmbLib.IsAlmostSame(98, 99));
+            Assert.IsTrue(AmbLib.IsAlmostSame(0.98, 0.99));
+            Assert.IsFalse(AmbLib.IsAlmostSame(0.98, 3));
+            Assert.IsFalse(AmbLib.IsAlmostSame(123, 456));
+
+            Assert.IsTrue(AmbLib.IsAlmostSame(0, 0));
+            Assert.IsFalse(AmbLib.IsAlmostSame(0, 0.001));
+            Assert.IsFalse(AmbLib.IsAlmostSame(0.00103, 0));
+            Assert.IsFalse(AmbLib.IsAlmostSame(1, -1));
+        }
     }
 }
