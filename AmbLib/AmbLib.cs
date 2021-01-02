@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Web;
 using System.Globalization;
 using System.Resources;
+using System.Linq;
 
 namespace Ambiesoft
 {
@@ -1564,6 +1565,24 @@ namespace Ambiesoft
         public static bool IsAlmostSame(double d1, double d2)
         {
             return IsAlmostSame(d1, d2, 0.05);
+        }
+
+
+        private class FileNameComparer : IEqualityComparer<string>
+        {
+            public bool Equals(string left, string right)
+            {
+                return AmbLib.IsSameFile(left, right);
+            }
+
+            public int GetHashCode(string s)
+            {
+                return s.GetHashCode();
+            }
+        }
+        public static bool HasSameFile(string[] files)
+        {
+            return files.Length != files.Distinct(new FileNameComparer()).Count();
         }
     }  // class Amblib
 }  // namespace Ambiesoft
