@@ -1584,5 +1584,43 @@ namespace Ambiesoft
         {
             return files.Length != files.Distinct(new FileNameComparer()).Count();
         }
+
+        enum ListViewMove
+        {
+            ListViewMoveUp,
+            ListViewMoveDown,
+        }
+        static bool ListViewItemMoveCommon(ListView list, ListViewItem item, ListViewMove move)
+        {
+            if(move==ListViewMove.ListViewMoveUp && (item.Index == 0))
+				return false;
+			if (move == ListViewMove.ListViewMoveDown && (item.Index >= list.Items.Count-1))
+				return false;
+
+			Debug.Assert(move==ListViewMove.ListViewMoveUp||move==ListViewMove.ListViewMoveDown);
+			int targetI = item.Index + (move == ListViewMove.ListViewMoveUp ? -1 : 1);
+			Debug.Assert(0 <= targetI && targetI < list.Items.Count);
+
+            try
+			{
+                list.BeginUpdate();
+				list.Items.RemoveAt(item.Index);
+				list.Items.Insert(targetI, item);
+				list.EnsureVisible(item.Index);
+			}
+            finally
+            {
+                list.EndUpdate();
+            }
+            return true;
+        }
+        public static bool ListViewItemMoveUp(ListView list, ListViewItem item)
+        {
+            return ListViewItemMoveCommon(list, item, ListViewMove.ListViewMoveUp);
+        }
+        public static bool ListViewItemMoveDown(ListView list, ListViewItem item)
+        {
+            return ListViewItemMoveCommon(list, item, ListViewMove.ListViewMoveDown);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
