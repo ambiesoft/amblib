@@ -1,3 +1,6 @@
+2021/01/30 ver1.0.22
+to VS2019
+
 2021/01/16 ver1.0.21
 ListView MoveUp and MovoDown
 
