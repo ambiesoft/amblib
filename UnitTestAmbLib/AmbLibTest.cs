@@ -30,7 +30,7 @@ namespace UnitTestAmbLib
             Assert.AreEqual(iqa[0], 1);
             Assert.AreEqual(iqa[1], 2);
             Assert.AreEqual(iqa[2], 3);
-            
+
             iq.Enqueue(4);
             iqa = iq.ToArray();
             Assert.AreEqual(iq.Count, 3);
@@ -103,6 +103,19 @@ namespace UnitTestAmbLib
             Assert.IsFalse(AmbLib.IsAlmostSame(0, 0.001));
             Assert.IsFalse(AmbLib.IsAlmostSame(0.00103, 0));
             Assert.IsFalse(AmbLib.IsAlmostSame(1, -1));
+        }
+
+        [TestMethod]
+        public void TestZenkakuHankaku()
+        {
+            Assert.AreEqual(AmbLib.ToHankaku("1"), "1");
+            Assert.AreEqual(AmbLib.ToHankaku("１１１"), "111");
+            Assert.AreEqual(AmbLib.ToHankaku("あああ"), "あああ");
+            Assert.AreEqual(AmbLib.ToHankaku("　"), " ");
+            Assert.AreEqual(AmbLib.ToHankaku("ａ"), "a");
+
+            Assert.AreEqual(AmbLib.ToZenkaku("２２２"), "２２２");
+            Assert.AreEqual(AmbLib.ToZenkaku("222"), "２２２");
         }
     }
 }

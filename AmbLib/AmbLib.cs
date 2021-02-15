@@ -16,6 +16,8 @@ using System.Globalization;
 using System.Resources;
 using System.Linq;
 
+using Microsoft.VisualBasic;
+
 namespace Ambiesoft
 {
     public class ResStringUtil
@@ -1621,6 +1623,15 @@ namespace Ambiesoft
         public static bool ListViewItemMoveDown(ListView list, ListViewItem item)
         {
             return ListViewItemMoveCommon(list, item, ListViewMove.ListViewMoveDown);
+        }
+
+        public static string ToZenkaku(string text)
+        {
+            return Strings.StrConv(text, VbStrConv.Wide);
+        }
+        public static string ToHankaku(string text)
+        {
+            return Strings.StrConv(text, VbStrConv.Narrow);
         }
     }  // class Amblib
 }  // namespace Ambiesoft
