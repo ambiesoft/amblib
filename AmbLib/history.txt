@@ -1,3 +1,6 @@
+2021/02/15 ver1.0.23
+Add Zenkaku Hankaku
+
 2021/01/30 ver1.0.22
 to VS2019
 

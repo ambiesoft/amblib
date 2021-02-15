@@ -1625,13 +1625,14 @@ namespace Ambiesoft
             return ListViewItemMoveCommon(list, item, ListViewMove.ListViewMoveDown);
         }
 
+        static CultureInfo jpCI_ = new CultureInfo("ja-Jp", false);
         public static string ToZenkaku(string text)
         {
-            return Strings.StrConv(text, VbStrConv.Wide);
+            return Strings.StrConv(text, VbStrConv.Wide, jpCI_.LCID);
         }
         public static string ToHankaku(string text)
         {
-            return Strings.StrConv(text, VbStrConv.Narrow);
+            return Strings.StrConv(text, VbStrConv.Narrow, jpCI_.LCID);
         }
     }  // class Amblib
 }  // namespace Ambiesoft
