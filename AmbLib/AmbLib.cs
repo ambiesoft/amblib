@@ -1551,6 +1551,32 @@ namespace Ambiesoft
             return Type.GetType("System.Reflection.ReflectionContext", false) != null;
         }
 
+        // https://stackoverflow.com/a/43495701
+        public static bool IsNet46OrNewer()
+        {
+            // API changes in 4.6: https://github.com/Microsoft/dotnet/blob/master/releases/net46/dotnet46-api-changes.md
+            return Type.GetType("System.AppContext, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", false) != null;
+        }
+
+        public static bool IsNet461OrNewer()
+        {
+            // API changes in 4.6.1: https://github.com/Microsoft/dotnet/blob/master/releases/net461/dotnet461-api-changes.md
+            return Type.GetType("System.Data.SqlClient.SqlColumnEncryptionCngProvider, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", false) != null;
+        }
+
+        public static bool IsNet462OrNewer()
+        {
+            // API changes in 4.6.2: https://github.com/Microsoft/dotnet/blob/master/releases/net462/dotnet462-api-changes.md
+            return Type.GetType("System.Security.Cryptography.AesCng, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", false) != null;
+        }
+
+        public static bool IsNet47OrNewer()
+        {
+            // API changes in 4.7: https://github.com/Microsoft/dotnet/blob/master/releases/net47/dotnet47-api-changes.md
+            return Type.GetType("System.Web.Caching.CacheInsertOptions, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", false) != null;
+        }
+
+
         public static bool IsAlmostSame(double d1, double d2, double diff)
         {
             if (d2 == 0 && d1 == 0)
