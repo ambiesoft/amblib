@@ -81,7 +81,7 @@ namespace AmbLibTest
 
         private void btnOpenAmbiesoft_Click(object sender, EventArgs e)
         {
-            AmbLib.OpenUrlWithBrowser("http://ambiesoft.fam.cx");
+            AmbLib.OpenUrlWithBrowser("http://ambiesoft.mooo.com");
         }
 
         static void verify(bool b)
