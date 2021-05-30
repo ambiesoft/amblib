@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ambiesoft;
+using System.IO;
 
 namespace UnitTestAmbLib
 {
@@ -116,6 +117,36 @@ namespace UnitTestAmbLib
 
             Assert.AreEqual(AmbLib.ToZenkaku("２２２"), "２２２");
             Assert.AreEqual(AmbLib.ToZenkaku("222"), "２２２");
+        }
+
+        [TestMethod]
+        public void TestIsFolderEmpty()
+        {
+            {
+                string dir = Environment.TickCount.ToString();
+                Directory.CreateDirectory(dir);
+                Assert.IsTrue(AmbLib.IsFolderEmpty(dir));
+
+
+                string file = Path.Combine(dir, (Environment.TickCount + 1).ToString());
+                File.WriteAllText(file, "aaa");
+                Assert.IsFalse(AmbLib.IsFolderEmpty(dir));
+                File.Delete(file);
+
+                Directory.Delete(dir);
+            }
+            {
+                string dir = Environment.TickCount.ToString();
+                Directory.CreateDirectory(dir);
+                Assert.IsTrue(AmbLib.IsFolderEmpty(dir));
+
+                string dir2 = Path.Combine(dir, (Environment.TickCount + 1).ToString());
+                Directory.CreateDirectory(dir2);
+                Assert.IsFalse(AmbLib.IsFolderEmpty(dir));
+                Directory.Delete(dir2);
+
+                Directory.Delete(dir);
+            }
         }
     }
 }

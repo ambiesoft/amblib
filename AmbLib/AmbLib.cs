@@ -210,7 +210,7 @@ namespace Ambiesoft
 
             return true;
         }
-        public static bool IsFileNamableSpecial(string fn)
+        private static bool IsFileNamableSpecial(string fn)
         {
             string lfn = fn.ToUpper();
             int lp = lfn.LastIndexOf('.');
@@ -1659,6 +1659,21 @@ namespace Ambiesoft
         public static string ToHankaku(string text)
         {
             return Strings.StrConv(text, VbStrConv.Narrow, jpCI_.LCID);
+        }
+
+        public static bool IsFolderEmpty(string folder)
+        {
+            if (!Directory.Exists(folder))
+                return true;
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(folder);
+                return di.GetFiles("*.*", SearchOption.TopDirectoryOnly).Length == 0 &&
+                    di.GetDirectories().Length == 0;
+            }
+            catch
+            { }
+            return false;
         }
     }  // class Amblib
 }  // namespace Ambiesoft
