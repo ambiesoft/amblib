@@ -1675,5 +1675,12 @@ namespace Ambiesoft
             { }
             return false;
         }
+
+        public static string toWindowsNewLine(string s)
+        {
+            if (s == null)
+                return null;
+            return s.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\r\n");
+        }
     }  // class Amblib
 }  // namespace Ambiesoft

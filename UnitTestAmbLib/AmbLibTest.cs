@@ -148,5 +148,19 @@ namespace UnitTestAmbLib
                 Directory.Delete(dir);
             }
         }
+
+        [TestMethod]
+        public void TestString()
+        {
+            string linux = "aaa\nbbb\nccc";
+            string win = "aaa\r\nbbb\r\nccc";
+            string mac = "aaa\rbbb\rccc";
+            string mixed = "aaa\nbbb\nccc\r\nddd\r\neee\rzzz";
+            string mixedWin = "aaa\r\nbbb\r\nccc\r\nddd\r\neee\r\nzzz";
+            Assert.AreEqual(win, AmbLib.toWindowsNewLine(linux));
+            Assert.AreEqual(win, AmbLib.toWindowsNewLine(mac));
+            Assert.AreEqual(win, AmbLib.toWindowsNewLine(win));
+            Assert.AreEqual(mixedWin, AmbLib.toWindowsNewLine(mixed));
+        }
     }
 }
