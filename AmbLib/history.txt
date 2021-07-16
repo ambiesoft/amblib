@@ -1,3 +1,6 @@
+2021/07/16 ver1.0.26
+Add toWindowsNewLine
+
 2021/05/31 ver1.0.25
 Add IsFolderEmpty
 
