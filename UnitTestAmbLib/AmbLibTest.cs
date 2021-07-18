@@ -162,5 +162,27 @@ namespace UnitTestAmbLib
             Assert.AreEqual(win, AmbLib.toWindowsNewLine(win));
             Assert.AreEqual(mixedWin, AmbLib.toWindowsNewLine(mixed));
         }
+        [TestMethod]
+        public void TestTrancateString()
+        {
+            Assert.AreEqual(null, AmbLib.truncateString(null, 0));
+            Assert.AreEqual(null, AmbLib.truncateString(null, 1));
+            Assert.AreEqual("", AmbLib.truncateString("a", 0));
+            Assert.AreEqual("a", AmbLib.truncateString("a", 1));
+
+            Assert.AreEqual("a", AmbLib.truncateString("a", 1));
+            Assert.AreEqual("a", AmbLib.truncateString("ab", 1));
+            Assert.AreEqual("a", AmbLib.truncateString("abc", 1));
+
+            Assert.AreEqual("ab", AmbLib.truncateString("abc", 2));
+            Assert.AreEqual("abc", AmbLib.truncateString("abc", 3));
+            Assert.AreEqual("abc", AmbLib.truncateString("abcd", 3));
+            Assert.AreEqual("abc", AmbLib.truncateString("abcdefg", 3));
+
+            Assert.AreEqual("a...", AmbLib.truncateString("abcdefg", 4));
+            Assert.AreEqual("ab...", AmbLib.truncateString("abcdefg", 5));
+
+            Assert.AreEqual("aaaaaaa...", AmbLib.truncateString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 10));
+        }
     }
 }

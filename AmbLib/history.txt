@@ -1,3 +1,6 @@
+2021/07/18 ver1.0.27
+truncateString
+
 2021/07/16 ver1.0.26
 Add toWindowsNewLine
 

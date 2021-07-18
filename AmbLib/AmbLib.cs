@@ -1682,5 +1682,25 @@ namespace Ambiesoft
                 return null;
             return s.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\r\n");
         }
+
+        public static string truncateString(string text, int size)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+            if (text.Length <= size)
+                return text;
+
+            string suffix = "...";
+            int truncatedSize = size - suffix.Length;
+            if (truncatedSize <= 0)
+            {
+                suffix = string.Empty;
+                truncatedSize = size;
+            }
+            if (truncatedSize <= 0)
+                return text.Substring(0, size);
+            return text.Substring(0, truncatedSize) + suffix;
+        }
+
     }  // class Amblib
 }  // namespace Ambiesoft
