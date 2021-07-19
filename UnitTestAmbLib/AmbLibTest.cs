@@ -184,5 +184,13 @@ namespace UnitTestAmbLib
 
             Assert.AreEqual("aaaaaaa...", AmbLib.truncateString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 10));
         }
+
+        [TestMethod]
+        public void TestGetNonExistantFile()
+        {
+            string file = AmbLib.GetNonExistantFile(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            Assert.IsNotNull(file);
+            Assert.IsFalse(File.Exists(file));
+        }
     }
 }

@@ -1701,6 +1701,31 @@ namespace Ambiesoft
                 return text.Substring(0, size);
             return text.Substring(0, truncatedSize) + suffix;
         }
+        static string GetNonExistantFile(string folder, int tried)
+        {
+            if (tried >= 100)
+                return null;
+            if (string.IsNullOrEmpty(folder))
+                return null;
+            Directory.CreateDirectory(folder);
+            if (!Directory.Exists(folder))
+                return null;
 
+            string id = Guid.NewGuid().ToString();
+            if ((folder.Length + id.Length) >= 260)
+            {
+                id = Environment.TickCount.ToString();
+                if ((folder.Length + id.Length) >= 260)
+                    return null;
+            }
+            string ret = Path.Combine(folder, id);
+            if (File.Exists(ret))
+                return GetNonExistantFile(folder, ++tried);
+            return ret;
+        }
+        public static string GetNonExistantFile(string folder)
+        {
+            return GetNonExistantFile(folder, 0);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
