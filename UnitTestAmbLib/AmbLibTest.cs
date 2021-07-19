@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ambiesoft;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace UnitTestAmbLib
 {
@@ -191,6 +192,84 @@ namespace UnitTestAmbLib
             string file = AmbLib.GetNonExistantFile(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
             Assert.IsNotNull(file);
             Assert.IsFalse(File.Exists(file));
+        }
+
+        [TestMethod]
+        public void TestGetNumberedFile()
+        {
+            {
+                string file = "MyFile.pdf";
+                Assert.AreEqual("MyFile[1].pdf", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual("MyFile[2].pdf", AmbLib.GetNumberedFile(file, 2));
+            }
+            {
+                string file = @"C:\T\TT TT\My File.txt";
+                Assert.AreEqual(@"C:\T\TT TT\My File[1].txt", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual(@"C:\T\TT TT\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+            {
+                string file = @".\My File.txt";
+                Assert.AreEqual(@".\My File[1].txt", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual(@".\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+            {
+                string file = @"..\..\.\My File.txt";
+                Assert.AreEqual(@"..\..\.\My File[1].txt", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual(@"..\..\.\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+            {
+                string file = @"\\server\aaa\My File.txt";
+                Assert.AreEqual(@"\\server\aaa\My File[1].txt", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual(@"\\server\aaa\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+
+            {
+                string file = "MyFile[10].pdf";
+                Assert.AreEqual("MyFile[11].pdf", AmbLib.GetNumberedFile(file, 11));
+                Assert.AreEqual("MyFile[12].pdf", AmbLib.GetNumberedFile(file, 12));
+            }
+            {
+                string file = @"C:\T\TT TT\My File[123].txt";
+                Assert.AreEqual(@"C:\T\TT TT\My File[1].txt", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual(@"C:\T\TT TT\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+            {
+                string file = @".\My File[5].txt";
+                Assert.AreEqual(@".\My File[551].txt", AmbLib.GetNumberedFile(file, 551));
+                Assert.AreEqual(@".\My File[211].txt", AmbLib.GetNumberedFile(file, 211));
+            }
+            {
+                string file = @"..\..\.\My File[11111].txt";
+                Assert.AreEqual(@"..\..\.\My File[133].txt", AmbLib.GetNumberedFile(file, 133));
+                Assert.AreEqual(@"..\..\.\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+            {
+                string file = @"\\server\aaa\My File.txt";
+                Assert.AreEqual(@"\\server\aaa\My File[1].txt", AmbLib.GetNumberedFile(file, 1));
+                Assert.AreEqual(@"\\server\aaa\My File[2].txt", AmbLib.GetNumberedFile(file, 2));
+            }
+        }
+
+        [TestMethod]
+        public void TestMoveFileAsNew()
+        {
+            {
+                File.WriteAllText("aaa.txt", "aaa");
+                File.WriteAllText("bbb.txt", "bbb");
+
+                string newfile = AmbLib.MoveFileAsNew("aaa.txt", "bbb.txt");
+                Assert.IsTrue(Regex.Match(Path.GetFileNameWithoutExtension(newfile), @"\[\d+\]$").Success);
+            }
+
+            {
+                File.WriteAllText("aaa.txt", "aaa");
+                File.WriteAllText("bbb.txt", "bbb");
+
+                string fulla = Path.GetFullPath("aaa.txt");
+                string fullb = Path.GetFullPath("bbb.txt");
+                string newfile = AmbLib.MoveFileAsNew(fulla, fullb);
+                Assert.IsTrue(Regex.Match(Path.GetFileNameWithoutExtension(newfile), @"\[\d+\]$").Success);
+            }
         }
     }
 }

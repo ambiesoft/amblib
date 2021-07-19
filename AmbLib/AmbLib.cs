@@ -17,6 +17,7 @@ using System.Resources;
 using System.Linq;
 
 using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace Ambiesoft
 {
@@ -1726,6 +1727,65 @@ namespace Ambiesoft
         public static string GetNonExistantFile(string folder)
         {
             return GetNonExistantFile(folder, 0);
+        }
+
+        public static string GetNumberedFile(string file, int number)
+        {
+            if (string.IsNullOrEmpty(file))
+                return file;
+
+            string filenamenoext = Path.GetFileNameWithoutExtension(file);
+            string ext = Path.GetExtension(file);
+
+            Regex reg = new Regex(@"\[\d+\]$");
+            if(reg.Match(filenamenoext).Success)
+            {
+                filenamenoext = reg.Replace(filenamenoext, "") + "[" + number.ToString() + "]";
+            }
+            else
+            {
+                filenamenoext += "[" + number.ToString() + "]";
+            }
+            return Path.Combine(Path.GetDirectoryName(file),
+                filenamenoext + ext);
+        }
+        public static string MoveFileAsNew(string sourcefile, string destFolderOrFile)
+        {
+            if (!File.Exists(sourcefile))
+                return null;
+            string sourceFileName = Path.GetFileName(sourcefile);
+            string destFile;
+            if(Directory.Exists(destFolderOrFile))
+            {
+                destFile = Path.Combine(destFolderOrFile, sourceFileName);
+            }
+            else
+            {
+                destFile = destFolderOrFile;
+            }
+
+            int number = 1;
+            do
+            {
+                try
+                {
+                    File.Move(sourcefile, destFile);
+                    return destFile;
+                }
+                catch (IOException)
+                {
+                    // destFile already exists
+                    destFile = GetNumberedFile(destFile, number++);
+                    if (string.IsNullOrEmpty(destFile))
+                        return null;
+                }
+                catch(Exception)
+                {
+                    return null;
+                }
+            } while (number < 100);
+
+            return null;
         }
     }  // class Amblib
 }  // namespace Ambiesoft
