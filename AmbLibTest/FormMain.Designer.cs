@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "AAAAAAAAAAAAAAAA",
+            "BBBBBBBBBBB"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "xxxxxxxxxxxxxxx",
+            "zzzzzzzzzzzzzz"}, -1);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -50,6 +56,7 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
+            this.btnSelectApp = new System.Windows.Forms.Button();
             this.btnFormatSizeTest = new System.Windows.Forms.Button();
             this.cmbTripleClick = new System.Windows.Forms.ComboBox();
             this.btnI18NTest = new System.Windows.Forms.Button();
@@ -58,11 +65,15 @@
             this.btnSimpleTest = new System.Windows.Forms.Button();
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
-            this.btnSelectApp = new System.Windows.Forms.Button();
+            this.tpListView = new System.Windows.Forms.TabPage();
+            this.lvForFontSize = new TestListView();
+            this.ch1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
             this.tbMisc.SuspendLayout();
+            this.tpListView.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -201,6 +212,7 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1aaaaaaa,
             this.columnHeader1});
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(9, 86);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(471, 129);
@@ -222,6 +234,7 @@
             // 
             this.tabMain.Controls.Add(this.tpSimple);
             this.tabMain.Controls.Add(this.tbMisc);
+            this.tabMain.Controls.Add(this.tpListView);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(0, 25);
             this.tabMain.Name = "tabMain";
@@ -246,6 +259,16 @@
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // btnSelectApp
+            // 
+            this.btnSelectApp.Location = new System.Drawing.Point(203, 198);
+            this.btnSelectApp.Name = "btnSelectApp";
+            this.btnSelectApp.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectApp.TabIndex = 9;
+            this.btnSelectApp.Text = "Select App";
+            this.btnSelectApp.UseVisualStyleBackColor = true;
+            this.btnSelectApp.Click += new System.EventHandler(this.btnSelectApp_Click);
             // 
             // btnFormatSizeTest
             // 
@@ -334,15 +357,41 @@
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
             // 
-            // btnSelectApp
+            // tpListView
             // 
-            this.btnSelectApp.Location = new System.Drawing.Point(203, 198);
-            this.btnSelectApp.Name = "btnSelectApp";
-            this.btnSelectApp.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectApp.TabIndex = 9;
-            this.btnSelectApp.Text = "Select App";
-            this.btnSelectApp.UseVisualStyleBackColor = true;
-            this.btnSelectApp.Click += new System.EventHandler(this.btnSelectApp_Click);
+            this.tpListView.Controls.Add(this.lvForFontSize);
+            this.tpListView.Location = new System.Drawing.Point(4, 22);
+            this.tpListView.Name = "tpListView";
+            this.tpListView.Padding = new System.Windows.Forms.Padding(3);
+            this.tpListView.Size = new System.Drawing.Size(486, 252);
+            this.tpListView.TabIndex = 2;
+            this.tpListView.Text = "ListView";
+            this.tpListView.UseVisualStyleBackColor = true;
+            // 
+            // lvForFontSize
+            // 
+            this.lvForFontSize.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ch1,
+            this.ch2});
+            this.lvForFontSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvForFontSize.HideSelection = false;
+            this.lvForFontSize.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.lvForFontSize.Location = new System.Drawing.Point(3, 3);
+            this.lvForFontSize.Name = "lvForFontSize";
+            this.lvForFontSize.Size = new System.Drawing.Size(480, 246);
+            this.lvForFontSize.TabIndex = 11;
+            this.lvForFontSize.UseCompatibleStateImageBehavior = false;
+            this.lvForFontSize.View = System.Windows.Forms.View.Details;
+            // 
+            // ch1
+            // 
+            this.ch1.Width = 200;
+            // 
+            // ch2
+            // 
+            this.ch2.Width = 170;
             // 
             // FormMain
             // 
@@ -363,6 +412,7 @@
             this.tpSimple.PerformLayout();
             this.tbMisc.ResumeLayout(false);
             this.tbMisc.PerformLayout();
+            this.tpListView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +450,9 @@
         private System.Windows.Forms.ComboBox cmbTripleClick;
         private System.Windows.Forms.Button btnFormatSizeTest;
         private System.Windows.Forms.Button btnSelectApp;
+        private System.Windows.Forms.TabPage tpListView;
+        private TestListView lvForFontSize;
+        private System.Windows.Forms.ColumnHeader ch1;
+        private System.Windows.Forms.ColumnHeader ch2;
     }
 }

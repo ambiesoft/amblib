@@ -1787,5 +1787,36 @@ namespace Ambiesoft
 
             return null;
         }
+
+        public static bool ChangeFontSize(Control cont, bool bLarger)
+        {
+            try
+            {
+                float newsize = cont.Font.Size + (bLarger ? 1 : -1);
+                if (newsize <= 1.0)
+                    return false;
+                Font font = new Font(cont.Font.FontFamily, newsize);
+                cont.Font = font;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+        public static bool ChangeFontSize(Control cont, Message m)
+        {
+            // WM_MOUSEWHEEL
+            if (m.Msg != 0x020A)
+                return false;
+
+            long w = m.WParam.ToInt64();
+            ushort vk = (ushort)(w & 0xffff);
+            if ((vk & 0x0008) == 0)  // MK_CONTROL
+                return false;
+
+            short distance = (short)((w >> 16) & 0xffff);
+            return ChangeFontSize(cont, distance > 0);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
