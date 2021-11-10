@@ -18,6 +18,8 @@ using System.Linq;
 
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
+using System.Management;
+using System.Collections.Specialized;
 
 namespace Ambiesoft
 {
@@ -1817,6 +1819,61 @@ namespace Ambiesoft
 
             short distance = (short)((w >> 16) & 0xffff);
             return ChangeFontSize(cont, distance > 0);
+        }
+
+        // https://stackoverflow.com/a/29668285
+        public static string GetGpuInfos()
+        {
+            StringBuilder sb = new StringBuilder();
+            using (var searcher = new ManagementObjectSearcher("select * from Win32_VideoController"))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    sb.AppendLine("Name  -  " + obj["Name"]);
+                    sb.AppendLine("DeviceID  -  " + obj["DeviceID"]);
+                    sb.AppendLine("AdapterRAM  -  " + obj["AdapterRAM"]);
+                    sb.AppendLine("AdapterDACType  -  " + obj["AdapterDACType"]);
+                    sb.AppendLine("Monochrome  -  " + obj["Monochrome"]);
+                    sb.AppendLine("InstalledDisplayDrivers  -  " + obj["InstalledDisplayDrivers"]);
+                    sb.AppendLine("DriverVersion  -  " + obj["DriverVersion"]);
+                    sb.AppendLine("VideoProcessor  -  " + obj["VideoProcessor"]);
+                    sb.AppendLine("VideoArchitecture  -  " + obj["VideoArchitecture"]);
+                    sb.AppendLine("VideoMemoryType  -  " + obj["VideoMemoryType"]);
+                    sb.AppendLine();
+                }
+            }
+            return sb.ToString();
+        }
+        public static string[] GetGpuNames()
+        {
+            List<string> ret = new List<string>();
+            using (var searcher = new ManagementObjectSearcher("select * from Win32_VideoController"))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    ret.Add(obj["Name"].ToString());
+                }
+            }
+            return ret.ToArray();
+        }
+        public static bool IsGpuIntelUHD
+        {
+            get
+            {
+                using (var searcher = new ManagementObjectSearcher("select * from Win32_VideoController"))
+                {
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        string name = obj["Name"].ToString().ToLower();
+                        int i1 = name.IndexOf("intel");
+                        int i2 = name.IndexOf("uhd");
+                        if (i1 < 0 || i2 < 0)
+                            return false;
+                        return i1 < i2;
+                    }
+                }
+                return false;
+            }
         }
     }  // class Amblib
 }  // namespace Ambiesoft

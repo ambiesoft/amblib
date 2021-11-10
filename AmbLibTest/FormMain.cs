@@ -23,6 +23,18 @@ namespace AmbLibTest
             HashIni ini = Profile.ReadAll(AmbLib.GetIniPath());
             AmbLib.LoadListViewColumnWidth(listView1, "List", "Main", ini);
             AmbLib.LoadFormXYWH(this, "POSITION", ini);
+
+            string allGpu = string.Join("\r\n", AmbLib.GetGpuNames());
+            allGpu += Environment.NewLine;
+            allGpu += Environment.NewLine;
+
+
+            allGpu += AmbLib.GetGpuInfos();
+            allGpu += Environment.NewLine;
+            allGpu += Environment.NewLine;
+            allGpu += "IsIntelUHD=" + AmbLib.IsGpuIntelUHD;
+
+            txtGpuInfo.Text += allGpu;
         }
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {

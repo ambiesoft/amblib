@@ -66,7 +66,9 @@
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
             this.tpListView = new System.Windows.Forms.TabPage();
-            this.lvForFontSize = new TestListView();
+            this.tpGpuInfo = new System.Windows.Forms.TabPage();
+            this.txtGpuInfo = new System.Windows.Forms.TextBox();
+            this.lvForFontSize = new AmbLibTest.TestListView();
             this.ch1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
@@ -74,6 +76,7 @@
             this.tpSimple.SuspendLayout();
             this.tbMisc.SuspendLayout();
             this.tpListView.SuspendLayout();
+            this.tpGpuInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -235,6 +238,7 @@
             this.tabMain.Controls.Add(this.tpSimple);
             this.tabMain.Controls.Add(this.tbMisc);
             this.tabMain.Controls.Add(this.tpListView);
+            this.tabMain.Controls.Add(this.tpGpuInfo);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(0, 25);
             this.tabMain.Name = "tabMain";
@@ -368,6 +372,27 @@
             this.tpListView.Text = "ListView";
             this.tpListView.UseVisualStyleBackColor = true;
             // 
+            // tpGpuInfo
+            // 
+            this.tpGpuInfo.Controls.Add(this.txtGpuInfo);
+            this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
+            this.tpGpuInfo.Name = "tpGpuInfo";
+            this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGpuInfo.Size = new System.Drawing.Size(486, 252);
+            this.tpGpuInfo.TabIndex = 3;
+            this.tpGpuInfo.Text = "GPU info";
+            this.tpGpuInfo.UseVisualStyleBackColor = true;
+            // 
+            // txtGpuInfo
+            // 
+            this.txtGpuInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGpuInfo.Location = new System.Drawing.Point(3, 3);
+            this.txtGpuInfo.Multiline = true;
+            this.txtGpuInfo.Name = "txtGpuInfo";
+            this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtGpuInfo.Size = new System.Drawing.Size(480, 246);
+            this.txtGpuInfo.TabIndex = 0;
+            // 
             // lvForFontSize
             // 
             this.lvForFontSize.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -413,6 +438,8 @@
             this.tbMisc.ResumeLayout(false);
             this.tbMisc.PerformLayout();
             this.tpListView.ResumeLayout(false);
+            this.tpGpuInfo.ResumeLayout(false);
+            this.tpGpuInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,5 +481,7 @@
         private TestListView lvForFontSize;
         private System.Windows.Forms.ColumnHeader ch1;
         private System.Windows.Forms.ColumnHeader ch2;
+        private System.Windows.Forms.TabPage tpGpuInfo;
+        private System.Windows.Forms.TextBox txtGpuInfo;
     }
 }
