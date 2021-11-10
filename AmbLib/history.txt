@@ -1,3 +1,6 @@
+2021/11/11 ver1.0.31
+Intel UHD
+
 2021/07/27 ver1.0.30
 ChangeFontSize
 
