@@ -35,7 +35,7 @@
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "xxxxxxxxxxxxxxx",
             "zzzzzzzzzzzzzz"}, -1);
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip1 = new Ambiesoft.ClickThroughToolStrip();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -66,11 +66,11 @@
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
             this.tpListView = new System.Windows.Forms.TabPage();
-            this.tpGpuInfo = new System.Windows.Forms.TabPage();
-            this.txtGpuInfo = new System.Windows.Forms.TextBox();
             this.lvForFontSize = new AmbLibTest.TestListView();
             this.ch1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tpGpuInfo = new System.Windows.Forms.TabPage();
+            this.txtGpuInfo = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -97,7 +97,7 @@
             this.toolStrip1.Size = new System.Drawing.Size(494, 25);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Text = "tsMain";
             // 
             // tsbNew
             // 
@@ -116,6 +116,7 @@
             this.tsbOpen.Name = "tsbOpen";
             this.tsbOpen.Size = new System.Drawing.Size(23, 22);
             this.tsbOpen.Text = "&Open";
+            this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
             // tsbSave
             // 
@@ -372,27 +373,6 @@
             this.tpListView.Text = "ListView";
             this.tpListView.UseVisualStyleBackColor = true;
             // 
-            // tpGpuInfo
-            // 
-            this.tpGpuInfo.Controls.Add(this.txtGpuInfo);
-            this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
-            this.tpGpuInfo.Name = "tpGpuInfo";
-            this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGpuInfo.Size = new System.Drawing.Size(486, 252);
-            this.tpGpuInfo.TabIndex = 3;
-            this.tpGpuInfo.Text = "GPU info";
-            this.tpGpuInfo.UseVisualStyleBackColor = true;
-            // 
-            // txtGpuInfo
-            // 
-            this.txtGpuInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGpuInfo.Location = new System.Drawing.Point(3, 3);
-            this.txtGpuInfo.Multiline = true;
-            this.txtGpuInfo.Name = "txtGpuInfo";
-            this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtGpuInfo.Size = new System.Drawing.Size(480, 246);
-            this.txtGpuInfo.TabIndex = 0;
-            // 
             // lvForFontSize
             // 
             this.lvForFontSize.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -417,6 +397,27 @@
             // ch2
             // 
             this.ch2.Width = 170;
+            // 
+            // tpGpuInfo
+            // 
+            this.tpGpuInfo.Controls.Add(this.txtGpuInfo);
+            this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
+            this.tpGpuInfo.Name = "tpGpuInfo";
+            this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGpuInfo.Size = new System.Drawing.Size(486, 252);
+            this.tpGpuInfo.TabIndex = 3;
+            this.tpGpuInfo.Text = "GPU info";
+            this.tpGpuInfo.UseVisualStyleBackColor = true;
+            // 
+            // txtGpuInfo
+            // 
+            this.txtGpuInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGpuInfo.Location = new System.Drawing.Point(3, 3);
+            this.txtGpuInfo.Multiline = true;
+            this.txtGpuInfo.Name = "txtGpuInfo";
+            this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtGpuInfo.Size = new System.Drawing.Size(480, 246);
+            this.txtGpuInfo.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -447,7 +448,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private Ambiesoft.ClickThroughToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.ToolStripButton tsbOpen;
         private System.Windows.Forms.ToolStripButton tsbSave;

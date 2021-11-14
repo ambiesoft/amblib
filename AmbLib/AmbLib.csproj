@@ -65,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmbLib.cs" />
+    <Compile Include="ClickThroughToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DA.cs" />
     <Compile Include="FixSizedQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

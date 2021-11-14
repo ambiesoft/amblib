@@ -28,13 +28,13 @@ namespace AmbLibTest
             allGpu += Environment.NewLine;
             allGpu += Environment.NewLine;
 
-
             allGpu += AmbLib.GetGpuInfos();
             allGpu += Environment.NewLine;
             allGpu += Environment.NewLine;
             allGpu += "IsIntelUHD=" + AmbLib.IsGpuIntelUHD;
 
             txtGpuInfo.Text += allGpu;
+
         }
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -367,6 +367,9 @@ LIE"));
             MessageBox.Show(result.ToString());
         }
 
-        
+        private void tsbOpen_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("m");
+        }
     }
 }
