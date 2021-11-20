@@ -1480,6 +1480,44 @@ namespace Ambiesoft
                 return ofd.FileName;
             }
         }
+        public static string GetSaveFileDialog(string title, Dictionary<string, string[]> extensions)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                // ofd.FileName = "default.html";
+                //ofd.InitialDirectory = @"C:\";
+                StringBuilder sbFilter = new StringBuilder();
+                if (extensions != null)
+                {
+                    foreach (KeyValuePair<string, string[]> entry in extensions)
+                    {
+                        StringBuilder sbExts = new StringBuilder();
+                        foreach (string t in entry.Value)
+                        {
+                            // *.exe,*.com
+                            sbExts.Append(";*." + t.TrimStart('*').TrimStart('.'));
+                        }
+                        sbFilter.AppendFormat("|{0} ({1})|{1}",
+                            entry.Key,
+                            sbExts.ToString().TrimStart(';'));
+                    }
+                }
+                sbFilter.Append("|All Files(*.*)|*.*");
+                sfd.Filter = sbFilter.ToString().TrimStart('|');
+                //ofd.Filter = "Application(*.exe;*.com)|*.exe;*.com|All Files(*.*)|*.*";
+                //ofd.FilterIndex = 2;
+                sfd.Title = title;
+                //ofd.RestoreDirectory = true;
+                //ofd.CheckFileExists = true;
+                //ofd.CheckPathExists = true;
+
+                if (sfd.ShowDialog() != DialogResult.OK)
+                    return null;
+
+                return sfd.FileName;
+            }
+        }
+
         [Flags]
         public enum GETOPENFILEDIALOGTYPE
         {
@@ -1497,12 +1535,28 @@ namespace Ambiesoft
                 extentions["Image"] = new string[] { "bmp", "jpg", "jpeg", "gif", "png" };
             if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.HTML))
                 extentions["html"] = new string[] { "html", "htm" };
-            
+
             return GetOpenFileDialog(title, extentions);
+        }
+        public static string GetSaveFileDialog(string title, GETOPENFILEDIALOGTYPE gofdt)
+        {
+            var extentions = new Dictionary<string, string[]>();
+            if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.APP))
+                extentions["Application"] = new string[] { "exe", "com" };
+            if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.IMAGE))
+                extentions["Image"] = new string[] { "bmp", "jpg", "jpeg", "gif", "png" };
+            if (gofdt.HasFlag(GETOPENFILEDIALOGTYPE.HTML))
+                extentions["html"] = new string[] { "html", "htm" };
+
+            return GetSaveFileDialog(title, extentions);
         }
         public static string GetOpenFileDialog(string title)
         {
             return GetOpenFileDialog(title, null);
+        }
+        public static string GetSaveFileDialog(string title)
+        {
+            return GetSaveFileDialog(title, null);
         }
 
         [Flags]

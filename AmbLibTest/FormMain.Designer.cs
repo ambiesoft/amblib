@@ -71,6 +71,7 @@
             this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpGpuInfo = new System.Windows.Forms.TabPage();
             this.txtGpuInfo = new System.Windows.Forms.TextBox();
+            this.btnGetSaveFile = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ClickThrough = true;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNew,
@@ -249,6 +251,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnGetSaveFile);
             this.tpSimple.Controls.Add(this.btnSelectApp);
             this.tpSimple.Controls.Add(this.btnFormatSizeTest);
             this.tpSimple.Controls.Add(this.cmbTripleClick);
@@ -419,6 +422,16 @@
             this.txtGpuInfo.Size = new System.Drawing.Size(480, 246);
             this.txtGpuInfo.TabIndex = 0;
             // 
+            // btnGetSaveFile
+            // 
+            this.btnGetSaveFile.Location = new System.Drawing.Point(284, 198);
+            this.btnGetSaveFile.Name = "btnGetSaveFile";
+            this.btnGetSaveFile.Size = new System.Drawing.Size(75, 23);
+            this.btnGetSaveFile.TabIndex = 9;
+            this.btnGetSaveFile.Text = "GetSaveFile";
+            this.btnGetSaveFile.UseVisualStyleBackColor = true;
+            this.btnGetSaveFile.Click += new System.EventHandler(this.btnGetSaveFile_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,5 +497,6 @@
         private System.Windows.Forms.ColumnHeader ch2;
         private System.Windows.Forms.TabPage tpGpuInfo;
         private System.Windows.Forms.TextBox txtGpuInfo;
+        private System.Windows.Forms.Button btnGetSaveFile;
     }
 }

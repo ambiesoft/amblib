@@ -371,5 +371,11 @@ LIE"));
         {
             MessageBox.Show("m");
         }
+
+        private void btnGetSaveFile_Click(object sender, EventArgs e)
+        {
+            string file = AmbLib.GetSaveFileDialog("savefile");
+            MessageBox.Show(file);
+        }
     }
 }
