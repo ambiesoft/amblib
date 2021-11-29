@@ -1,3 +1,6 @@
+2021/11/29 ver1.0.34
+Change GetSourceAndDestFiles
+
 2021/11/29 ver1.0.33
 Add Functions
 GetSourceAndDestFiles

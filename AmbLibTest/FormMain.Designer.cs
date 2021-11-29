@@ -67,19 +67,21 @@
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
             this.tpListView = new System.Windows.Forms.TabPage();
+            this.lvForFontSize = new AmbLibTest.TestListView();
+            this.ch1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpGpuInfo = new System.Windows.Forms.TabPage();
             this.txtGpuInfo = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnFileToDir = new System.Windows.Forms.Button();
+            this.btnCreateDir = new System.Windows.Forms.Button();
+            this.btnSrcDstRelative = new System.Windows.Forms.Button();
+            this.btnFileToFile = new System.Windows.Forms.Button();
+            this.btnSrcDstFull = new System.Windows.Forms.Button();
             this.btnSrcDst = new System.Windows.Forms.Button();
             this.txtSrcDstResult = new System.Windows.Forms.TextBox();
             this.txtDst = new System.Windows.Forms.TextBox();
             this.txtSrc = new System.Windows.Forms.TextBox();
-            this.btnSrcDstFull = new System.Windows.Forms.Button();
-            this.btnSrcDstRelative = new System.Windows.Forms.Button();
-            this.lvForFontSize = new AmbLibTest.TestListView();
-            this.ch1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnCreateDir = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -396,6 +398,31 @@
             this.tpListView.Text = "ListView";
             this.tpListView.UseVisualStyleBackColor = true;
             // 
+            // lvForFontSize
+            // 
+            this.lvForFontSize.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ch1,
+            this.ch2});
+            this.lvForFontSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvForFontSize.HideSelection = false;
+            this.lvForFontSize.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.lvForFontSize.Location = new System.Drawing.Point(3, 3);
+            this.lvForFontSize.Name = "lvForFontSize";
+            this.lvForFontSize.Size = new System.Drawing.Size(534, 288);
+            this.lvForFontSize.TabIndex = 11;
+            this.lvForFontSize.UseCompatibleStateImageBehavior = false;
+            this.lvForFontSize.View = System.Windows.Forms.View.Details;
+            // 
+            // ch1
+            // 
+            this.ch1.Width = 200;
+            // 
+            // ch2
+            // 
+            this.ch2.Width = 170;
+            // 
             // tpGpuInfo
             // 
             this.tpGpuInfo.Controls.Add(this.txtGpuInfo);
@@ -419,8 +446,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnFileToDir);
             this.tabPage1.Controls.Add(this.btnCreateDir);
             this.tabPage1.Controls.Add(this.btnSrcDstRelative);
+            this.tabPage1.Controls.Add(this.btnFileToFile);
             this.tabPage1.Controls.Add(this.btnSrcDstFull);
             this.tabPage1.Controls.Add(this.btnSrcDst);
             this.tabPage1.Controls.Add(this.txtSrcDstResult);
@@ -433,6 +462,60 @@
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Get Src and Dst";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnFileToDir
+            // 
+            this.btnFileToDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFileToDir.Location = new System.Drawing.Point(206, 268);
+            this.btnFileToDir.Name = "btnFileToDir";
+            this.btnFileToDir.Size = new System.Drawing.Size(75, 23);
+            this.btnFileToDir.TabIndex = 3;
+            this.btnFileToDir.Text = "File2Dir";
+            this.btnFileToDir.UseVisualStyleBackColor = true;
+            this.btnFileToDir.Click += new System.EventHandler(this.btnFileToDir_Click);
+            // 
+            // btnCreateDir
+            // 
+            this.btnCreateDir.Location = new System.Drawing.Point(462, 52);
+            this.btnCreateDir.Name = "btnCreateDir";
+            this.btnCreateDir.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateDir.TabIndex = 2;
+            this.btnCreateDir.Text = "mkdir";
+            this.btnCreateDir.UseVisualStyleBackColor = true;
+            this.btnCreateDir.Click += new System.EventHandler(this.btnCreateDir_Click);
+            // 
+            // btnSrcDstRelative
+            // 
+            this.btnSrcDstRelative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSrcDstRelative.Location = new System.Drawing.Point(411, 265);
+            this.btnSrcDstRelative.Name = "btnSrcDstRelative";
+            this.btnSrcDstRelative.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDstRelative.TabIndex = 1;
+            this.btnSrcDstRelative.Text = "Relative";
+            this.btnSrcDstRelative.UseVisualStyleBackColor = true;
+            this.btnSrcDstRelative.Click += new System.EventHandler(this.btnSrcDstRelative_Click);
+            // 
+            // btnFileToFile
+            // 
+            this.btnFileToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFileToFile.Location = new System.Drawing.Point(125, 268);
+            this.btnFileToFile.Name = "btnFileToFile";
+            this.btnFileToFile.Size = new System.Drawing.Size(75, 23);
+            this.btnFileToFile.TabIndex = 1;
+            this.btnFileToFile.Text = "File2File";
+            this.btnFileToFile.UseVisualStyleBackColor = true;
+            this.btnFileToFile.Click += new System.EventHandler(this.btnFileToFile_Click);
+            // 
+            // btnSrcDstFull
+            // 
+            this.btnSrcDstFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSrcDstFull.Location = new System.Drawing.Point(289, 265);
+            this.btnSrcDstFull.Name = "btnSrcDstFull";
+            this.btnSrcDstFull.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDstFull.TabIndex = 1;
+            this.btnSrcDstFull.Text = "Full";
+            this.btnSrcDstFull.UseVisualStyleBackColor = true;
+            this.btnSrcDstFull.Click += new System.EventHandler(this.btnSrcDstFull_Click);
             // 
             // btnSrcDst
             // 
@@ -471,63 +554,6 @@
             this.txtSrc.Name = "txtSrc";
             this.txtSrc.Size = new System.Drawing.Size(470, 20);
             this.txtSrc.TabIndex = 0;
-            // 
-            // btnSrcDstFull
-            // 
-            this.btnSrcDstFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSrcDstFull.Location = new System.Drawing.Point(125, 268);
-            this.btnSrcDstFull.Name = "btnSrcDstFull";
-            this.btnSrcDstFull.Size = new System.Drawing.Size(116, 23);
-            this.btnSrcDstFull.TabIndex = 1;
-            this.btnSrcDstFull.Text = "Full";
-            this.btnSrcDstFull.UseVisualStyleBackColor = true;
-            this.btnSrcDstFull.Click += new System.EventHandler(this.btnSrcDstFull_Click);
-            // 
-            // btnSrcDstRelative
-            // 
-            this.btnSrcDstRelative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSrcDstRelative.Location = new System.Drawing.Point(247, 269);
-            this.btnSrcDstRelative.Name = "btnSrcDstRelative";
-            this.btnSrcDstRelative.Size = new System.Drawing.Size(116, 23);
-            this.btnSrcDstRelative.TabIndex = 1;
-            this.btnSrcDstRelative.Text = "Relative";
-            this.btnSrcDstRelative.UseVisualStyleBackColor = true;
-            this.btnSrcDstRelative.Click += new System.EventHandler(this.btnSrcDstRelative_Click);
-            // 
-            // lvForFontSize
-            // 
-            this.lvForFontSize.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ch1,
-            this.ch2});
-            this.lvForFontSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvForFontSize.HideSelection = false;
-            this.lvForFontSize.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.lvForFontSize.Location = new System.Drawing.Point(3, 3);
-            this.lvForFontSize.Name = "lvForFontSize";
-            this.lvForFontSize.Size = new System.Drawing.Size(534, 288);
-            this.lvForFontSize.TabIndex = 11;
-            this.lvForFontSize.UseCompatibleStateImageBehavior = false;
-            this.lvForFontSize.View = System.Windows.Forms.View.Details;
-            // 
-            // ch1
-            // 
-            this.ch1.Width = 200;
-            // 
-            // ch2
-            // 
-            this.ch2.Width = 170;
-            // 
-            // btnCreateDir
-            // 
-            this.btnCreateDir.Location = new System.Drawing.Point(462, 52);
-            this.btnCreateDir.Name = "btnCreateDir";
-            this.btnCreateDir.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateDir.TabIndex = 2;
-            this.btnCreateDir.Text = "mkdir";
-            this.btnCreateDir.UseVisualStyleBackColor = true;
-            this.btnCreateDir.Click += new System.EventHandler(this.btnCreateDir_Click);
             // 
             // FormMain
             // 
@@ -605,5 +631,7 @@
         private System.Windows.Forms.Button btnSrcDstRelative;
         private System.Windows.Forms.Button btnSrcDstFull;
         private System.Windows.Forms.Button btnCreateDir;
+        private System.Windows.Forms.Button btnFileToFile;
+        private System.Windows.Forms.Button btnFileToDir;
     }
 }

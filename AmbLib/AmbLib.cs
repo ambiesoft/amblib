@@ -1930,21 +1930,36 @@ namespace Ambiesoft
             }
         }
 
-        public static List<KeyValuePair<string,string>> GetSourceAndDestFiles(string src, string dest)
+        public static List<KeyValuePair<string,string>> GetSourceAndDestFiles(
+            string src, 
+            string dest,
+            out List<string> dstDirs)
         {
+            dstDirs = new List<string>();
             var ret = new List<KeyValuePair<string, string>>();
+            if (string.IsNullOrEmpty(src))
+                return ret;
+            if (string.IsNullOrEmpty(dest))
+                return ret;
+            src = Path.GetFullPath(src);
+            dest = Path.GetFullPath(dest);
             if (File.Exists(src))
             {
                 if (Directory.Exists(dest) ||
                     (dest.EndsWith("/") || dest.EndsWith("\\")))
                 {
+                    // File2Dir
                     string newDest = Path.Combine(
                         dest,
                         Path.GetFileName(src));
                     ret.Add(new KeyValuePair<string, string>(src, newDest));
+                    dstDirs.Add(Path.GetDirectoryName(newDest));
                     return ret;
                 }
+
+                // File2File
                 ret.Add(new KeyValuePair<string, string>(src, dest));
+                dstDirs.Add(Path.GetDirectoryName(dest));
                 return ret;
             }
             if(Directory.Exists(src))
@@ -1956,15 +1971,36 @@ namespace Ambiesoft
                 // Dest Dir exists
                 string curDirBack = Environment.CurrentDirectory;
                 Environment.CurrentDirectory = src;
+
+                var dupCheck = new SortedSet<string>();
+                string[] srcdirs = Directory.GetDirectories(".", "*.*", SearchOption.AllDirectories);
+                foreach (string tmp in srcdirs)
+                {
+                    string s = tmp;
+                    if (s.Length > 2 && s[0] == '.' && s[1] == '\\')
+                        s = s.Substring(2);
+                    string newDest = Path.Combine(dest, s);
+                    dupCheck.Add(newDest);
+                    dstDirs.Add(newDest);
+                }
+                  
                 string[] srces = Directory.GetFiles(".", "*.*", SearchOption.AllDirectories);
+
                 foreach(string tmp in srces)
                 {
                     string s = tmp;
                     if (s.Length > 2 && s[0] == '.' && s[1] == '\\')
                         s = s.Substring(2);
+                    string newDest = Path.Combine(dest, s);
                     ret.Add(new KeyValuePair<string, string>(
                         Path.Combine(src, s),
-                        Path.Combine(dest, s)));
+                        newDest));
+                    string newDir = Path.GetDirectoryName(newDest);
+                    if(!dupCheck.Contains(newDir))
+                    {
+                        dupCheck.Add(newDir);
+                        dstDirs.Add(newDir);
+                    }
                 }
                 Environment.CurrentDirectory = curDirBack;
             }
