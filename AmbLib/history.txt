@@ -1,3 +1,8 @@
+2021/11/29 ver1.0.33
+Add Functions
+GetSourceAndDestFiles
+CopyFileTime
+
 2021/11/14 ver1.0.32
 ClickThroughToolStrip
 

@@ -16,14 +16,19 @@ namespace AmbLibTest
 {
     public partial class FormMain : Form
     {
+        readonly static string SECTION_OPTION = "Option";
+        readonly static string KEY_SELECTED_TABINDEX = "SelectedTabIndex";
         public FormMain()
         {
             InitializeComponent();
             
             HashIni ini = Profile.ReadAll(AmbLib.GetIniPath());
+            int ival;
             AmbLib.LoadListViewColumnWidth(listView1, "List", "Main", ini);
             AmbLib.LoadFormXYWH(this, "POSITION", ini);
-
+            Profile.GetInt(SECTION_OPTION, KEY_SELECTED_TABINDEX, 0, out ival, ini);
+            if(0 <= ival && ival < tabMain.TabCount)
+                tabMain.SelectedIndex = ival;
             string allGpu = string.Join("\r\n", AmbLib.GetGpuNames());
             allGpu += Environment.NewLine;
             allGpu += Environment.NewLine;
@@ -42,6 +47,7 @@ namespace AmbLibTest
             HashIni ini = Profile.ReadAll(iniPath);
             AmbLib.SaveListViewColumnWidth(listView1, "List", "Main", ini);
             AmbLib.SaveFormXYWH(this, "POSITION", ini);
+            Profile.WriteInt(SECTION_OPTION, KEY_SELECTED_TABINDEX, tabMain.SelectedIndex, ini);
             if (!Profile.WriteAll(ini,iniPath))
             {
                 MessageBox.Show("ERROR");
@@ -376,6 +382,46 @@ LIE"));
         {
             string file = AmbLib.GetSaveFileDialog("savefile");
             MessageBox.Show(file);
+        }
+
+        void showSrcDstResult(List<KeyValuePair<string,string>> lkv)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var kv in lkv)
+            {
+                sb.AppendLine(string.Format("'{0}' -> '{1}'",
+                    kv.Key, kv.Value));
+            }
+            txtSrcDstResult.Text = sb.ToString();
+        }
+        private void btnSrcDst_Click(object sender, EventArgs e)
+        {
+            var lkv = AmbLib.GetSourceAndDestFiles(txtSrc.Text, txtDst.Text);
+            showSrcDstResult(lkv);
+        }
+
+        private void btnSrcDstFull_Click(object sender, EventArgs e)
+        {
+            string src = Path.GetDirectoryName(Application.ExecutablePath);
+            string dst = Path.Combine(src, "..", "AAA");
+            Directory.CreateDirectory(dst);
+            showSrcDstResult(AmbLib.GetSourceAndDestFiles(src, dst));
+        }
+
+        private void btnSrcDstRelative_Click(object sender, EventArgs e)
+        {
+            string src = "BBB";
+            Directory.CreateDirectory(src);
+            string srcFile = Path.Combine(src, "myfile.txt");
+            File.WriteAllText(srcFile, "AAAAAAAAAAAAAAAAAAAAAAA");
+            string dst = "DDD";
+            Directory.CreateDirectory(dst);
+            showSrcDstResult(AmbLib.GetSourceAndDestFiles(src, dst));
+        }
+
+        private void btnCreateDir_Click(object sender, EventArgs e)
+        {
+            Directory.CreateDirectory(txtDst.Text);
         }
     }
 }

@@ -56,6 +56,7 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
+            this.btnGetSaveFile = new System.Windows.Forms.Button();
             this.btnSelectApp = new System.Windows.Forms.Button();
             this.btnFormatSizeTest = new System.Windows.Forms.Button();
             this.cmbTripleClick = new System.Windows.Forms.ComboBox();
@@ -66,18 +67,26 @@
             this.txtTripleClick = new System.Windows.Forms.TextBox();
             this.tbMisc = new System.Windows.Forms.TabPage();
             this.tpListView = new System.Windows.Forms.TabPage();
+            this.tpGpuInfo = new System.Windows.Forms.TabPage();
+            this.txtGpuInfo = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSrcDst = new System.Windows.Forms.Button();
+            this.txtSrcDstResult = new System.Windows.Forms.TextBox();
+            this.txtDst = new System.Windows.Forms.TextBox();
+            this.txtSrc = new System.Windows.Forms.TextBox();
+            this.btnSrcDstFull = new System.Windows.Forms.Button();
+            this.btnSrcDstRelative = new System.Windows.Forms.Button();
             this.lvForFontSize = new AmbLibTest.TestListView();
             this.ch1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tpGpuInfo = new System.Windows.Forms.TabPage();
-            this.txtGpuInfo = new System.Windows.Forms.TextBox();
-            this.btnGetSaveFile = new System.Windows.Forms.Button();
+            this.btnCreateDir = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
             this.tbMisc.SuspendLayout();
             this.tpListView.SuspendLayout();
             this.tpGpuInfo.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -96,7 +105,7 @@
             this.tsbHelp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(494, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(548, 25);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "tsMain";
@@ -242,11 +251,12 @@
             this.tabMain.Controls.Add(this.tbMisc);
             this.tabMain.Controls.Add(this.tpListView);
             this.tabMain.Controls.Add(this.tpGpuInfo);
+            this.tabMain.Controls.Add(this.tabPage1);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(0, 25);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(494, 278);
+            this.tabMain.Size = new System.Drawing.Size(548, 320);
             this.tabMain.TabIndex = 8;
             // 
             // tpSimple
@@ -263,10 +273,20 @@
             this.tpSimple.Location = new System.Drawing.Point(4, 22);
             this.tpSimple.Name = "tpSimple";
             this.tpSimple.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSimple.Size = new System.Drawing.Size(486, 252);
+            this.tpSimple.Size = new System.Drawing.Size(540, 294);
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // btnGetSaveFile
+            // 
+            this.btnGetSaveFile.Location = new System.Drawing.Point(284, 198);
+            this.btnGetSaveFile.Name = "btnGetSaveFile";
+            this.btnGetSaveFile.Size = new System.Drawing.Size(75, 23);
+            this.btnGetSaveFile.TabIndex = 9;
+            this.btnGetSaveFile.Text = "GetSaveFile";
+            this.btnGetSaveFile.UseVisualStyleBackColor = true;
+            this.btnGetSaveFile.Click += new System.EventHandler(this.btnGetSaveFile_Click);
             // 
             // btnSelectApp
             // 
@@ -360,7 +380,7 @@
             this.tbMisc.Location = new System.Drawing.Point(4, 22);
             this.tbMisc.Name = "tbMisc";
             this.tbMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tbMisc.Size = new System.Drawing.Size(486, 252);
+            this.tbMisc.Size = new System.Drawing.Size(540, 294);
             this.tbMisc.TabIndex = 1;
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
@@ -371,10 +391,108 @@
             this.tpListView.Location = new System.Drawing.Point(4, 22);
             this.tpListView.Name = "tpListView";
             this.tpListView.Padding = new System.Windows.Forms.Padding(3);
-            this.tpListView.Size = new System.Drawing.Size(486, 252);
+            this.tpListView.Size = new System.Drawing.Size(540, 294);
             this.tpListView.TabIndex = 2;
             this.tpListView.Text = "ListView";
             this.tpListView.UseVisualStyleBackColor = true;
+            // 
+            // tpGpuInfo
+            // 
+            this.tpGpuInfo.Controls.Add(this.txtGpuInfo);
+            this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
+            this.tpGpuInfo.Name = "tpGpuInfo";
+            this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGpuInfo.Size = new System.Drawing.Size(540, 294);
+            this.tpGpuInfo.TabIndex = 3;
+            this.tpGpuInfo.Text = "GPU info";
+            this.tpGpuInfo.UseVisualStyleBackColor = true;
+            // 
+            // txtGpuInfo
+            // 
+            this.txtGpuInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGpuInfo.Location = new System.Drawing.Point(3, 3);
+            this.txtGpuInfo.Multiline = true;
+            this.txtGpuInfo.Name = "txtGpuInfo";
+            this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtGpuInfo.Size = new System.Drawing.Size(534, 288);
+            this.txtGpuInfo.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnCreateDir);
+            this.tabPage1.Controls.Add(this.btnSrcDstRelative);
+            this.tabPage1.Controls.Add(this.btnSrcDstFull);
+            this.tabPage1.Controls.Add(this.btnSrcDst);
+            this.tabPage1.Controls.Add(this.txtSrcDstResult);
+            this.tabPage1.Controls.Add(this.txtDst);
+            this.tabPage1.Controls.Add(this.txtSrc);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(540, 294);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Get Src and Dst";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSrcDst
+            // 
+            this.btnSrcDst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSrcDst.Location = new System.Drawing.Point(3, 269);
+            this.btnSrcDst.Name = "btnSrcDst";
+            this.btnSrcDst.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDst.TabIndex = 1;
+            this.btnSrcDst.Text = "Get Src and Dst";
+            this.btnSrcDst.UseVisualStyleBackColor = true;
+            this.btnSrcDst.Click += new System.EventHandler(this.btnSrcDst_Click);
+            // 
+            // txtSrcDstResult
+            // 
+            this.txtSrcDstResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSrcDstResult.Location = new System.Drawing.Point(3, 78);
+            this.txtSrcDstResult.Multiline = true;
+            this.txtSrcDstResult.Name = "txtSrcDstResult";
+            this.txtSrcDstResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtSrcDstResult.Size = new System.Drawing.Size(524, 169);
+            this.txtSrcDstResult.TabIndex = 0;
+            this.txtSrcDstResult.WordWrap = false;
+            // 
+            // txtDst
+            // 
+            this.txtDst.Location = new System.Drawing.Point(6, 52);
+            this.txtDst.Name = "txtDst";
+            this.txtDst.Size = new System.Drawing.Size(451, 20);
+            this.txtDst.TabIndex = 0;
+            // 
+            // txtSrc
+            // 
+            this.txtSrc.Location = new System.Drawing.Point(8, 26);
+            this.txtSrc.Name = "txtSrc";
+            this.txtSrc.Size = new System.Drawing.Size(470, 20);
+            this.txtSrc.TabIndex = 0;
+            // 
+            // btnSrcDstFull
+            // 
+            this.btnSrcDstFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSrcDstFull.Location = new System.Drawing.Point(125, 268);
+            this.btnSrcDstFull.Name = "btnSrcDstFull";
+            this.btnSrcDstFull.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDstFull.TabIndex = 1;
+            this.btnSrcDstFull.Text = "Full";
+            this.btnSrcDstFull.UseVisualStyleBackColor = true;
+            this.btnSrcDstFull.Click += new System.EventHandler(this.btnSrcDstFull_Click);
+            // 
+            // btnSrcDstRelative
+            // 
+            this.btnSrcDstRelative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSrcDstRelative.Location = new System.Drawing.Point(247, 269);
+            this.btnSrcDstRelative.Name = "btnSrcDstRelative";
+            this.btnSrcDstRelative.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDstRelative.TabIndex = 1;
+            this.btnSrcDstRelative.Text = "Relative";
+            this.btnSrcDstRelative.UseVisualStyleBackColor = true;
+            this.btnSrcDstRelative.Click += new System.EventHandler(this.btnSrcDstRelative_Click);
             // 
             // lvForFontSize
             // 
@@ -388,7 +506,7 @@
             listViewItem2});
             this.lvForFontSize.Location = new System.Drawing.Point(3, 3);
             this.lvForFontSize.Name = "lvForFontSize";
-            this.lvForFontSize.Size = new System.Drawing.Size(480, 246);
+            this.lvForFontSize.Size = new System.Drawing.Size(534, 288);
             this.lvForFontSize.TabIndex = 11;
             this.lvForFontSize.UseCompatibleStateImageBehavior = false;
             this.lvForFontSize.View = System.Windows.Forms.View.Details;
@@ -401,42 +519,21 @@
             // 
             this.ch2.Width = 170;
             // 
-            // tpGpuInfo
+            // btnCreateDir
             // 
-            this.tpGpuInfo.Controls.Add(this.txtGpuInfo);
-            this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
-            this.tpGpuInfo.Name = "tpGpuInfo";
-            this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGpuInfo.Size = new System.Drawing.Size(486, 252);
-            this.tpGpuInfo.TabIndex = 3;
-            this.tpGpuInfo.Text = "GPU info";
-            this.tpGpuInfo.UseVisualStyleBackColor = true;
-            // 
-            // txtGpuInfo
-            // 
-            this.txtGpuInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGpuInfo.Location = new System.Drawing.Point(3, 3);
-            this.txtGpuInfo.Multiline = true;
-            this.txtGpuInfo.Name = "txtGpuInfo";
-            this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtGpuInfo.Size = new System.Drawing.Size(480, 246);
-            this.txtGpuInfo.TabIndex = 0;
-            // 
-            // btnGetSaveFile
-            // 
-            this.btnGetSaveFile.Location = new System.Drawing.Point(284, 198);
-            this.btnGetSaveFile.Name = "btnGetSaveFile";
-            this.btnGetSaveFile.Size = new System.Drawing.Size(75, 23);
-            this.btnGetSaveFile.TabIndex = 9;
-            this.btnGetSaveFile.Text = "GetSaveFile";
-            this.btnGetSaveFile.UseVisualStyleBackColor = true;
-            this.btnGetSaveFile.Click += new System.EventHandler(this.btnGetSaveFile_Click);
+            this.btnCreateDir.Location = new System.Drawing.Point(462, 52);
+            this.btnCreateDir.Name = "btnCreateDir";
+            this.btnCreateDir.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateDir.TabIndex = 2;
+            this.btnCreateDir.Text = "mkdir";
+            this.btnCreateDir.UseVisualStyleBackColor = true;
+            this.btnCreateDir.Click += new System.EventHandler(this.btnCreateDir_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 303);
+            this.ClientSize = new System.Drawing.Size(548, 345);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
@@ -454,6 +551,8 @@
             this.tpListView.ResumeLayout(false);
             this.tpGpuInfo.ResumeLayout(false);
             this.tpGpuInfo.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,5 +597,13 @@
         private System.Windows.Forms.TabPage tpGpuInfo;
         private System.Windows.Forms.TextBox txtGpuInfo;
         private System.Windows.Forms.Button btnGetSaveFile;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btnSrcDst;
+        private System.Windows.Forms.TextBox txtSrcDstResult;
+        private System.Windows.Forms.TextBox txtDst;
+        private System.Windows.Forms.TextBox txtSrc;
+        private System.Windows.Forms.Button btnSrcDstRelative;
+        private System.Windows.Forms.Button btnSrcDstFull;
+        private System.Windows.Forms.Button btnCreateDir;
     }
 }

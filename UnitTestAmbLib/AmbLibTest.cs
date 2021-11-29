@@ -271,5 +271,44 @@ namespace UnitTestAmbLib
                 Assert.IsTrue(Regex.Match(Path.GetFileNameWithoutExtension(newfile), @"\[\d+\]$").Success);
             }
         }
+
+        [TestMethod]
+        public void TestCopyFileTime()
+        {
+            {
+                File.WriteAllText("aaa.txt", "aaa");
+                File.WriteAllText("bbb.txt", "aaa");
+                AmbLib.CopyFileTime("aaa.txt", "bbb.txt");
+
+                FileInfo fiAAA = new FileInfo("aaa.txt");
+                FileInfo fiBBB = new FileInfo("bbb.txt");
+                Assert.AreEqual(fiAAA.CreationTime, fiBBB.CreationTime);
+                Assert.AreEqual(fiAAA.CreationTimeUtc, fiBBB.CreationTimeUtc);
+                Assert.AreEqual(fiAAA.LastWriteTime, fiBBB.LastWriteTime);
+                Assert.AreEqual(fiAAA.LastWriteTimeUtc, fiBBB.LastWriteTimeUtc);
+                Assert.AreEqual(fiAAA.LastAccessTime, fiBBB.LastAccessTime);
+                Assert.AreEqual(fiAAA.LastAccessTimeUtc, fiBBB.LastAccessTimeUtc);
+            }
+            {
+                File.Delete("aaa.txt");
+                File.Delete("bbb.txt");
+                File.WriteAllText("aaa.txt", "aaa");
+                File.WriteAllText("bbb.txt", "aaa");
+
+                FileInfo fiAAA = new FileInfo("aaa.txt");
+                FileInfo fiBBB = new FileInfo("bbb.txt");
+                fiAAA.CreationTime = DateTime.Now.AddDays(1);
+                fiAAA.LastAccessTime = DateTime.Now.AddDays(1);
+                fiAAA.LastAccessTime = DateTime.Now.AddDays(1);
+                AmbLib.CopyFileTime("aaa.txt", "bbb.txt", AmbLib.CFT.LastAccess);
+
+                Assert.AreNotEqual(fiAAA.CreationTime, fiBBB.CreationTime);
+                Assert.AreNotEqual(fiAAA.CreationTimeUtc, fiBBB.CreationTimeUtc);
+                Assert.AreNotEqual(fiAAA.LastWriteTime, fiBBB.LastWriteTime);
+                Assert.AreNotEqual(fiAAA.LastWriteTimeUtc, fiBBB.LastWriteTimeUtc);
+                Assert.AreEqual(fiAAA.LastAccessTime, fiBBB.LastAccessTime);
+                Assert.AreEqual(fiAAA.LastAccessTimeUtc, fiBBB.LastAccessTimeUtc);
+            }
+        }
     }
 }

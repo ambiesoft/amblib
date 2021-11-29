@@ -1929,5 +1929,82 @@ namespace Ambiesoft
                 return false;
             }
         }
+
+        public static List<KeyValuePair<string,string>> GetSourceAndDestFiles(string src, string dest)
+        {
+            var ret = new List<KeyValuePair<string, string>>();
+            if (File.Exists(src))
+            {
+                if (Directory.Exists(dest) ||
+                    (dest.EndsWith("/") || dest.EndsWith("\\")))
+                {
+                    string newDest = Path.Combine(
+                        dest,
+                        Path.GetFileName(src));
+                    ret.Add(new KeyValuePair<string, string>(src, newDest));
+                    return ret;
+                }
+                ret.Add(new KeyValuePair<string, string>(src, dest));
+                return ret;
+            }
+            if(Directory.Exists(src))
+            {
+                if(!Directory.Exists(dest))
+                {
+                    return ret;
+                }
+                // Dest Dir exists
+                string curDirBack = Environment.CurrentDirectory;
+                Environment.CurrentDirectory = src;
+                string[] srces = Directory.GetFiles(".", "*.*", SearchOption.AllDirectories);
+                foreach(string tmp in srces)
+                {
+                    string s = tmp;
+                    if (s.Length > 2 && s[0] == '.' && s[1] == '\\')
+                        s = s.Substring(2);
+                    ret.Add(new KeyValuePair<string, string>(
+                        Path.Combine(src, s),
+                        Path.Combine(dest, s)));
+                }
+                Environment.CurrentDirectory = curDirBack;
+            }
+            return ret;
+        }
+
+        public enum CFT
+        {
+            None = 0,
+            Creation = 1,
+            LastWrite = 2,
+            LastAccess = 4,
+            All = Creation | LastWrite | LastAccess,
+        }
+        public static bool CopyFileTime(string srcFile, string dstFile, CFT cft)
+        {
+            try
+            {
+                FileInfo fiSrc = new FileInfo(srcFile);
+                FileInfo fiDst = new FileInfo(dstFile);
+                if ((cft & CFT.Creation) == CFT.Creation)
+                {
+                    fiDst.CreationTime = fiSrc.CreationTime;
+                }
+                if ((cft & CFT.LastWrite) == CFT.LastWrite)
+                {
+                    fiDst.LastWriteTime = fiSrc.LastWriteTime;
+                }
+                if ((cft & CFT.LastAccess) == CFT.LastAccess)
+                {
+                    fiDst.LastAccessTime = fiSrc.LastAccessTime;
+                }
+                return true;
+            }
+            catch (Exception) { }
+            return false;
+        }
+        public static bool CopyFileTime(string srcFile, string dstFile)
+        {
+            return CopyFileTime(srcFile, dstFile, CFT.All);
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
