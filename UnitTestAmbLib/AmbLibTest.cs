@@ -310,5 +310,25 @@ namespace UnitTestAmbLib
                 Assert.AreEqual(fiAAA.LastAccessTimeUtc, fiBBB.LastAccessTimeUtc);
             }
         }
+
+
+        [TestMethod]
+        public void TestDeleteAllEmptyDirectory()
+        {
+            {
+                Directory.CreateDirectory("X");
+                Directory.CreateDirectory("X\\Y");
+                Directory.CreateDirectory("X\\Z");
+                Directory.CreateDirectory("X\\Z\\zz");
+                Directory.CreateDirectory("X\\Z\\zz2");
+                Directory.CreateDirectory("X\\Z\\zz\\zzz");
+                File.WriteAllText("X\\Z\\zz\\zzz\\file.txt","text");
+                Assert.IsFalse(AmbLib.DeleteAllEmptyDirectory("X"));
+
+                File.Delete("X\\Z\\zz\\zzz\\file.txt");
+                Assert.IsTrue(AmbLib.DeleteAllEmptyDirectory("X"));
+            }
+
+        }
     }
 }

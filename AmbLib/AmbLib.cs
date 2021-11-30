@@ -2042,5 +2042,27 @@ namespace Ambiesoft
         {
             return CopyFileTime(srcFile, dstFile, CFT.All);
         }
+        static bool DeleteAllEmptyDirectory(string dir, ref bool ok)
+        {
+            foreach (string d in Directory.GetDirectories(dir))
+            {
+                DeleteAllEmptyDirectory(d, ref ok);
+            }
+            try
+            {
+                Directory.Delete(dir);
+            }
+            catch (Exception)
+            {
+                ok = false;
+            }
+            return ok;
+        }
+        public static bool DeleteAllEmptyDirectory(string dir)
+        {
+            bool ok = true;
+            DeleteAllEmptyDirectory(dir, ref ok);
+            return ok;
+        }
     }  // class Amblib
 }  // namespace Ambiesoft
