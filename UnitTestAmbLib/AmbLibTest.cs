@@ -273,34 +273,49 @@ namespace UnitTestAmbLib
         }
 
         [TestMethod]
-        public void TestCopyFileTime()
+        public void TestCopyFileTime1()
         {
-            {
-                File.WriteAllText("aaa.txt", "aaa");
-                File.WriteAllText("bbb.txt", "aaa");
-                AmbLib.CopyFileTime("aaa.txt", "bbb.txt");
+            File.WriteAllText("aaa.txt", "aaa");
+            File.WriteAllText("bbb.txt", "aaa");
+            AmbLib.CopyFileTime("aaa.txt", "bbb.txt");
 
-                FileInfo fiAAA = new FileInfo("aaa.txt");
-                FileInfo fiBBB = new FileInfo("bbb.txt");
-                Assert.AreEqual(fiAAA.CreationTime, fiBBB.CreationTime);
-                Assert.AreEqual(fiAAA.CreationTimeUtc, fiBBB.CreationTimeUtc);
-                Assert.AreEqual(fiAAA.LastWriteTime, fiBBB.LastWriteTime);
-                Assert.AreEqual(fiAAA.LastWriteTimeUtc, fiBBB.LastWriteTimeUtc);
-                Assert.AreEqual(fiAAA.LastAccessTime, fiBBB.LastAccessTime);
-                Assert.AreEqual(fiAAA.LastAccessTimeUtc, fiBBB.LastAccessTimeUtc);
-            }
-            {
-                File.Delete("aaa.txt");
-                File.Delete("bbb.txt");
-                File.WriteAllText("aaa.txt", "aaa");
-                File.WriteAllText("bbb.txt", "aaa");
+            FileInfo fiAAA = new FileInfo("aaa.txt");
+            FileInfo fiBBB = new FileInfo("bbb.txt");
+            Assert.AreEqual(fiAAA.CreationTime, fiBBB.CreationTime);
+            Assert.AreEqual(fiAAA.CreationTimeUtc, fiBBB.CreationTimeUtc);
+            Assert.AreEqual(fiAAA.LastWriteTime, fiBBB.LastWriteTime);
+            Assert.AreEqual(fiAAA.LastWriteTimeUtc, fiBBB.LastWriteTimeUtc);
+            Assert.AreEqual(fiAAA.LastAccessTime, fiBBB.LastAccessTime);
+            Assert.AreEqual(fiAAA.LastAccessTimeUtc, fiBBB.LastAccessTimeUtc);
+        }
+        [TestMethod]
+        public void TestCopyFileTime2()
+        {
+            File.Delete("aaa.txt");
+            File.Delete("bbb.txt");
+            File.WriteAllText("aaa.txt", "aaa");
+            File.WriteAllText("bbb.txt", "aaa");
 
+            {
                 FileInfo fiAAA = new FileInfo("aaa.txt");
                 FileInfo fiBBB = new FileInfo("bbb.txt");
                 fiAAA.CreationTime = DateTime.Now.AddDays(1);
+                fiAAA.LastWriteTime = DateTime.Now.AddDays(1);
                 fiAAA.LastAccessTime = DateTime.Now.AddDays(1);
-                fiAAA.LastAccessTime = DateTime.Now.AddDays(1);
-                AmbLib.CopyFileTime("aaa.txt", "bbb.txt", AmbLib.CFT.LastAccess);
+
+                Assert.AreNotEqual(fiAAA.CreationTime, fiBBB.CreationTime);
+                Assert.AreNotEqual(fiAAA.CreationTimeUtc, fiBBB.CreationTimeUtc);
+                Assert.AreNotEqual(fiAAA.LastWriteTime, fiBBB.LastWriteTime);
+                Assert.AreNotEqual(fiAAA.LastWriteTimeUtc, fiBBB.LastWriteTimeUtc);
+                Assert.AreNotEqual(fiAAA.LastAccessTime, fiBBB.LastAccessTime);
+                Assert.AreNotEqual(fiAAA.LastAccessTimeUtc, fiBBB.LastAccessTimeUtc);
+            }
+
+            AmbLib.CopyFileTime("aaa.txt", "bbb.txt", AmbLib.CFT.LastAccess);
+
+            {
+                FileInfo fiAAA = new FileInfo("aaa.txt");
+                FileInfo fiBBB = new FileInfo("bbb.txt");
 
                 Assert.AreNotEqual(fiAAA.CreationTime, fiBBB.CreationTime);
                 Assert.AreNotEqual(fiAAA.CreationTimeUtc, fiBBB.CreationTimeUtc);
@@ -328,7 +343,6 @@ namespace UnitTestAmbLib
                 File.Delete("X\\Z\\zz\\zzz\\file.txt");
                 Assert.IsTrue(AmbLib.DeleteAllEmptyDirectory("X"));
             }
-
         }
     }
 }

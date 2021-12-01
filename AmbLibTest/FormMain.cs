@@ -462,5 +462,11 @@ LIE"));
                 out dirs);
             showSrcDstResult(files, dirs);
         }
+
+        private void btnGetFolder_Click(object sender, EventArgs e)
+        {
+            string folder = AmbLib.GetOpenFolderDialog("my title");
+            MessageBox.Show(folder);
+        }
     }
 }

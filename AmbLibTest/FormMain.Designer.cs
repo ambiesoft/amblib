@@ -82,6 +82,7 @@
             this.txtSrcDstResult = new System.Windows.Forms.TextBox();
             this.txtDst = new System.Windows.Forms.TextBox();
             this.txtSrc = new System.Windows.Forms.TextBox();
+            this.btnGetFolder = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -184,41 +185,41 @@
             // 
             // txtDNS
             // 
-            this.txtDNS.Location = new System.Drawing.Point(47, 8);
+            this.txtDNS.Location = new System.Drawing.Point(47, 7);
             this.txtDNS.Name = "txtDNS";
-            this.txtDNS.Size = new System.Drawing.Size(431, 20);
+            this.txtDNS.Size = new System.Drawing.Size(431, 19);
             this.txtDNS.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 11);
+            this.label1.Location = new System.Drawing.Point(8, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.Size = new System.Drawing.Size(30, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "&DNS:";
             // 
             // txtPointInScreen
             // 
-            this.txtPointInScreen.Location = new System.Drawing.Point(88, 35);
+            this.txtPointInScreen.Location = new System.Drawing.Point(88, 32);
             this.txtPointInScreen.Name = "txtPointInScreen";
-            this.txtPointInScreen.Size = new System.Drawing.Size(309, 20);
+            this.txtPointInScreen.Size = new System.Drawing.Size(309, 19);
             this.txtPointInScreen.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 38);
+            this.label2.Location = new System.Drawing.Point(8, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.Size = new System.Drawing.Size(75, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "PointInScreen";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(403, 35);
+            this.button1.Location = new System.Drawing.Point(403, 32);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 20);
+            this.button1.Size = new System.Drawing.Size(75, 18);
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -230,18 +231,18 @@
             this.columnHeader1aaaaaaa,
             this.columnHeader1});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(9, 86);
+            this.listView1.Location = new System.Drawing.Point(9, 79);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(471, 129);
+            this.listView1.Size = new System.Drawing.Size(471, 119);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // btnOpenAmbiesoft
             // 
-            this.btnOpenAmbiesoft.Location = new System.Drawing.Point(9, 221);
+            this.btnOpenAmbiesoft.Location = new System.Drawing.Point(9, 204);
             this.btnOpenAmbiesoft.Name = "btnOpenAmbiesoft";
-            this.btnOpenAmbiesoft.Size = new System.Drawing.Size(189, 23);
+            this.btnOpenAmbiesoft.Size = new System.Drawing.Size(189, 21);
             this.btnOpenAmbiesoft.TabIndex = 7;
             this.btnOpenAmbiesoft.Text = "Open ambiesoft site";
             this.btnOpenAmbiesoft.UseVisualStyleBackColor = true;
@@ -258,11 +259,12 @@
             this.tabMain.Location = new System.Drawing.Point(0, 25);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(548, 320);
+            this.tabMain.Size = new System.Drawing.Size(548, 293);
             this.tabMain.TabIndex = 8;
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnGetFolder);
             this.tpSimple.Controls.Add(this.btnGetSaveFile);
             this.tpSimple.Controls.Add(this.btnSelectApp);
             this.tpSimple.Controls.Add(this.btnFormatSizeTest);
@@ -275,16 +277,16 @@
             this.tpSimple.Location = new System.Drawing.Point(4, 22);
             this.tpSimple.Name = "tpSimple";
             this.tpSimple.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSimple.Size = new System.Drawing.Size(540, 294);
+            this.tpSimple.Size = new System.Drawing.Size(540, 267);
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
             // 
             // btnGetSaveFile
             // 
-            this.btnGetSaveFile.Location = new System.Drawing.Point(284, 198);
+            this.btnGetSaveFile.Location = new System.Drawing.Point(284, 183);
             this.btnGetSaveFile.Name = "btnGetSaveFile";
-            this.btnGetSaveFile.Size = new System.Drawing.Size(75, 23);
+            this.btnGetSaveFile.Size = new System.Drawing.Size(75, 21);
             this.btnGetSaveFile.TabIndex = 9;
             this.btnGetSaveFile.Text = "GetSaveFile";
             this.btnGetSaveFile.UseVisualStyleBackColor = true;
@@ -292,9 +294,9 @@
             // 
             // btnSelectApp
             // 
-            this.btnSelectApp.Location = new System.Drawing.Point(203, 198);
+            this.btnSelectApp.Location = new System.Drawing.Point(203, 183);
             this.btnSelectApp.Name = "btnSelectApp";
-            this.btnSelectApp.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectApp.Size = new System.Drawing.Size(75, 21);
             this.btnSelectApp.TabIndex = 9;
             this.btnSelectApp.Text = "Select App";
             this.btnSelectApp.UseVisualStyleBackColor = true;
@@ -302,9 +304,9 @@
             // 
             // btnFormatSizeTest
             // 
-            this.btnFormatSizeTest.Location = new System.Drawing.Point(89, 198);
+            this.btnFormatSizeTest.Location = new System.Drawing.Point(89, 183);
             this.btnFormatSizeTest.Name = "btnFormatSizeTest";
-            this.btnFormatSizeTest.Size = new System.Drawing.Size(108, 23);
+            this.btnFormatSizeTest.Size = new System.Drawing.Size(108, 21);
             this.btnFormatSizeTest.TabIndex = 9;
             this.btnFormatSizeTest.Text = "FormatSize Test";
             this.btnFormatSizeTest.UseVisualStyleBackColor = true;
@@ -315,18 +317,18 @@
             this.cmbTripleClick.FormattingEnabled = true;
             this.cmbTripleClick.Items.AddRange(new object[] {
             "Triple Click Test"});
-            this.cmbTripleClick.Location = new System.Drawing.Point(6, 32);
+            this.cmbTripleClick.Location = new System.Drawing.Point(6, 30);
             this.cmbTripleClick.Name = "cmbTripleClick";
-            this.cmbTripleClick.Size = new System.Drawing.Size(470, 21);
+            this.cmbTripleClick.Size = new System.Drawing.Size(470, 20);
             this.cmbTripleClick.TabIndex = 10;
             this.cmbTripleClick.Text = "Triple Click Test";
             this.cmbTripleClick.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cmbTripleClick_MouseDoubleClick);
             // 
             // btnI18NTest
             // 
-            this.btnI18NTest.Location = new System.Drawing.Point(8, 198);
+            this.btnI18NTest.Location = new System.Drawing.Point(8, 183);
             this.btnI18NTest.Name = "btnI18NTest";
-            this.btnI18NTest.Size = new System.Drawing.Size(75, 23);
+            this.btnI18NTest.Size = new System.Drawing.Size(75, 21);
             this.btnI18NTest.TabIndex = 9;
             this.btnI18NTest.Text = "I18N TEST";
             this.btnI18NTest.UseVisualStyleBackColor = true;
@@ -334,9 +336,9 @@
             // 
             // btnShowTexts
             // 
-            this.btnShowTexts.Location = new System.Drawing.Point(89, 146);
+            this.btnShowTexts.Location = new System.Drawing.Point(89, 135);
             this.btnShowTexts.Name = "btnShowTexts";
-            this.btnShowTexts.Size = new System.Drawing.Size(75, 23);
+            this.btnShowTexts.Size = new System.Drawing.Size(75, 21);
             this.btnShowTexts.TabIndex = 9;
             this.btnShowTexts.Text = "Show Texts";
             this.btnShowTexts.UseVisualStyleBackColor = true;
@@ -344,9 +346,9 @@
             // 
             // btnShowText
             // 
-            this.btnShowText.Location = new System.Drawing.Point(8, 146);
+            this.btnShowText.Location = new System.Drawing.Point(8, 135);
             this.btnShowText.Name = "btnShowText";
-            this.btnShowText.Size = new System.Drawing.Size(75, 23);
+            this.btnShowText.Size = new System.Drawing.Size(75, 21);
             this.btnShowText.TabIndex = 2;
             this.btnShowText.Text = "Show Text";
             this.btnShowText.UseVisualStyleBackColor = true;
@@ -354,9 +356,9 @@
             // 
             // btnSimpleTest
             // 
-            this.btnSimpleTest.Location = new System.Drawing.Point(8, 95);
+            this.btnSimpleTest.Location = new System.Drawing.Point(8, 88);
             this.btnSimpleTest.Name = "btnSimpleTest";
-            this.btnSimpleTest.Size = new System.Drawing.Size(75, 23);
+            this.btnSimpleTest.Size = new System.Drawing.Size(75, 21);
             this.btnSimpleTest.TabIndex = 1;
             this.btnSimpleTest.Text = "SimpleTest";
             this.btnSimpleTest.UseVisualStyleBackColor = true;
@@ -366,7 +368,7 @@
             // 
             this.txtTripleClick.Location = new System.Drawing.Point(6, 6);
             this.txtTripleClick.Name = "txtTripleClick";
-            this.txtTripleClick.Size = new System.Drawing.Size(470, 20);
+            this.txtTripleClick.Size = new System.Drawing.Size(470, 19);
             this.txtTripleClick.TabIndex = 0;
             this.txtTripleClick.Text = "Triple Click Test";
             // 
@@ -382,7 +384,7 @@
             this.tbMisc.Location = new System.Drawing.Point(4, 22);
             this.tbMisc.Name = "tbMisc";
             this.tbMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tbMisc.Size = new System.Drawing.Size(540, 294);
+            this.tbMisc.Size = new System.Drawing.Size(540, 269);
             this.tbMisc.TabIndex = 1;
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
@@ -393,7 +395,7 @@
             this.tpListView.Location = new System.Drawing.Point(4, 22);
             this.tpListView.Name = "tpListView";
             this.tpListView.Padding = new System.Windows.Forms.Padding(3);
-            this.tpListView.Size = new System.Drawing.Size(540, 294);
+            this.tpListView.Size = new System.Drawing.Size(540, 269);
             this.tpListView.TabIndex = 2;
             this.tpListView.Text = "ListView";
             this.tpListView.UseVisualStyleBackColor = true;
@@ -410,7 +412,7 @@
             listViewItem2});
             this.lvForFontSize.Location = new System.Drawing.Point(3, 3);
             this.lvForFontSize.Name = "lvForFontSize";
-            this.lvForFontSize.Size = new System.Drawing.Size(534, 288);
+            this.lvForFontSize.Size = new System.Drawing.Size(534, 263);
             this.lvForFontSize.TabIndex = 11;
             this.lvForFontSize.UseCompatibleStateImageBehavior = false;
             this.lvForFontSize.View = System.Windows.Forms.View.Details;
@@ -429,7 +431,7 @@
             this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
             this.tpGpuInfo.Name = "tpGpuInfo";
             this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGpuInfo.Size = new System.Drawing.Size(540, 294);
+            this.tpGpuInfo.Size = new System.Drawing.Size(540, 269);
             this.tpGpuInfo.TabIndex = 3;
             this.tpGpuInfo.Text = "GPU info";
             this.tpGpuInfo.UseVisualStyleBackColor = true;
@@ -441,7 +443,7 @@
             this.txtGpuInfo.Multiline = true;
             this.txtGpuInfo.Name = "txtGpuInfo";
             this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtGpuInfo.Size = new System.Drawing.Size(534, 288);
+            this.txtGpuInfo.Size = new System.Drawing.Size(534, 263);
             this.txtGpuInfo.TabIndex = 0;
             // 
             // tabPage1
@@ -458,7 +460,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(540, 294);
+            this.tabPage1.Size = new System.Drawing.Size(540, 269);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Get Src and Dst";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -466,9 +468,9 @@
             // btnFileToDir
             // 
             this.btnFileToDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFileToDir.Location = new System.Drawing.Point(206, 268);
+            this.btnFileToDir.Location = new System.Drawing.Point(206, 247);
             this.btnFileToDir.Name = "btnFileToDir";
-            this.btnFileToDir.Size = new System.Drawing.Size(75, 23);
+            this.btnFileToDir.Size = new System.Drawing.Size(75, 21);
             this.btnFileToDir.TabIndex = 3;
             this.btnFileToDir.Text = "File2Dir";
             this.btnFileToDir.UseVisualStyleBackColor = true;
@@ -476,9 +478,9 @@
             // 
             // btnCreateDir
             // 
-            this.btnCreateDir.Location = new System.Drawing.Point(462, 52);
+            this.btnCreateDir.Location = new System.Drawing.Point(462, 48);
             this.btnCreateDir.Name = "btnCreateDir";
-            this.btnCreateDir.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateDir.Size = new System.Drawing.Size(75, 21);
             this.btnCreateDir.TabIndex = 2;
             this.btnCreateDir.Text = "mkdir";
             this.btnCreateDir.UseVisualStyleBackColor = true;
@@ -487,9 +489,9 @@
             // btnSrcDstRelative
             // 
             this.btnSrcDstRelative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSrcDstRelative.Location = new System.Drawing.Point(411, 265);
+            this.btnSrcDstRelative.Location = new System.Drawing.Point(411, 245);
             this.btnSrcDstRelative.Name = "btnSrcDstRelative";
-            this.btnSrcDstRelative.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDstRelative.Size = new System.Drawing.Size(116, 21);
             this.btnSrcDstRelative.TabIndex = 1;
             this.btnSrcDstRelative.Text = "Relative";
             this.btnSrcDstRelative.UseVisualStyleBackColor = true;
@@ -498,9 +500,9 @@
             // btnFileToFile
             // 
             this.btnFileToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFileToFile.Location = new System.Drawing.Point(125, 268);
+            this.btnFileToFile.Location = new System.Drawing.Point(125, 247);
             this.btnFileToFile.Name = "btnFileToFile";
-            this.btnFileToFile.Size = new System.Drawing.Size(75, 23);
+            this.btnFileToFile.Size = new System.Drawing.Size(75, 21);
             this.btnFileToFile.TabIndex = 1;
             this.btnFileToFile.Text = "File2File";
             this.btnFileToFile.UseVisualStyleBackColor = true;
@@ -509,9 +511,9 @@
             // btnSrcDstFull
             // 
             this.btnSrcDstFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSrcDstFull.Location = new System.Drawing.Point(289, 265);
+            this.btnSrcDstFull.Location = new System.Drawing.Point(289, 245);
             this.btnSrcDstFull.Name = "btnSrcDstFull";
-            this.btnSrcDstFull.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDstFull.Size = new System.Drawing.Size(116, 21);
             this.btnSrcDstFull.TabIndex = 1;
             this.btnSrcDstFull.Text = "Full";
             this.btnSrcDstFull.UseVisualStyleBackColor = true;
@@ -520,9 +522,9 @@
             // btnSrcDst
             // 
             this.btnSrcDst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSrcDst.Location = new System.Drawing.Point(3, 269);
+            this.btnSrcDst.Location = new System.Drawing.Point(3, 248);
             this.btnSrcDst.Name = "btnSrcDst";
-            this.btnSrcDst.Size = new System.Drawing.Size(116, 23);
+            this.btnSrcDst.Size = new System.Drawing.Size(116, 21);
             this.btnSrcDst.TabIndex = 1;
             this.btnSrcDst.Text = "Get Src and Dst";
             this.btnSrcDst.UseVisualStyleBackColor = true;
@@ -533,33 +535,43 @@
             this.txtSrcDstResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSrcDstResult.Location = new System.Drawing.Point(3, 78);
+            this.txtSrcDstResult.Location = new System.Drawing.Point(3, 72);
             this.txtSrcDstResult.Multiline = true;
             this.txtSrcDstResult.Name = "txtSrcDstResult";
             this.txtSrcDstResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtSrcDstResult.Size = new System.Drawing.Size(524, 169);
+            this.txtSrcDstResult.Size = new System.Drawing.Size(524, 156);
             this.txtSrcDstResult.TabIndex = 0;
             this.txtSrcDstResult.WordWrap = false;
             // 
             // txtDst
             // 
-            this.txtDst.Location = new System.Drawing.Point(6, 52);
+            this.txtDst.Location = new System.Drawing.Point(6, 48);
             this.txtDst.Name = "txtDst";
-            this.txtDst.Size = new System.Drawing.Size(451, 20);
+            this.txtDst.Size = new System.Drawing.Size(451, 19);
             this.txtDst.TabIndex = 0;
             // 
             // txtSrc
             // 
-            this.txtSrc.Location = new System.Drawing.Point(8, 26);
+            this.txtSrc.Location = new System.Drawing.Point(8, 24);
             this.txtSrc.Name = "txtSrc";
-            this.txtSrc.Size = new System.Drawing.Size(470, 20);
+            this.txtSrc.Size = new System.Drawing.Size(470, 19);
             this.txtSrc.TabIndex = 0;
+            // 
+            // btnGetFolder
+            // 
+            this.btnGetFolder.Location = new System.Drawing.Point(365, 181);
+            this.btnGetFolder.Name = "btnGetFolder";
+            this.btnGetFolder.Size = new System.Drawing.Size(75, 23);
+            this.btnGetFolder.TabIndex = 9;
+            this.btnGetFolder.Text = "Get Folder";
+            this.btnGetFolder.UseVisualStyleBackColor = true;
+            this.btnGetFolder.Click += new System.EventHandler(this.btnGetFolder_Click);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 345);
+            this.ClientSize = new System.Drawing.Size(548, 318);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
@@ -633,5 +645,6 @@
         private System.Windows.Forms.Button btnCreateDir;
         private System.Windows.Forms.Button btnFileToFile;
         private System.Windows.Forms.Button btnFileToDir;
+        private System.Windows.Forms.Button btnGetFolder;
     }
 }

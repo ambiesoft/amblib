@@ -1480,6 +1480,20 @@ namespace Ambiesoft
                 return ofd.FileName;
             }
         }
+        public static string GetOpenFolderDialog(string description)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = description;
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    return fbd.SelectedPath;
+                }
+            }
+            return null;
+        }
         public static string GetSaveFileDialog(string title, Dictionary<string, string[]> extensions)
         {
             using (SaveFileDialog sfd = new SaveFileDialog())
