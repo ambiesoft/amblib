@@ -1,3 +1,6 @@
+2021/12/02 ver1.0.37
+GetSourceAndDestFiles returns with the folder of the source folder
+
 2021/11/30 ver1.0.36
 Add GetOpenFolderDialog
 

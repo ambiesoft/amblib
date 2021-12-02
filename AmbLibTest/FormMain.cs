@@ -384,11 +384,16 @@ LIE"));
             MessageBox.Show(file);
         }
 
-        void showSrcDstResult(List<KeyValuePair<string,string>> lkv,
+        void showSrcDstResult(
+            string src, string dst,
+            List<KeyValuePair<string,string>> lkv,
             List<string> dirs)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(var dir in dirs)
+            sb.AppendLine("SRC=" + src);
+            sb.AppendLine("DST=" + dst);
+            sb.AppendLine("------------------------");
+            foreach (var dir in dirs)
             {
                 sb.AppendLine(dir);
             }
@@ -405,7 +410,7 @@ LIE"));
             List<string> dirs;
             var files = AmbLib.GetSourceAndDestFiles(txtSrc.Text, txtDst.Text, out dirs);
 
-            showSrcDstResult(files, dirs);
+            showSrcDstResult(txtSrc.Text, txtDst.Text, files, dirs);
         }
 
         private void btnSrcDstFull_Click(object sender, EventArgs e)
@@ -416,7 +421,7 @@ LIE"));
 
             List<string> dirs;
             var files = AmbLib.GetSourceAndDestFiles(src, dst, out dirs);
-            showSrcDstResult(files, dirs);
+            showSrcDstResult(src,dst,files, dirs);
         }
 
         private void btnSrcDstRelative_Click(object sender, EventArgs e)
@@ -431,7 +436,7 @@ LIE"));
 
             List<string> dirs;
             var files = AmbLib.GetSourceAndDestFiles(src, dst, out dirs);
-            showSrcDstResult(files, dirs);
+            showSrcDstResult(src,dst,files, dirs);
         }
 
         private void btnCreateDir_Click(object sender, EventArgs e)
@@ -442,25 +447,25 @@ LIE"));
         private void btnFileToFile_Click(object sender, EventArgs e)
         {
             List<string> dirs;
-            var files = AmbLib.GetSourceAndDestFiles(
-                Application.ExecutablePath,
-                Path.Combine(
+            string src = Application.ExecutablePath;
+            string dst = Path.Combine(
                     Path.GetDirectoryName(Application.ExecutablePath),
-                    "myexe.exe"),
-                out dirs);
-            showSrcDstResult(files, dirs);
+                    "myexe.exe");
+
+            var files = AmbLib.GetSourceAndDestFiles(src, dst, out dirs);
+            showSrcDstResult(src, dst, files, dirs);
         }
 
         private void btnFileToDir_Click(object sender, EventArgs e)
         {
             List<string> dirs;
-            var files = AmbLib.GetSourceAndDestFiles(
-                Application.ExecutablePath,
-                Path.Combine(
+            string src = Application.ExecutablePath;
+            string dst = Path.Combine(
                     Path.GetDirectoryName(Application.ExecutablePath),
-                    "mydir\\"),
-                out dirs);
-            showSrcDstResult(files, dirs);
+                    "mydir\\");
+
+            var files = AmbLib.GetSourceAndDestFiles(src, dst, out dirs);
+            showSrcDstResult(src,dst,files, dirs);
         }
 
         private void btnGetFolder_Click(object sender, EventArgs e)

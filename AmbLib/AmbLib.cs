@@ -1944,6 +1944,16 @@ namespace Ambiesoft
             }
         }
 
+        static string GetLastPartFromPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return string.Empty;
+
+            int pos = path.LastIndexOfAny("/\\".ToCharArray());
+            if (pos < 0)
+                return string.Empty;
+            return path.Substring(pos + 1);
+        }
         public static List<KeyValuePair<string,string>> GetSourceAndDestFiles(
             string src, 
             string dest,
@@ -1985,6 +1995,7 @@ namespace Ambiesoft
                 // Dest Dir exists
                 string curDirBack = Environment.CurrentDirectory;
                 Environment.CurrentDirectory = src;
+                string srcDirName = GetLastPartFromPath(src);
 
                 var dupCheck = new SortedSet<string>();
                 string[] srcdirs = Directory.GetDirectories(".", "*.*", SearchOption.AllDirectories);
@@ -1993,7 +2004,7 @@ namespace Ambiesoft
                     string s = tmp;
                     if (s.Length > 2 && s[0] == '.' && s[1] == '\\')
                         s = s.Substring(2);
-                    string newDest = Path.Combine(dest, s);
+                    string newDest = Path.Combine(dest, srcDirName, s);
                     dupCheck.Add(newDest);
                     dstDirs.Add(newDest);
                 }
@@ -2005,7 +2016,7 @@ namespace Ambiesoft
                     string s = tmp;
                     if (s.Length > 2 && s[0] == '.' && s[1] == '\\')
                         s = s.Substring(2);
-                    string newDest = Path.Combine(dest, s);
+                    string newDest = Path.Combine(dest, srcDirName, s);
                     ret.Add(new KeyValuePair<string, string>(
                         Path.Combine(src, s),
                         newDest));
