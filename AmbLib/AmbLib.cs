@@ -1948,7 +1948,7 @@ namespace Ambiesoft
         {
             if (string.IsNullOrEmpty(path))
                 return string.Empty;
-
+            path = path.TrimEnd("/\\".ToCharArray());
             int pos = path.LastIndexOfAny("/\\".ToCharArray());
             if (pos < 0)
                 return string.Empty;

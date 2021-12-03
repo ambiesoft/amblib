@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ambiesoft;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace UnitTestAmbLib
 {
@@ -343,6 +344,61 @@ namespace UnitTestAmbLib
                 File.Delete("X\\Z\\zz\\zzz\\file.txt");
                 Assert.IsTrue(AmbLib.DeleteAllEmptyDirectory("X"));
             }
+        }
+
+        /// <summary>
+        /// Compares two string lists using a loop.
+        /// </summary>
+        public bool CompareLists(List<string> list1, List<string> list2)
+        {
+            if (list1.Count != list2.Count)
+                return false;
+
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (list1[i] != list2[i])
+                    return false;
+            }
+
+            return true;
+        }
+        public bool CompareKVS(List<KeyValuePair<string, string>> kvs1, List<KeyValuePair<string, string>> kvs2)
+        {
+            if (kvs1.Count != kvs2.Count)
+                return false;
+
+            for (int i = 0; i < kvs1.Count; ++i)
+            {
+                if (kvs1[i].Key != kvs2[i].Key)
+                    return false;
+                if (kvs1[i].Value != kvs2[i].Value)
+                    return false;
+            }
+            return true;
+        }
+
+        [TestMethod]
+        public void TestGetSourceAndDestFiles()
+        {
+            List<string> dirs1;
+            var files1 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout", @"C:\T", out dirs1);
+            
+            List<string> dirs2;
+            var files2 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout\", @"C:\T", out dirs2);
+            
+            List<string> dirs3;
+            var files3 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout", @"C:\T\", out dirs3);
+            
+            List<string> dirs4;
+            var files4 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout\", @"C:\T\", out dirs4);
+
+            Assert.IsTrue(CompareLists(dirs1, dirs2));
+            Assert.IsTrue(CompareLists(dirs2, dirs3));
+            Assert.IsTrue(CompareLists(dirs3, dirs4));
+
+            Assert.IsTrue(CompareKVS(files1, files2));
+            Assert.IsTrue(CompareKVS(files2, files3));
+            Assert.IsTrue(CompareKVS(files3, files4));
         }
     }
 }
