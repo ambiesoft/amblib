@@ -56,6 +56,7 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
+            this.btnGetFolder = new System.Windows.Forms.Button();
             this.btnGetSaveFile = new System.Windows.Forms.Button();
             this.btnSelectApp = new System.Windows.Forms.Button();
             this.btnFormatSizeTest = new System.Windows.Forms.Button();
@@ -82,7 +83,7 @@
             this.txtSrcDstResult = new System.Windows.Forms.TextBox();
             this.txtDst = new System.Windows.Forms.TextBox();
             this.txtSrc = new System.Windows.Forms.TextBox();
-            this.btnGetFolder = new System.Windows.Forms.Button();
+            this.btnGetMultipleFiles = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -264,6 +265,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnGetMultipleFiles);
             this.tpSimple.Controls.Add(this.btnGetFolder);
             this.tpSimple.Controls.Add(this.btnGetSaveFile);
             this.tpSimple.Controls.Add(this.btnSelectApp);
@@ -281,6 +283,16 @@
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // btnGetFolder
+            // 
+            this.btnGetFolder.Location = new System.Drawing.Point(365, 181);
+            this.btnGetFolder.Name = "btnGetFolder";
+            this.btnGetFolder.Size = new System.Drawing.Size(75, 23);
+            this.btnGetFolder.TabIndex = 9;
+            this.btnGetFolder.Text = "Get Folder";
+            this.btnGetFolder.UseVisualStyleBackColor = true;
+            this.btnGetFolder.Click += new System.EventHandler(this.btnGetFolder_Click);
             // 
             // btnGetSaveFile
             // 
@@ -384,7 +396,7 @@
             this.tbMisc.Location = new System.Drawing.Point(4, 22);
             this.tbMisc.Name = "tbMisc";
             this.tbMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tbMisc.Size = new System.Drawing.Size(540, 269);
+            this.tbMisc.Size = new System.Drawing.Size(540, 267);
             this.tbMisc.TabIndex = 1;
             this.tbMisc.Text = "Misc";
             this.tbMisc.UseVisualStyleBackColor = true;
@@ -395,7 +407,7 @@
             this.tpListView.Location = new System.Drawing.Point(4, 22);
             this.tpListView.Name = "tpListView";
             this.tpListView.Padding = new System.Windows.Forms.Padding(3);
-            this.tpListView.Size = new System.Drawing.Size(540, 269);
+            this.tpListView.Size = new System.Drawing.Size(540, 267);
             this.tpListView.TabIndex = 2;
             this.tpListView.Text = "ListView";
             this.tpListView.UseVisualStyleBackColor = true;
@@ -412,7 +424,7 @@
             listViewItem2});
             this.lvForFontSize.Location = new System.Drawing.Point(3, 3);
             this.lvForFontSize.Name = "lvForFontSize";
-            this.lvForFontSize.Size = new System.Drawing.Size(534, 263);
+            this.lvForFontSize.Size = new System.Drawing.Size(534, 261);
             this.lvForFontSize.TabIndex = 11;
             this.lvForFontSize.UseCompatibleStateImageBehavior = false;
             this.lvForFontSize.View = System.Windows.Forms.View.Details;
@@ -431,7 +443,7 @@
             this.tpGpuInfo.Location = new System.Drawing.Point(4, 22);
             this.tpGpuInfo.Name = "tpGpuInfo";
             this.tpGpuInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGpuInfo.Size = new System.Drawing.Size(540, 269);
+            this.tpGpuInfo.Size = new System.Drawing.Size(540, 267);
             this.tpGpuInfo.TabIndex = 3;
             this.tpGpuInfo.Text = "GPU info";
             this.tpGpuInfo.UseVisualStyleBackColor = true;
@@ -443,7 +455,7 @@
             this.txtGpuInfo.Multiline = true;
             this.txtGpuInfo.Name = "txtGpuInfo";
             this.txtGpuInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtGpuInfo.Size = new System.Drawing.Size(534, 263);
+            this.txtGpuInfo.Size = new System.Drawing.Size(534, 261);
             this.txtGpuInfo.TabIndex = 0;
             // 
             // tabPage1
@@ -460,7 +472,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(540, 269);
+            this.tabPage1.Size = new System.Drawing.Size(540, 267);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Get Src and Dst";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -557,15 +569,15 @@
             this.txtSrc.Size = new System.Drawing.Size(470, 19);
             this.txtSrc.TabIndex = 0;
             // 
-            // btnGetFolder
+            // btnGetMultipleFiles
             // 
-            this.btnGetFolder.Location = new System.Drawing.Point(365, 181);
-            this.btnGetFolder.Name = "btnGetFolder";
-            this.btnGetFolder.Size = new System.Drawing.Size(75, 23);
-            this.btnGetFolder.TabIndex = 9;
-            this.btnGetFolder.Text = "Get Folder";
-            this.btnGetFolder.UseVisualStyleBackColor = true;
-            this.btnGetFolder.Click += new System.EventHandler(this.btnGetFolder_Click);
+            this.btnGetMultipleFiles.Location = new System.Drawing.Point(203, 210);
+            this.btnGetMultipleFiles.Name = "btnGetMultipleFiles";
+            this.btnGetMultipleFiles.Size = new System.Drawing.Size(75, 23);
+            this.btnGetMultipleFiles.TabIndex = 9;
+            this.btnGetMultipleFiles.Text = "Get Multi";
+            this.btnGetMultipleFiles.UseVisualStyleBackColor = true;
+            this.btnGetMultipleFiles.Click += new System.EventHandler(this.btnGetMultipleFiles_Click);
             // 
             // FormMain
             // 
@@ -646,5 +658,6 @@
         private System.Windows.Forms.Button btnFileToFile;
         private System.Windows.Forms.Button btnFileToDir;
         private System.Windows.Forms.Button btnGetFolder;
+        private System.Windows.Forms.Button btnGetMultipleFiles;
     }
 }

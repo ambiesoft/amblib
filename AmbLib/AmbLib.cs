@@ -1447,15 +1447,13 @@ namespace Ambiesoft
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                // ofd.FileName = "default.html";
-                //ofd.InitialDirectory = @"C:\";
                 StringBuilder sbFilter = new StringBuilder();
                 if (extensions != null)
                 {
                     foreach (KeyValuePair<string, string[]> entry in extensions)
                     {
                         StringBuilder sbExts = new StringBuilder();
-                        foreach(string t in entry.Value)
+                        foreach (string t in entry.Value)
                         {
                             // *.exe,*.com
                             sbExts.Append(";*." + t.TrimStart('*').TrimStart('.'));
@@ -1467,10 +1465,7 @@ namespace Ambiesoft
                 }
                 sbFilter.Append("|All Files(*.*)|*.*");
                 ofd.Filter = sbFilter.ToString().TrimStart('|');
-                //ofd.Filter = "Application(*.exe;*.com)|*.exe;*.com|All Files(*.*)|*.*";
-                //ofd.FilterIndex = 2;
                 ofd.Title = title;
-                //ofd.RestoreDirectory = true;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
 
@@ -1478,6 +1473,39 @@ namespace Ambiesoft
                     return null;
 
                 return ofd.FileName;
+            }
+        }
+        public static string[] GetOpenFilesDialog(string title, Dictionary<string, string[]> extensions)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                StringBuilder sbFilter = new StringBuilder();
+                if (extensions != null)
+                {
+                    foreach (KeyValuePair<string, string[]> entry in extensions)
+                    {
+                        StringBuilder sbExts = new StringBuilder();
+                        foreach (string t in entry.Value)
+                        {
+                            // *.exe,*.com
+                            sbExts.Append(";*." + t.TrimStart('*').TrimStart('.'));
+                        }
+                        sbFilter.AppendFormat("|{0} ({1})|{1}",
+                            entry.Key,
+                            sbExts.ToString().TrimStart(';'));
+                    }
+                }
+                sbFilter.Append("|All Files(*.*)|*.*");
+                ofd.Filter = sbFilter.ToString().TrimStart('|');
+                ofd.Title = title;
+                ofd.Multiselect = true;
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                    return null;
+
+                return ofd.FileNames;
             }
         }
         public static string GetOpenFolderDialog(string description)

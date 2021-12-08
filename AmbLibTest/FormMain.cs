@@ -473,5 +473,21 @@ LIE"));
             string folder = AmbLib.GetOpenFolderDialog("my title");
             MessageBox.Show(folder);
         }
+
+        private void btnGetMultipleFiles_Click(object sender, EventArgs e)
+        {
+            var result = new StringBuilder();
+            string[] all = AmbLib.GetOpenFilesDialog(Application.ProductName, null);
+            if(all==null)
+                result.AppendLine("cancel");
+            // List<string> allList = new List<string>(all);
+            result.AppendLine(string.Join(Environment.NewLine,all));
+
+            //var extentions = new Dictionary<string, string[]>();
+            //extentions["Application"] = new string[] { "exe", "com" };
+            //extentions["Image"] = new string[] { "gif", "jpg", "jpeg", "png", "bmp" };
+            //extentions["html"] = new string[] { "html", "htm" };
+            MessageBox.Show(result.ToString());
+        }
     }
 }
