@@ -2095,26 +2095,36 @@ namespace Ambiesoft
         {
             return CopyFileTime(srcFile, dstFile, CFT.All);
         }
-        static bool DeleteAllEmptyDirectory(string dir, ref bool ok)
+        static bool DeleteAllEmptyDirectory(string dir, ref bool ok, ref List<KeyValuePair<string, Exception>> errors)
         {
             foreach (string d in Directory.GetDirectories(dir))
             {
-                DeleteAllEmptyDirectory(d, ref ok);
+                DeleteAllEmptyDirectory(d, ref ok, ref errors);
             }
             try
             {
                 Directory.Delete(dir);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                if (errors == null)
+                    errors = new List<KeyValuePair<string, Exception>>();
+                errors.Add(new KeyValuePair<string, Exception>(dir, ex));
                 ok = false;
             }
+            return ok;
+        }
+        public static bool DeleteAllEmptyDirectory(string dir, ref List<KeyValuePair<string, Exception>> errors)
+        {
+            bool ok = true;
+            DeleteAllEmptyDirectory(dir, ref ok, ref errors);
             return ok;
         }
         public static bool DeleteAllEmptyDirectory(string dir)
         {
             bool ok = true;
-            DeleteAllEmptyDirectory(dir, ref ok);
+            List<KeyValuePair<string, Exception>> errors = null;
+            DeleteAllEmptyDirectory(dir, ref ok, ref errors);
             return ok;
         }
     }  // class Amblib
