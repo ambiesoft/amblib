@@ -1,3 +1,6 @@
+2021/12/11 ver1.0.39
+DeleteAllEmptyDirectory
+
 2021/12/03 ver1.0.38
 Fix: GetSourceAndDestFiles behave differently whether the directory ends with / or \
 
