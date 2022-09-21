@@ -1677,7 +1677,7 @@ namespace Ambiesoft
         public static bool IsNet48OrNewer()
         {
             // API changes in 4.8: https://github.com/Microsoft/dotnet/blob/main/releases/net48/dotnet48-api-changes.md
-            return Type.GetType("System.ServiceModel.Description.ServiceHealthModel", false) != null;
+            return Type.GetType("System.Threading.Interlocked, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", false) != null;
         }
 
 

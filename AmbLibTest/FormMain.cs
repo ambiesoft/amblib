@@ -315,18 +315,6 @@ LIE"));
 
             rsuJaJp.getString("NONONONOSTRING");
             rsuJaJp.showUnI18Ned();
-
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("IsNet45OrNewer" + "=" + AmbLib.IsNet45OrNewer());
-                sb.AppendLine("IsNet46OrNewer" + "=" + AmbLib.IsNet46OrNewer());
-                sb.AppendLine("IsNet461OrNewer" + "=" + AmbLib.IsNet461OrNewer());
-                sb.AppendLine("IsNet462OrNewer" + "=" + AmbLib.IsNet462OrNewer());
-                sb.AppendLine("IsNet47OrNewer" + "=" + AmbLib.IsNet47OrNewer());
-                sb.AppendLine("IsNet48OrNewer" + "=" + AmbLib.IsNet48OrNewer());
-
-                MessageBox.Show(sb.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void cmbTripleClick_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -500,6 +488,20 @@ LIE"));
             //extentions["Image"] = new string[] { "gif", "jpg", "jpeg", "png", "bmp" };
             //extentions["html"] = new string[] { "html", "htm" };
             MessageBox.Show(result.ToString());
+        }
+
+        private void btnIsNetXXX_Click(object sender, EventArgs e)
+        {
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("IsNet45OrNewer" + "=" + AmbLib.IsNet45OrNewer());
+            sb.AppendLine("IsNet46OrNewer" + "=" + AmbLib.IsNet46OrNewer());
+            sb.AppendLine("IsNet461OrNewer" + "=" + AmbLib.IsNet461OrNewer());
+            sb.AppendLine("IsNet462OrNewer" + "=" + AmbLib.IsNet462OrNewer());
+            sb.AppendLine("IsNet47OrNewer" + "=" + AmbLib.IsNet47OrNewer());
+            sb.AppendLine("IsNet48OrNewer" + "=" + AmbLib.IsNet48OrNewer());
+
+            MessageBox.Show(sb.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -56,6 +56,8 @@
             this.btnOpenAmbiesoft = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tpSimple = new System.Windows.Forms.TabPage();
+            this.btnIsNnetXXX = new System.Windows.Forms.Button();
+            this.btnGetMultipleFiles = new System.Windows.Forms.Button();
             this.btnGetFolder = new System.Windows.Forms.Button();
             this.btnGetSaveFile = new System.Windows.Forms.Button();
             this.btnSelectApp = new System.Windows.Forms.Button();
@@ -83,7 +85,6 @@
             this.txtSrcDstResult = new System.Windows.Forms.TextBox();
             this.txtDst = new System.Windows.Forms.TextBox();
             this.txtSrc = new System.Windows.Forms.TextBox();
-            this.btnGetMultipleFiles = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tpSimple.SuspendLayout();
@@ -265,6 +266,7 @@
             // 
             // tpSimple
             // 
+            this.tpSimple.Controls.Add(this.btnIsNnetXXX);
             this.tpSimple.Controls.Add(this.btnGetMultipleFiles);
             this.tpSimple.Controls.Add(this.btnGetFolder);
             this.tpSimple.Controls.Add(this.btnGetSaveFile);
@@ -283,6 +285,26 @@
             this.tpSimple.TabIndex = 0;
             this.tpSimple.Text = "Simple";
             this.tpSimple.UseVisualStyleBackColor = true;
+            // 
+            // btnIsNnetXXX
+            // 
+            this.btnIsNnetXXX.Location = new System.Drawing.Point(8, 210);
+            this.btnIsNnetXXX.Name = "btnIsNnetXXX";
+            this.btnIsNnetXXX.Size = new System.Drawing.Size(75, 23);
+            this.btnIsNnetXXX.TabIndex = 9;
+            this.btnIsNnetXXX.Text = "IsNetXXX";
+            this.btnIsNnetXXX.UseVisualStyleBackColor = true;
+            this.btnIsNnetXXX.Click += new System.EventHandler(this.btnIsNetXXX_Click);
+            // 
+            // btnGetMultipleFiles
+            // 
+            this.btnGetMultipleFiles.Location = new System.Drawing.Point(203, 210);
+            this.btnGetMultipleFiles.Name = "btnGetMultipleFiles";
+            this.btnGetMultipleFiles.Size = new System.Drawing.Size(75, 23);
+            this.btnGetMultipleFiles.TabIndex = 9;
+            this.btnGetMultipleFiles.Text = "Get Multi";
+            this.btnGetMultipleFiles.UseVisualStyleBackColor = true;
+            this.btnGetMultipleFiles.Click += new System.EventHandler(this.btnGetMultipleFiles_Click);
             // 
             // btnGetFolder
             // 
@@ -569,16 +591,6 @@
             this.txtSrc.Size = new System.Drawing.Size(470, 19);
             this.txtSrc.TabIndex = 0;
             // 
-            // btnGetMultipleFiles
-            // 
-            this.btnGetMultipleFiles.Location = new System.Drawing.Point(203, 210);
-            this.btnGetMultipleFiles.Name = "btnGetMultipleFiles";
-            this.btnGetMultipleFiles.Size = new System.Drawing.Size(75, 23);
-            this.btnGetMultipleFiles.TabIndex = 9;
-            this.btnGetMultipleFiles.Text = "Get Multi";
-            this.btnGetMultipleFiles.UseVisualStyleBackColor = true;
-            this.btnGetMultipleFiles.Click += new System.EventHandler(this.btnGetMultipleFiles_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -659,5 +671,6 @@
         private System.Windows.Forms.Button btnFileToDir;
         private System.Windows.Forms.Button btnGetFolder;
         private System.Windows.Forms.Button btnGetMultipleFiles;
+        private System.Windows.Forms.Button btnIsNnetXXX;
     }
 }
