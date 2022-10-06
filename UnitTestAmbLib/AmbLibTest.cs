@@ -407,6 +407,22 @@ namespace UnitTestAmbLib
         {
             Assert.AreEqual(AmbLib.UpperCaseUrlEncode(null, Encoding.UTF8), null);
             Assert.AreEqual(AmbLib.UpperCaseUrlEncode(string.Empty, Encoding.UTF8), string.Empty);
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("", Encoding.UTF8), "");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("a", Encoding.UTF8), "a");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("ab", Encoding.UTF8), "ab");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("xyz", Encoding.UTF8), "xyz");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("/", Encoding.UTF8), "%2F");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("大きく分けて3つの字形が使われる。", Encoding.UTF8),
+                "%E5%A4%A7%E3%81%8D%E3%81%8F%E5%88%86%E3%81%91%E3%81%A63%E3%81%A4%E3%81%AE%E5%AD%97%E5%BD%A2%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%80%82");
+
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("a", Encoding.UTF8, true), "%61");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("A", Encoding.UTF8, true), "%41");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("z", Encoding.UTF8, true), "%7A");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("Z", Encoding.UTF8, true), "%5A");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("あ", Encoding.UTF8, true), "%E3%81%82");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("大きく分けて3つの字形が使われる。", Encoding.UTF8, true),
+                "%E5%A4%A7%E3%81%8D%E3%81%8F%E5%88%86%E3%81%91%E3%81%A6%33%E3%81%A4%E3%81%AE%E5%AD%97%E5%BD%A2%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%80%82");
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode("1", Encoding.UTF8, true), "%31");
         }
     }
 }

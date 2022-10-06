@@ -1167,22 +1167,35 @@ namespace Ambiesoft
         }
 
         // https://stackoverflow.com/a/918162
-        public static string UpperCaseUrlEncode(string s, Encoding encoding)
+        public static string UpperCaseUrlEncode(string s, Encoding encoding, bool bEncodeAll)
         {
             if (s == null)
                 return null;
-            char[] temp = HttpUtility.UrlEncode(s, encoding).ToCharArray();
-            for (int i = 0; i < temp.Length - 2; i++)
+            if (bEncodeAll)
             {
-                if (temp[i] == '%')
-                {
-                    temp[i + 1] = char.ToUpper(temp[i + 1]);
-                    temp[i + 2] = char.ToUpper(temp[i + 2]);
-                }
-            }
-            return new string(temp);
-        }
+                byte[] origBytes = encoding.GetBytes(s);
+                string ret = "%" + BitConverter.ToString(origBytes).Replace("-", "%");
 
+                return ret;
+            }
+            else
+            {
+                char[] temp = HttpUtility.UrlEncode(s, encoding).ToCharArray();
+                for (int i = 0; i < temp.Length - 2; i++)
+                {
+                    if (temp[i] == '%')
+                    {
+                        temp[i + 1] = char.ToUpper(temp[i + 1]);
+                        temp[i + 2] = char.ToUpper(temp[i + 2]);
+                    }
+                }
+                return new string(temp);
+            }
+        }
+        public static string UpperCaseUrlEncode(string s, Encoding encoding)
+        {
+            return UpperCaseUrlEncode(s, encoding, false);
+        }
         public static string GetSimpleVersion(Assembly asm)
         {
             StringBuilder sb = new StringBuilder();
