@@ -1169,6 +1169,8 @@ namespace Ambiesoft
         // https://stackoverflow.com/a/918162
         public static string UpperCaseUrlEncode(string s, Encoding encoding)
         {
+            if (s == null)
+                return null;
             char[] temp = HttpUtility.UrlEncode(s, encoding).ToCharArray();
             for (int i = 0; i < temp.Length - 2; i++)
             {

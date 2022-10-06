@@ -4,6 +4,7 @@ using Ambiesoft;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text;
 
 namespace UnitTestAmbLib
 {
@@ -338,7 +339,7 @@ namespace UnitTestAmbLib
                 Directory.CreateDirectory("X\\Z\\zz");
                 Directory.CreateDirectory("X\\Z\\zz2");
                 Directory.CreateDirectory("X\\Z\\zz\\zzz");
-                File.WriteAllText("X\\Z\\zz\\zzz\\file.txt","text");
+                File.WriteAllText("X\\Z\\zz\\zzz\\file.txt", "text");
                 Assert.IsFalse(AmbLib.DeleteAllEmptyDirectory("X"));
 
                 File.Delete("X\\Z\\zz\\zzz\\file.txt");
@@ -382,13 +383,13 @@ namespace UnitTestAmbLib
         {
             List<string> dirs1;
             var files1 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout", @"C:\T", out dirs1);
-            
+
             List<string> dirs2;
             var files2 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout\", @"C:\T", out dirs2);
-            
+
             List<string> dirs3;
             var files3 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout", @"C:\T\", out dirs3);
-            
+
             List<string> dirs4;
             var files4 = AmbLib.GetSourceAndDestFiles(@"C:\Linkout\", @"C:\T\", out dirs4);
 
@@ -399,6 +400,13 @@ namespace UnitTestAmbLib
             Assert.IsTrue(CompareKVS(files1, files2));
             Assert.IsTrue(CompareKVS(files2, files3));
             Assert.IsTrue(CompareKVS(files3, files4));
+        }
+
+        [TestMethod]
+        public void TestUrlEncode()
+        {
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode(null, Encoding.UTF8), null);
+            Assert.AreEqual(AmbLib.UpperCaseUrlEncode(string.Empty, Encoding.UTF8), string.Empty);
         }
     }
 }
