@@ -1,5 +1,4 @@
-2022/10/06 ver2.0.1
-Upgraded to .NET version 4.5.2
+2022/10/06 ver1.0.41
 Added an argument 'bEncodeAll' on 'UpperCaseUrlEncode()'
 
 2022/09/22 ver1.0.40
