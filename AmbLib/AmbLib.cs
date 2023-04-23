@@ -1280,21 +1280,21 @@ namespace Ambiesoft
             { }
             return false;
         }
-        
+
         // https://dobon.net/vb/dotnet/system/isadmin.html
         /// <summary>
-        /// 現在アプリケーションを実行しているユーザーに管理者権限があるか調べる
+        /// Find out if the user currently running the application has administrative privileges
         /// </summary>
-        /// <returns>管理者権限がある場合はtrue。</returns>
+        /// <returns>True if it has administrative privileges.</returns>
         public static bool IsAdministrator()
         {
-            //現在のユーザーを表すWindowsIdentityオブジェクトを取得する
+            // Obtain a WindowsIdentity object representing the current user
             System.Security.Principal.WindowsIdentity wi =
                 System.Security.Principal.WindowsIdentity.GetCurrent();
-            //WindowsPrincipalオブジェクトを作成する
+            // Create a WindowsPrincipal object
             System.Security.Principal.WindowsPrincipal wp =
                 new System.Security.Principal.WindowsPrincipal(wi);
-            //Administratorsグループに属しているか調べる
+            // Find out if you belong to the Administrators group
             return wp.IsInRole(
                 System.Security.Principal.WindowsBuiltInRole.Administrator);
         }
