@@ -38,10 +38,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ambiesoft.Profile, Version=2.0.1.33686, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Linkout\DNAssembly.NET4.5.2\Ambiesoft.Profile.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -62,7 +67,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AmbLib\AmbLib.csproj">
       <Project>{459eb893-322d-4097-a950-1a593dacb024}</Project>
-      <Name>AmbLib.2013</Name>
+      <Name>AmbLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
