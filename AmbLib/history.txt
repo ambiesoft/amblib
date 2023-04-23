@@ -1,3 +1,6 @@
+2023/04/24 ver2.0.2
+Fixed: SaveComboBox saves double quote properly
+
 2023/04/23 ver2.0.1
 Updated to .NET4.5.2
 

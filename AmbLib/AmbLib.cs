@@ -935,29 +935,49 @@ namespace Ambiesoft
             Profile.GetString(section, KEY_COMBO_CURRENT, string.Empty, out current, ini);
             cmb.Text = current;
         }
+
+        private static string AddExtraDQ(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return s;
+
+            if (s.Length == 1)
+                return s;
+
+            if (s[0] == '"' && s[s.Length - 1] == '"')
+            {
+                return '"' + s + '"';
+            }
+            if (s[0] == '\'' && s[s.Length - 1] == '\'')
+            {
+                return '\'' + s + '\'';
+            }
+            return s;
+        }
         public static bool SaveComboBox(ComboBox cmb, string section, int max, HashIni ini)
         {
             if (cmb == null || cmb.IsDisposed)
                 return false;
 
-            Profile.WriteString(section, KEY_COMBO_CURRENT, cmb.Text, ini);
+            Profile.WriteString(section, KEY_COMBO_CURRENT,
+                AddExtraDQ(cmb.Text), ini);
 
             List<string> itemsToSave = new List<string>();
-            if(!string.IsNullOrEmpty(cmb.Text) && !cmb.Items.Contains(cmb.Text))
-                itemsToSave.Add(cmb.Text);
+            if (!string.IsNullOrEmpty(cmb.Text) && !cmb.Items.Contains(cmb.Text))
+                itemsToSave.Add(AddExtraDQ(cmb.Text));
             int saveCount = 0;
-            foreach(var item in cmb.Items)
+            foreach (var item in cmb.Items)
             {
                 if (!string.IsNullOrEmpty(item.ToString()))
                 {
-                    itemsToSave.Add(item.ToString());
+                    itemsToSave.Add(AddExtraDQ(item.ToString()));
                     ++saveCount;
                 }
                 if (saveCount >= max)
                     break;
             }
 
-            Profile.WriteStringArray(section, KEY_COMBO_ITEMS, itemsToSave.ToArray(),ini);
+            Profile.WriteStringArray(section, KEY_COMBO_ITEMS, itemsToSave.ToArray(), ini);
             return true;
         }
 

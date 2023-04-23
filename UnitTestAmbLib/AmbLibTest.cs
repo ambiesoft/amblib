@@ -5,6 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace UnitTestAmbLib
 {
@@ -424,5 +425,42 @@ namespace UnitTestAmbLib
                 "%E5%A4%A7%E3%81%8D%E3%81%8F%E5%88%86%E3%81%91%E3%81%A6%33%E3%81%A4%E3%81%AE%E5%AD%97%E5%BD%A2%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%80%82");
             Assert.AreEqual(AmbLib.UpperCaseUrlEncode("1", Encoding.UTF8, true), "%31");
         }
+
+        public static string GetIniPath()
+        {
+            return "C:\\T\\AAA.ini";
+        }
+
+        public static void TestLoadComboBoxStuff(string testString) 
+        {
+            {
+                ComboBox cmb = new ComboBox();
+                cmb.Items.Add(testString);
+                HashIni ini = Profile.ReadAll(GetIniPath());
+                AmbLib.SaveComboBox(cmb, "cmb", 100, ini);
+                Assert.IsTrue(Profile.WriteAll(ini, GetIniPath()));
+            }
+            {
+                ComboBox cmb = new ComboBox();
+                HashIni ini = Profile.ReadAll(GetIniPath());
+                AmbLib.LoadComboBox(cmb, "cmb", 100, ini);
+                Assert.AreEqual(cmb.Items[0].ToString(), testString);
+            }
+        }
+        [TestMethod]
+        public void TestLoadComboBox()
+        {
+            TestLoadComboBoxStuff("AAA");
+            TestLoadComboBoxStuff("AAA aaa");
+            TestLoadComboBoxStuff("\"AAA\"");
+            TestLoadComboBoxStuff("\"AAA'");
+            TestLoadComboBoxStuff("'AAA\"");
+            TestLoadComboBoxStuff("'AAA'");
+            TestLoadComboBoxStuff("''AAA''");
+            TestLoadComboBoxStuff("''AAA'");
+            TestLoadComboBoxStuff("AAA'");
+            TestLoadComboBoxStuff("\"\"AAA\"\"");
+        }
+
     }
 }
