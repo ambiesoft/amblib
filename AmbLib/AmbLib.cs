@@ -1014,37 +1014,17 @@ namespace Ambiesoft
             if (e.Data != null)
                 sbOut.AppendLine(e.Data);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="arguments"></param>
-        /// <param name="encoding"></param>
-        /// <param name="retval"></param>
-        /// <param name="output"></param>
-        /// <param name="err"></param>
+
         public static void OpenCommandGetResult(
-            string filename,
-            string arguments,
-            Encoding encoding,
+            ProcessStartInfo psi,
             out int retval,
             out string output,
             out string err)
         {
-            ProcessStartInfo si = new ProcessStartInfo();
-            si.FileName = filename;
-            si.Arguments = arguments;
-            si.StandardOutputEncoding = encoding;
-            si.RedirectStandardOutput = true;
-            si.StandardErrorEncoding = encoding;
-            si.RedirectStandardError = true;
-            si.UseShellExecute = false;
-            si.CreateNoWindow = true;
-
             Process process = new Process();
             process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
             process.ErrorDataReceived += new DataReceivedEventHandler(process_ErrorDataReceived);
-            process.StartInfo = si;
+            process.StartInfo = psi;
 
             sbOut = new StringBuilder();
             sbErr = new StringBuilder();
@@ -1060,16 +1040,13 @@ namespace Ambiesoft
             output = sbOut.ToString();
             err = sbErr.ToString();
         }
-
-        public static void OpenCommandGetResultCallback(
-            string filename,
-            string arguments,
-            Encoding encoding,
-            out int retval,
-            DataReceivedEventHandler outputDelegate,
-            DataReceivedEventHandler errputDelegate,
-            EventHandler OnProcessCreated,
-            out Process processRet)
+        public static void OpenCommandGetResult(
+                    string filename,
+                    string arguments,
+                    Encoding encoding,
+                    out int retval,
+                    out string output,
+                    out string err)
         {
             ProcessStartInfo si = new ProcessStartInfo();
             si.FileName = filename;
@@ -1081,10 +1058,24 @@ namespace Ambiesoft
             si.UseShellExecute = false;
             si.CreateNoWindow = true;
 
+            OpenCommandGetResult(
+                si,
+                out retval,
+                out output,
+                out err);
+        }
+        public static void OpenCommandGetResultCallback(
+                ProcessStartInfo psi,
+                out int retval,
+                DataReceivedEventHandler outputDelegate,
+                DataReceivedEventHandler errputDelegate,
+                EventHandler OnProcessCreated,
+                out Process processRet)
+        {
             Process process = new Process();
             process.OutputDataReceived += new DataReceivedEventHandler(outputDelegate);
             process.ErrorDataReceived += new DataReceivedEventHandler(errputDelegate);
-            process.StartInfo = si;
+            process.StartInfo = psi;
 
             process.Start();
             processRet = process;
@@ -1099,7 +1090,33 @@ namespace Ambiesoft
             retval = process.ExitCode;
         }
 
+        public static void OpenCommandGetResultCallback(
+                    string filename,
+                    string arguments,
+                    Encoding encoding,
+                    out int retval,
+                    DataReceivedEventHandler outputDelegate,
+                    DataReceivedEventHandler errputDelegate,
+                    EventHandler OnProcessCreated,
+                    out Process processRet)
+        {
+            ProcessStartInfo si = new ProcessStartInfo();
+            si.FileName = filename;
+            si.Arguments = arguments;
+            si.StandardOutputEncoding = encoding;
+            si.RedirectStandardOutput = true;
+            si.StandardErrorEncoding = encoding;
+            si.RedirectStandardError = true;
+            si.UseShellExecute = false;
+            si.CreateNoWindow = true;
 
+            OpenCommandGetResultCallback(
+                si,
+                out retval,
+                outputDelegate,
+                errputDelegate,
+                OnProcessCreated, out processRet);
+        }
         public static string doubleQuoteIfSpace(string input)
         {
             if (input == null)
@@ -2166,6 +2183,14 @@ namespace Ambiesoft
             List<KeyValuePair<string, Exception>> errors = null;
             DeleteAllEmptyDirectory(dir, ref ok, ref errors);
             return ok;
+        }
+
+        public static string ReplaceTripleReturn(string s)
+        {
+            if (s == null)
+                return null;
+
+            return s.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n\n\n", "\n\n").Replace("\n", "\r\n");
         }
     }  // class Amblib
 }  // namespace Ambiesoft

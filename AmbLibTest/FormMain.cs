@@ -141,7 +141,6 @@ namespace AmbLibTest
                 Console.WriteLine("err:");
                 Console.WriteLine(err);
 
-
                 // Delegate 
                 StringBuilder sbOut = new StringBuilder();
                 StringBuilder sbErr = new StringBuilder();
