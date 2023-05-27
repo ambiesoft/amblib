@@ -1,3 +1,6 @@
+2023/05/27 ver2.0.4
+ReplaceTripleReturn became recurrent
+
 2023/05/23 ver2.0.3
 OpenCommandGetResult* can take ProcessStartupInfo
 

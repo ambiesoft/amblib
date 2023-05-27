@@ -461,6 +461,50 @@ namespace UnitTestAmbLib
             TestLoadComboBoxStuff("AAA'");
             TestLoadComboBoxStuff("\"\"AAA\"\"");
         }
+        [TestMethod]
+        public void TestReplaceTripleReturn()
+        {
+            // check keeping original
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(null), null);
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(""), "");
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(string.Empty), string.Empty);
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn("a"), "a");
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn("a b c"), "a b c");
 
+            string s = "a\nb\nc\n";
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(s), s);
+
+            s = "a\rb\rc\r";
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(s), s);
+
+            s = "a\r\nb\r\nc\r\n";
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(s), s);
+
+            s = "\n\n";
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(s), s);
+
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn("\n\n\n"), "\n\n");
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn("\n\n\n \n\n\n"), "\n\n \n\n");
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn("\n\n\n\n"), "\n\n");
+
+            string s1 = @"jfoafj
+fjweo
+
+
+fjewovnvv
+
+
+
+
+awer";
+            string s2 = @"jfoafj
+fjweo
+
+fjewovnvv
+
+awer";
+
+            Assert.AreEqual(AmbLib.ReplaceTripleReturn(s1), s2);
+        }
     }
 }

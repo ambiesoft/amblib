@@ -2185,12 +2185,47 @@ namespace Ambiesoft
             return ok;
         }
 
-        public static string ReplaceTripleReturn(string s)
+        static string ReplaceTripleReturnStuff(string s)
         {
             if (s == null)
                 return null;
 
-            return s.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n\n\n", "\n\n").Replace("\n", "\r\n");
+            int iR = s.IndexOf('\r');
+            int iN = s.IndexOf('\n');
+            if (iR == -1 && iN == -1)
+                return s;
+
+            int iRN = s.IndexOf("\r\n");
+
+            if (iR < 0)
+                iR = int.MaxValue;
+            if (iN < 0)
+                iN = int.MaxValue;
+            if (iRN < 0)
+                iRN = int.MaxValue;
+
+            string retChar = "\r\n";
+            if (iRN <= iN && iRN <= iR)
+                retChar = "\r\n";
+            else if (iN <= iRN && iN <= iR)
+                retChar = "\n";
+            else if(iR <= iRN && iR <= iN)
+                retChar = "\r";
+
+            return s.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n\n\n", "\n\n").Replace("\n", retChar);
+        }
+        public static string ReplaceTripleReturn(string s)
+        {
+            string sPre = s;
+            string sPost;
+            for(; ;)
+            {
+                sPost = ReplaceTripleReturnStuff(sPre);
+                if (sPost == sPre)
+                    break;
+                sPre = sPost;
+            }
+            return sPost;
         }
     }  // class Amblib
 }  // namespace Ambiesoft
