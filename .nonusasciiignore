@@ -1,3 +1,5 @@
 *.resx
 *.Designer.cs
 UnitTestAmbLib/AmbLibTest.cs
+
+AmbLib/AmbLib.cs

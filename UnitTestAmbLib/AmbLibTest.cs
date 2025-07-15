@@ -506,5 +506,34 @@ awer";
 
             Assert.AreEqual(AmbLib.ReplaceTripleReturn(s1), s2);
         }
+
+        [TestMethod]
+        public void TestGetFilaNamableName()
+        {
+            Assert.AreEqual(AmbLib.GetFilaNamableName(null), "NewFile");
+            Assert.AreEqual(AmbLib.GetFilaNamableName(""), "NewFile");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a"), "a");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a b c"), "a b c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a/b/c"), "a_b_c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a\\b\\c"), "a_b_c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a:b:c"), "abc");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a*b*c"), "a_b_c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a?b*c"), "a_b_c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a<b>c"), "a_b_c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a|b|c"), "a_b_c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("aaa.txt"), "aaa.txt");
+            Assert.AreEqual(AmbLib.GetFilaNamableName(@"C:\T\aaa.txt"), @"C_T_aaa.txt");
+
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a/b/c",AmbLib.FileNamableType.ToZenkaku), "a／b／c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a\\b\\c", AmbLib.FileNamableType.ToZenkaku), "a￥b￥c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a:b:c", AmbLib.FileNamableType.ToZenkaku), "a：b：c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a*b*c", AmbLib.FileNamableType.ToZenkaku), "a＊b＊c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a?b*c", AmbLib.FileNamableType.ToZenkaku), "a？b＊c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a<b>c", AmbLib.FileNamableType.ToZenkaku), "a＜b＞c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("a|b|c", AmbLib.FileNamableType.ToZenkaku), "a｜b｜c");
+            Assert.AreEqual(AmbLib.GetFilaNamableName("aaa.txt", AmbLib.FileNamableType.ToZenkaku), "aaa.txt");
+            Assert.AreEqual(AmbLib.GetFilaNamableName(@"C:\T\aaa.txt", AmbLib.FileNamableType.ToZenkaku), @"C：￥T￥aaa.txt");
+
+        }
     }
 }

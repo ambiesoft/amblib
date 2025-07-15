@@ -103,7 +103,21 @@ namespace Ambiesoft
     public class AmbLib
     {
         public static readonly String DEFAULT_UNNAMABLED_FILENAME = "NewFile";
+        public static readonly String UNFILENAMABLECHARS = "";
 
+        public static readonly System.Collections.Generic.Dictionary<Char, Char> UNFILENAMABLE_MAP = new System.Collections.Generic.Dictionary<char, char>()
+        {
+            { '<', '＜' },
+            { '>', '＞' },
+            { ':', '：' },
+            { ';', '；' },
+            { '"', '”' },
+            { '/', '／' },
+            { '\\', '￥' },
+            { '|', '｜' },
+            { '?', '？' },
+            { '*', '＊' },
+        };
         public static bool HasFileExtension(string filename, string ext)
         {
             if (filename == null)
@@ -162,7 +176,13 @@ namespace Ambiesoft
 
             return s;
         }
-        public static String GetFilaNamableName(String s)
+
+        public enum FileNamableType
+        {
+            Normal,
+            ToZenkaku,
+        }
+        public static String GetFilaNamableName(String s, FileNamableType fnt)
         {
             if (string.IsNullOrEmpty(s))
                 return DEFAULT_UNNAMABLED_FILENAME;
@@ -170,16 +190,38 @@ namespace Ambiesoft
             s = GetFirstLine(s);
 
             StringBuilder sb = new StringBuilder();
-            foreach (char c in s)
+            if (fnt == FileNamableType.ToZenkaku)
             {
-                if (IsFileNamable(c))
-                    sb.Append(c);
-                else
+                foreach (char c in s)
                 {
-                    if (c == ':')
-                    { }
+                    if (IsFileNamable(c))
+                        sb.Append(c);
                     else
-                        sb.Append('_');
+                    {
+                        foreach (KeyValuePair<char, char> kv in UNFILENAMABLE_MAP)
+                        {
+                            if (c == kv.Key)
+                            {
+                                sb.Append(kv.Value);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (char c in s)
+                {
+                    if (IsFileNamable(c))
+                        sb.Append(c);
+                    else
+                    {
+                        if (c == ':')
+                        { }
+                        else
+                            sb.Append('_');
+                    }
                 }
             }
             string ret = sb.ToString();
@@ -190,22 +232,17 @@ namespace Ambiesoft
             }
             return ret;
         }
+        public static String GetFilaNamableName(String s)
+        {
+            return GetFilaNamableName(s, FileNamableType.Normal);
+        }
+
         public static bool IsFileNamable(char c)
         {
-            if (c == '<' ||
-                c == '>' ||
-                c == ':' ||
-                c == ';' ||
-                c == '\"' ||
-                c == '/' ||
-                c == '\\' ||
-                c == '|' ||
-                c == '?' ||
-                c == '*')
+            if (UNFILENAMABLE_MAP.ContainsKey(c))
             {
                 return false;
             }
-
             if (0 <= c && c <= 31)
             {
                 return false;
