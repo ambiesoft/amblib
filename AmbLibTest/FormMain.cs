@@ -502,5 +502,18 @@ LIE"));
 
             MessageBox.Show(sb.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnFavicon_Click(object sender, EventArgs e)
+        {
+            string[] all = AmbLib.GetOpenFilesDialog(Application.ProductName, null);
+            if (all == null)
+                return;
+            string file = all[0];
+
+            Icon icon = AmbLib.GetFaviconFromFile(file);
+
+            MessageBox.Show(string.Format("'{0}' is {1}",
+                file, icon != null ? "OK" : "null"));
+        }
     }
 }

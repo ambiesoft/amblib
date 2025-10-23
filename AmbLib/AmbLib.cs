@@ -1,25 +1,25 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
+using Svg;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Drawing;
-using System.Windows.Forms;
-using System.IO;
-
-using Microsoft.Win32;
-using System.Diagnostics;
-using System.Security.Cryptography;
 using System.Reflection;
-using System.Web;
-using System.Globalization;
 using System.Resources;
-using System.Linq;
-
-using Microsoft.VisualBasic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Management;
-using System.Collections.Specialized;
+using System.Web;
+using System.Windows.Forms;
 
 namespace Ambiesoft
 {
@@ -2289,6 +2289,69 @@ namespace Ambiesoft
                 default:
                     return num + "th";
             }
+        }
+
+        public static Icon GetFaviconFromFile(string filename)
+        { 
+            using(FileStream fs=new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                return GetFaviconFromFile(fs);
+            }
+        }
+        public static Icon GetFaviconFromFile(Stream fs)
+        {
+            Icon icon = null;
+            try
+            {
+                fs.Position = 0;
+                icon = new Icon(fs);
+            }
+            catch
+            {
+                try
+                {
+                    fs.Position = 0;
+                    using (Bitmap bm = new Bitmap(fs))
+                    {
+                        IntPtr hicon = bm.GetHicon();
+                        icon = Icon.FromHandle(hicon);
+                    }
+                }
+                catch
+                {
+                    try
+                    {
+                        fs.Position = 0;
+                        SvgDocument doc = SvgDocument.Open<SvgDocument>(fs);
+                        using (Bitmap bm = doc.Draw())
+                        {
+                            IntPtr hicon = bm.GetHicon();
+                            icon = Icon.FromHandle(hicon);
+                        }
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            fs.Position = 0;
+                            using (var gzipStream = new GZipStream(fs, CompressionMode.Decompress))
+                            {
+                                using (var mem = new MemoryStream())
+                                {
+                                    gzipStream.CopyTo(mem);
+                                    mem.Position = 0;
+                                    return GetFaviconFromFile(mem);
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+            return icon;
         }
     }  // class Amblib
 }  // namespace Ambiesoft
