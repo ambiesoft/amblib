@@ -2292,14 +2292,17 @@ namespace Ambiesoft
         }
 
         public static Icon GetFaviconFromFile(string filename)
-        { 
-            using(FileStream fs=new FileStream(filename, FileMode.Open, FileAccess.Read))
+        {
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
                 return GetFaviconFromFile(fs);
             }
         }
         public static Icon GetFaviconFromFile(Stream fs)
         {
+            if (fs.Length <= 0)
+                return null;
+
             Icon icon = null;
             try
             {
