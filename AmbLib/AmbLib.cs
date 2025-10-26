@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
-using Svg;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -2289,72 +2288,6 @@ namespace Ambiesoft
                 default:
                     return num + "th";
             }
-        }
-
-        public static Icon GetFaviconFromFile(string filename)
-        {
-            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            {
-                return GetFaviconFromFile(fs);
-            }
-        }
-        public static Icon GetFaviconFromFile(Stream fs)
-        {
-            if (fs.Length <= 0)
-                return null;
-
-            Icon icon = null;
-            try
-            {
-                fs.Position = 0;
-                icon = new Icon(fs);
-            }
-            catch
-            {
-                try
-                {
-                    fs.Position = 0;
-                    using (Bitmap bm = new Bitmap(fs))
-                    {
-                        IntPtr hicon = bm.GetHicon();
-                        icon = Icon.FromHandle(hicon);
-                    }
-                }
-                catch
-                {
-                    try
-                    {
-                        fs.Position = 0;
-                        SvgDocument doc = SvgDocument.Open<SvgDocument>(fs);
-                        using (Bitmap bm = doc.Draw())
-                        {
-                            IntPtr hicon = bm.GetHicon();
-                            icon = Icon.FromHandle(hicon);
-                        }
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            fs.Position = 0;
-                            using (var gzipStream = new GZipStream(fs, CompressionMode.Decompress))
-                            {
-                                using (var mem = new MemoryStream())
-                                {
-                                    gzipStream.CopyTo(mem);
-                                    mem.Position = 0;
-                                    return GetFaviconFromFile(mem);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            return null;
-                        }
-                    }
-                }
-            }
-            return icon;
         }
     }  // class Amblib
 }  // namespace Ambiesoft
